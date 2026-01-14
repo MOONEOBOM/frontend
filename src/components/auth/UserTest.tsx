@@ -1,19 +1,12 @@
 'use client';
-import api from '@/lib/axios';
-import { useState } from 'react';
+import { useMe } from '@/lib/tanstack/query/user.query';
 
 const UserTest = () => {
-  const [adata, setDate] = useState(null);
-  const click = async () => {
-    const data = await api.get('/users/me');
-    setDate(data.data);
-  };
+  const { data: me } = useMe();
 
   return (
     <div>
-      <button onClick={click}>User</button>
-      <br />
-      <span>{JSON.stringify(adata)}</span>
+      <span>{me?.name}</span>
     </div>
   );
 };
