@@ -13,7 +13,7 @@ const LinkButton = ({
   onClick: () => void;
 }) => {
   const baseStyle =
-    'flex items-center h-[30px] gap-[20px] justify-between body2 rounded-full px-[12px] py-[5px]';
+    'flex items-center h-[30px] gap-[20px] justify-between body2 rounded-[15px] px-[12px] py-[5px]';
 
   const typeStyles = {
     outline: 'border-[1.5px] border-primary bg-white',
@@ -23,7 +23,7 @@ const LinkButton = ({
   const className = `
     ${baseStyle} 
     ${typeStyles[type]} 
-    ${isFull ? 'w-[285px]' : 'w-fit'}
+    ${isFull ? 'w-[285px] h-[35px]' : 'w-fit'}
   `;
 
   return (
