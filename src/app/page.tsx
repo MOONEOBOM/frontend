@@ -4,6 +4,7 @@ import { auth } from '../../firebase-config';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useState } from 'react';
 import { User } from 'firebase/auth';
+import Button from '@/components/common/Button';
 
 function App() {
   const [userData, setUserData] = useState<User | null>(null);
@@ -29,6 +30,13 @@ function App() {
           ? '당신의 이름은 : ' + userData.displayName
           : '로그인 버튼을 눌러주세요 :)'}
       </div>
+      <Button
+        onClick={handleGoogleLogin}
+        className="bg-primary-100 text-white"
+        variant="half"
+      >
+        상담 시작하기
+      </Button>
     </div>
   );
 }
