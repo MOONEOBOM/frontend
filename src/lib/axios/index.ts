@@ -8,14 +8,14 @@ type RetryConfig = InternalAxiosRequestConfig & {
 };
 
 const api = axios.create({
-  baseURL,
+  baseURL: `${baseURL}/api/v1`,
   timeout: 10000,
   withCredentials: true,
 });
 
 //재발급 전용 인스턴스(인터셉터 없음) → 무한루프 방지
 const sessionApi = axios.create({
-  baseURL,
+  baseURL: `${baseURL}/api/v1`,
   timeout: 10000,
   withCredentials: true,
 });
@@ -40,7 +40,7 @@ api.interceptors.response.use(
 
       //세션 재발급(인터셉터 없는 인스턴스로 호출)
       await sessionApi.post(
-        '/api/v1/auth/session',
+        '/auth/session',
         {},
         { headers: { Authorization: `Bearer ${idToken}` } },
       );

@@ -2,7 +2,7 @@ import api from '@/lib/axios';
 
 export const loginWithGoogleApi = (idToken: string) => {
   return api.post(
-    '/api/v1/auth/login',
+    '/auth/login',
     {},
     {
       headers: {
@@ -13,5 +13,5 @@ export const loginWithGoogleApi = (idToken: string) => {
 };
 
 export const logoutApi = () => {
-  return api.post('/api/v1/auth/logout');
+  return api.post('/auth/logout');
 };
