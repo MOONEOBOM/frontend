@@ -1,0 +1,58 @@
+@layer base {
+    :root {
+        /* base */
+        --color-white: #ffffff;
+        --color-black: #000000;
+
+        /* semantic */
+        --color-primary-100: #FBE783; 
+        --color-primary: #FBE783;
+        --color-secondary: #ABE0F0;
+
+        --color-border-100: #F0F0F0;
+        --color-border-200: #F3F3F3;
+        --color-border-300: #D9D9D9;
+        --color-border-400: #6D6D6D;
+
+        --color-uplus: #F30F88;
+    }
+}
+
+@layer components {
+
+    /* base */
+    .color-white {
+        color: var(--color-white);
+    }
+    .color-black {
+        color: var(--color-black);
+    }
+
+    /* semantic */
+    .color-primary-100 {
+        background-color: var(--color-primary-100);
+    }
+    .color-primary {
+        background-color: var(--color-primary);
+    }
+    .color-secondary {
+        background-color: var(--color-secondary);
+    }
+
+    .color-border-100 {
+        background-color: var(--color-border-100);
+    }
+    .color-border-200 {
+        background-color: var(--color-border-200);
+    }
+    .color-border-300 {
+        background-color: var(--color-border-300);
+    }
+    .color-border-400 {
+        background-color: var(--color-border-400);
+    }
+
+    .color-uplus {
+        background-color: var(--color-uplus);
+    }
+}
