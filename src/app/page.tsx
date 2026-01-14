@@ -7,6 +7,7 @@ import { User } from 'firebase/auth';
 import Button from '@/components/common/Button';
 import GoogleIcon from '@/assets/icon/google.svg';
 import LinkButton from '@/components/summary/LinkButton';
+import ToggleBox from '@/components/summary/ToggleBox';
 function App() {
   const [userData, setUserData] = useState<User | null>(null);
   function handleGoogleLogin() {
@@ -41,15 +42,19 @@ function App() {
         구글로 로그인
       </Button>
 
-      <LinkButton type="outline" onClick={() => {}}>
-        자세히 보기
-      </LinkButton>
-      <LinkButton type="solid" onClick={() => {}}>
-        로밍 해지하기
-      </LinkButton>
-      <LinkButton type="outline" isFull onClick={() => {}}>
-        로밍 해지하기
-      </LinkButton>
+      <div className="flex flex-col gap-[20px]">
+        <LinkButton type="outline" onClick={() => {}}>
+          자세히 보기
+        </LinkButton>
+        <LinkButton type="solid" onClick={() => {}}>
+          로밍 해지하기
+        </LinkButton>
+        <LinkButton type="outline" isFull onClick={() => {}}>
+          로밍 해지하기
+        </LinkButton>
+
+        <ToggleBox>로밍으로 인한 과청구</ToggleBox>
+      </div>
     </div>
   );
 }
