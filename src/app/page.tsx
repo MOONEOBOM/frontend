@@ -5,7 +5,7 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useState } from 'react';
 import { User } from 'firebase/auth';
 import Button from '@/components/common/Button';
-
+import GoogleIcon from '@/assets/google.svg';
 function App() {
   const [userData, setUserData] = useState<User | null>(null);
   function handleGoogleLogin() {
@@ -32,10 +32,12 @@ function App() {
       </div>
       <Button
         onClick={handleGoogleLogin}
-        className="bg-primary-100 text-white"
-        variant="half"
+        className="bg-white"
+        variant="full"
+        buttonStyle="outline"
+        icon={<GoogleIcon />}
       >
-        상담 시작하기
+        구글로 로그인
       </Button>
     </div>
   );
