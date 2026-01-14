@@ -14,7 +14,7 @@ const sizeVariants: Record<ButtonVariant, string> = {
 };
 const styleVariants: Record<ButtonStyle, string> = {
   solid: ' border-none ',
-  outline: ' border border-primary-400',
+  outline: ' border border-border-400',
 };
 export default function Button({
   type = 'button',
@@ -28,7 +28,7 @@ export default function Button({
   return (
     <button
       type={type}
-      className={` flex items-center rounded-xl justify-center transition-all active:scale-95 ${icon ? 'gap-[15px]' : ''} ${sizeVariants[variant]}${styleVariants[buttonStyle]} ${className}`}
+      className={`flex items-center rounded-xl justify-center transition-all active:scale-95 ${icon ? 'gap-[15px]' : ''} ${sizeVariants[variant]}${styleVariants[buttonStyle]} ${className}`}
       {...props}
     >
       {/* 아이콘이 있을 경우 */}
