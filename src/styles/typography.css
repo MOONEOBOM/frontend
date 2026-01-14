@@ -1,0 +1,109 @@
+/* Pretendard체 */
+@font-face {
+    font-family: 'Pretendard';
+    src: url('../assets/fonts/Pretendard-Bold.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('../assets/fonts/Pretendard-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* 세종글꽃체 */
+@font-face {
+    font-family: 'SejongGeulggot';
+    src: url('../assets/fonts/SEJONGGEULGGOT.TTF') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ============================================================== */
+
+@layer components {
+
+    /* Pretendard체 */
+    .heading1 {
+        font-family: 'Pretendard', system-ui, sans-serif;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 110%;
+    }
+
+    .heading2 {
+        font-family: 'Pretendard', system-ui, sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 110%;
+    }
+
+    .heading3 {
+        font-family: 'Pretendard', system-ui;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 110%;
+    }
+
+    .heading4 {
+        font-family: 'Pretendard', system-ui;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 110%;
+    }
+
+    .title1 {
+        font-family: 'Pretendard', system-ui;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 140%;
+    }
+
+    .body1 {
+        font-family: 'Pretendard', system-ui;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 140%;
+    }
+
+    .body2 {
+        font-family: 'Pretendard', system-ui;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 140%;
+    }
+
+    .body3 {
+        font-family: 'Pretendard', system-ui;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 140%;
+    }
+
+    /* 세종글꽃체 */
+    .script-title {
+        font-family: 'SejongGeulggot', cursive;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 120%;
+    }
+
+    .script-body-16 {
+        font-family: 'SejongGeulggot', cursive;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 140%;
+    }
+
+    .script-body-14 {
+        font-family: 'SejongGeulggot', cursive;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 140%;
+    }
+}
