@@ -23,7 +23,7 @@ const LinkButton = ({
   const className = `
     ${baseStyle} 
     ${typeStyles[type]} 
-    ${isFull ? 'w-[285px]' : ''}
+    ${isFull ? 'w-[285px]' : 'w-fit'}
   `;
 
   return (

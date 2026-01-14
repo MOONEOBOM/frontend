@@ -54,6 +54,7 @@ function App() {
         </LinkButton>
 
         <ToggleBox>로밍으로 인한 과청구</ToggleBox>
+        <ToggleBox>로밍으로 인한 과청구</ToggleBox>
       </div>
     </div>
   );
