@@ -1,5 +1,5 @@
-import LeftChervon from '@/assets/icon/chervon_left.svg';
-import BottomChervon from '@/assets/icon/chervon_bottom.svg';
+import LeftChevron from '@/assets/icon/chevron_left.svg';
+import BottomChevron from '@/assets/icon/chevron_bottom.svg';
 import { useState } from 'react';
 import LinkButton from './LinkButton';
 
@@ -9,23 +9,15 @@ const ToggleBox = ({ children }: { children: React.ReactNode }) => {
     <div className=" w-[315px] rounded-[10px] shadow-[0_0_3.4px_0_rgba(0,0,0,0.25)]">
       <div className="h-[50px] p-[10px] flex items-center justify-between heading4">
         {children}
-
-        {isOpen ? (
-          <BottomChervon
-            className="cursor-pointer"
-            onClick={() => {
-              setIsOpen(false);
-            }}
-          />
-        ) : (
-          <LeftChervon
-            className="cursor-pointer"
-            onClick={() => {
-              setIsOpen(true);
-            }}
-          />
-        )}
+        <button
+          type="button"
+          className="cursor-pointer bg-transparent border-none p-0"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <BottomChevron /> : <LeftChevron />}
+        </button>
       </div>
+
       {isOpen ? (
         <div className="flex flex-col gap-[10px] p-[10px] pt-0">
           <div className="h-[1px] w-full bg-gray-300" />
