@@ -8,6 +8,8 @@ import Button from '@/components/common/Button';
 import GoogleIcon from '@/assets/icon/google.svg';
 import CryMoo from '@/assets/icon/cryingMoo.svg';
 import Modal from '@/components/common/Modal';
+import LinkButton from '@/components/summary/LinkButton';
+import ToggleBox from '@/components/summary/ToggleBox';
 function App() {
   const [userData, setUserData] = useState<User | null>(null);
   function handleGoogleLogin() {
@@ -59,6 +61,21 @@ function App() {
         상담을 종료하시겟습니까? <br />
         상담 종료시 요약이 진행됩니다
       </Modal>
+
+      <div className="flex flex-col gap-[20px]">
+        <LinkButton type="outline" onClick={() => {}}>
+          자세히 보기
+        </LinkButton>
+        <LinkButton type="solid" onClick={() => {}}>
+          로밍 해지하기
+        </LinkButton>
+        <LinkButton type="outline" isFull onClick={() => {}}>
+          로밍 해지하기
+        </LinkButton>
+
+        <ToggleBox>로밍으로 인한 과청구</ToggleBox>
+        <ToggleBox>로밍으로 인한 과청구</ToggleBox>
+      </div>
     </div>
   );
 }
