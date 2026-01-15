@@ -1,3 +1,4 @@
+import { cn } from '@/utils/cn';
 const Badge = ({
   children,
   type,
@@ -12,7 +13,7 @@ const Badge = ({
       'box-border px-[14px] py-[8px] bg-primary-100 border-[1px] border-primary',
   };
 
-  const className = `${baseStyle} ${typeStyles[type]}`;
+  const className = cn(baseStyle, typeStyles[type]);
 
   return <div className={className}>{children}</div>;
 };
