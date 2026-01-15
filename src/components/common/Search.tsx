@@ -9,7 +9,7 @@ export const Search = forwardRef<
   const baseCls = 'pl-[40px] body1';
 
   return (
-    <div className="relative ${width} ">
+    <div className={`relative ${width}`}>
       <SearchIcon className="pointer-events-none absolute left-[14px] top-1/2 -translate-y-1/2 text-gray-400" />
 
       <Input

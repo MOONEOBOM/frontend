@@ -31,7 +31,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
       variant === 'search'
         ? 'border-[var(--color-border-300)]'
-        : 'border-[var(--color-primary-100)]',
+        : 'border-[var(--color-primary)]',
 
       error ? 'border-red-500' : '',
     ]
