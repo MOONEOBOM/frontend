@@ -1,4 +1,4 @@
-import LeftChevron from '@/assets/icon/chevron_left.svg?react';
+import RightChevron from '@/assets/icon/chevron_right.svg?react';
 import BottomChevron from '@/assets/icon/chevron_bottom.svg?react';
 import { useState } from 'react';
 import LinkButton from './LinkButton';
@@ -14,7 +14,7 @@ const ToggleBox = ({ children }: { children: React.ReactNode }) => {
           className="cursor-pointer bg-transparent border-none p-0"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <BottomChevron /> : <LeftChevron />}
+          {isOpen ? <BottomChevron /> : <RightChevron />}
         </button>
       </div>
 

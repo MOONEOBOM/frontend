@@ -1,4 +1,4 @@
-import LeftChevron from '@/assets/icon/chevron_left.svg?react';
+import RightChevron from '@/assets/icon/chevron_right.svg?react';
 import React from 'react';
 
 const LinkButton = ({
@@ -29,7 +29,7 @@ const LinkButton = ({
   return (
     <button type="button" className={className} onClick={onClick}>
       {children}
-      <LeftChevron />
+      <RightChevron />
     </button>
   );
 };
