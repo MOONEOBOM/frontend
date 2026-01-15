@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import ToggleBox from '@/components/summary/ToggleBox';
 
 const meta: Meta<typeof ToggleBox> = {
-  title: 'Components/ToggleBox',
+  title: 'Components/Summary/ToggleBox',
   component: ToggleBox,
   tags: ['autodocs'],
   argTypes: {

@@ -10,6 +10,9 @@ import CryMoo from '@/assets/icon/moono_cry.svg';
 import Modal from '@/components/common/Modal';
 import LinkButton from '@/components/summary/LinkButton';
 import ToggleBox from '@/components/summary/ToggleBox';
+import Badge from '@/components/common/Badge';
+import Header from '@/components/common/Header';
+
 function App() {
   const [userData, setUserData] = useState<User | null>(null);
   function handleGoogleLogin() {
@@ -87,6 +90,12 @@ function App() {
         <ToggleBox>로밍으로 인한 과청구</ToggleBox>
         <ToggleBox>로밍으로 인한 과청구</ToggleBox>
       </div>
+
+      <Badge type="blue">대학생 요금제 추천해줘</Badge>
+      <Badge type="primary">요금제 변경</Badge>
+
+      <Header />
+      <Header type="chat" />
     </div>
   );
 }

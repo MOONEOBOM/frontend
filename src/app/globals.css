@@ -12,7 +12,7 @@
   --color-black: #000000;
 
   /* semantic */
-  --color-primary-100: #fbe783;
+  --color-primary-100: #fff7cf;
   --color-primary: #fbe783;
   --color-secondary: #abe0f0;
 
@@ -22,6 +22,8 @@
   --color-border-400: #6d6d6d;
 
   --color-uplus: #f30f88;
+
+  --color-red: #e6414f;
 }
 
 body {

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import LinkButton from '@/components/summary/LinkButton';
 
 const meta: Meta<typeof LinkButton> = {
-  title: 'Components/LinkButton',
+  title: 'Components/Summary/LinkButton',
   component: LinkButton,
   tags: ['autodocs'],
   argTypes: {
