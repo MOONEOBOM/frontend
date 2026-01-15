@@ -10,7 +10,6 @@ export const Search = forwardRef<
     width,
     'flex',
     'items-center',
-    'justify-items-start',
     'body1',
     'h-[40px]',
     'py-[7px]',
@@ -27,9 +26,9 @@ export const Search = forwardRef<
 
   return (
     <div className={wrapperCls}>
-      <SearchIcon fill="text-gray-400" />
+      <SearchIcon width={21}/>
 
-      <Input ref={ref} variant="search" {...props} />
+      <Input ref={ref} variant="search" error={error} {...props} />
     </div>
   );
 });
