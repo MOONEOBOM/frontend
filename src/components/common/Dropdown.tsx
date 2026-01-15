@@ -50,6 +50,7 @@ const Dropdown = ({
     'bg-[var(--color-white)]',
     'border',
     'border-[var(--color-primary)]',
+    'cursor-pointer',
   ].join(' ');
   return (
     <div ref={ref} className={baseCls}>
