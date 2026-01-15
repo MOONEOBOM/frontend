@@ -6,7 +6,14 @@ const Header = ({ type = 'default' }: { type?: 'default' | 'chat' }) => {
       {type == 'chat' ? (
         <>
           <div />
-          <div className="body2 text-red">상담 종료</div>
+          <div
+            className="body2 text-red"
+            onClick={() => {
+              // TODO: 상담 요약 API 요청 및 페이지 이동
+            }}
+          >
+            상담 종료
+          </div>
         </>
       ) : (
         <LeftChevron />
