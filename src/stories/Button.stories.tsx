@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import Button from '../components/common/Button';
-import GoogleLogo from '@/assets/icon/google.svg';
+import GoogleLogo from '@/assets/icon/google.svg?react';
 const meta: Meta<typeof Button> = {
   title: 'Components/Common/Button',
   component: Button,
