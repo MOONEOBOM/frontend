@@ -1,12 +1,12 @@
-import LeftChevron from '@/assets/icon/chevron_left.svg';
-import BottomChevron from '@/assets/icon/chevron_bottom.svg';
+import LeftChevron from '@/assets/icon/chevron_left.svg?react';
+import BottomChevron from '@/assets/icon/chevron_bottom.svg?react';
 import { useState } from 'react';
 import LinkButton from './LinkButton';
 
 const ToggleBox = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <div className=" w-[315px] rounded-[10px] shadow-[0_0_3.4px_0_rgba(0,0,0,0.25)]">
+    <div className="bg-white w-[315px] rounded-[10px] shadow-[0_0_3.4px_0_rgba(0,0,0,0.25)]">
       <div className="h-[50px] p-[10px] flex items-center justify-between heading4">
         {children}
         <button

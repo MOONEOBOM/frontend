@@ -1,4 +1,4 @@
-import LeftChevron from '@/assets/icon/chevron_left.svg';
+import LeftChevron from '@/assets/icon/chevron_left.svg?react';
 import React from 'react';
 
 const LinkButton = ({
