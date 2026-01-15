@@ -25,14 +25,6 @@ export const Disabled: Story = {
   },
 };
 
-/** 에러 상태 (Input props 전달) */
-export const Error: Story = {
-  args: {
-    error: true,
-    placeholder: '검색 중 오류',
-  },
-};
-
 /** 커스텀 스타일 */
 export const CustomStyle: Story = {
   args: {

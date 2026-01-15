@@ -33,7 +33,7 @@ type Story = StoryObj<typeof Input>;
 export const Default: Story = {};
 
 /** 에러 상태 */
-export const Error: Story = {
+export const ErrorState: Story = {
   args: {
     error: true,
     placeholder: '에러 상태 Input',
