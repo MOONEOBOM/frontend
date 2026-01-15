@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import Header from '@/components/common/Header';
 
 const meta: Meta<typeof Header> = {
-  title: 'Components/Header',
+  title: 'Components/Common/Header',
   component: Header,
   tags: ['autodocs'],
   argTypes: {
