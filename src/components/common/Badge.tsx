@@ -9,7 +9,7 @@ const Badge = ({
   const typeStyles = {
     blue: 'px-[10px] py-[6px] bg-secondary',
     primary:
-      'box-border px-[14px] py-[8px]  bg-primary-100 border-[1px] border-primary',
+      'box-border px-[14px] py-[8px] bg-primary-100 border-[1px] border-primary',
   };
 
   const className = `${baseStyle} ${typeStyles[type]}`;
