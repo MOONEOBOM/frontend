@@ -51,17 +51,13 @@ function App() {
         구글로 로그인
       </Button>
       <Modal
-        type="info"
+        type="select"
         isOpen={isModalOpen}
         onBack={handleBackAction}
         onClose={handleCloseAction}
-        image={<CryMoo />}
       >
-        무너봄은 음성 파일에 한해
-        <br />
-        상담 요약을 제공해드리고 있어요.
-        <br />
-        불편을 드려 죄송합니다.
+        상담을 종료하시겟습니까? <br />
+        상담 종료시 요약이 진행됩니다
       </Modal>
     </div>
   );

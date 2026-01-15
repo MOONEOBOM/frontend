@@ -25,10 +25,12 @@ export default function Button({
   size = 'full',
   variant = 'solid',
   icon,
+  ...props
 }: ButtonProps) {
   return (
     <button
       className={`flex items-center rounded-xl justify-center transition-all active:scale-95 ${icon ? 'gap-[15px]' : ''} ${sizes[size]}${variants[variant]} ${className}`}
+      {...props}
     >
       {/* 아이콘이 있을 경우 */}
       {icon && <span className="shrink-0 ">{icon}</span>}

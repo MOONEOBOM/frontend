@@ -1,3 +1,4 @@
+'use client';
 type ModalType = 'select' | 'info';
 
 interface ModalProps {
