@@ -2,7 +2,7 @@ import LeftChevron from '@/assets/icon/chevron_left.svg?react';
 
 const Header = ({ type = 'default' }: { type?: 'default' | 'chat' }) => {
   return (
-    <div className="flex items-center justify-between px-[20px] py-[25px] w-full">
+    <div className="flex items-center justify-between px-[20px] h-[62px] w-full">
       {type == 'chat' ? (
         <>
           <div />
