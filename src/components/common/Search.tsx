@@ -1,5 +1,5 @@
 import { Input } from './Input';
-import SearchIcon from '@/assets/icon/search.svg';
+import SearchIcon from '@/assets/icon/search.svg?react';
 
 export const Search = (props: React.ComponentProps<typeof Input>) => {
   const baseCls = ['pl-[40px]', 'body1'].join(' ');
