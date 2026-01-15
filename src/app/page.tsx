@@ -6,6 +6,8 @@ import { useState } from 'react';
 import { User } from 'firebase/auth';
 import Button from '@/components/common/Button';
 import GoogleIcon from '@/assets/icon/google.svg';
+import CryMoo from '@/assets/icon/cryingMoo.svg';
+import Modal from '@/components/common/Modal';
 function App() {
   const [userData, setUserData] = useState<User | null>(null);
   function handleGoogleLogin() {
@@ -19,6 +21,15 @@ function App() {
         console.log(err);
       });
   }
+  const [isModalOpen, setIsModalOpen] = useState(true);
+  const handleBackAction = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCloseAction = () => {
+    setIsModalOpen(false);
+    // 메인 페이지나 다른 경로로 이동
+  };
 
   return (
     <div>
@@ -33,12 +44,25 @@ function App() {
       <Button
         onClick={handleGoogleLogin}
         className="bg-white"
-        variant="full"
-        buttonStyle="outline"
+        size="full"
+        variant="outline"
         icon={<GoogleIcon />}
       >
         구글로 로그인
       </Button>
+      <Modal
+        type="info"
+        isOpen={isModalOpen}
+        onBack={handleBackAction}
+        onClose={handleCloseAction}
+        image={<CryMoo />}
+      >
+        무너봄은 음성 파일에 한해
+        <br />
+        상담 요약을 제공해드리고 있어요.
+        <br />
+        불편을 드려 죄송합니다.
+      </Modal>
     </div>
   );
 }
