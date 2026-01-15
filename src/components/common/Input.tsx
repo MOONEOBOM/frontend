@@ -21,17 +21,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const baseCls = [
       width,
       'h-[40px]',
-      'px-[15px]',
       'rounded-[10px]',
-      'bg-[var(--color-white)]',
       'border',
       'outline-none',
       'disabled:cursor-not-allowed disabled:opacity-50',
       'body2',
 
-      variant === 'search'
-        ? 'border-[var(--color-border-300)]'
-        : 'border-[var(--color-primary)]',
+      variant === 'search' ? 'border-none' : 'border-[var(--color-primary)]',
+      variant === 'search' ? '' : 'bg-[var(--color-white)]',
+      variant === 'search' ? 'px-[9px]' : 'px-[15px]',
 
       error ? 'border-red-500' : '',
     ]
