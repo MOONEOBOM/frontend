@@ -7,13 +7,12 @@ const ToggleBox = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <div className="bg-white w-[315px] rounded-[10px] shadow-[0_0_3.4px_0_rgba(0,0,0,0.25)]">
-      <div className="h-[50px] p-[10px] flex items-center justify-between heading4">
+      <div
+        className="h-[50px] p-[10px] flex items-center justify-between heading4 cursor-pointer"
+        onClick={() => setIsOpen(!isOpen)}
+      >
         {children}
-        <button
-          type="button"
-          className="cursor-pointer bg-transparent border-none p-0"
-          onClick={() => setIsOpen(!isOpen)}
-        >
+        <button className=" bg-transparent border-none p-0">
           {isOpen ? <BottomChevron /> : <RightChevron />}
         </button>
       </div>
