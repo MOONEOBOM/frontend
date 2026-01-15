@@ -3,12 +3,14 @@ import { forwardRef } from 'react';
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
   width?: string;
+  variant?: 'default' | 'search';
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className = '',
+      variant = 'default',
       error = false,
       style,
       width = 'w-full',
@@ -16,11 +18,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     }: InputProps,
     ref,
   ) => {
-    const mergedStyle = {
-      ['--input-border-color' as any]: 'var(--color-primary-100)',
-      ...(style || {}),
-    } as React.CSSProperties;
-
     const baseCls = [
       width,
       'h-[40px]',
@@ -28,24 +25,23 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       'rounded-[10px]',
       'bg-[var(--color-white)]',
       'border',
-      'border-[var(--input-border-color)]',
       'outline-none',
       'disabled:cursor-not-allowed disabled:opacity-50',
       'body2',
-    ].join(' ');
 
-    const finalStyle = error
-      ? ({
-          ...mergedStyle,
-          ['--input-border-color' as any]: 'red',
-        } as React.CSSProperties)
-      : mergedStyle;
+      variant === 'search'
+        ? 'border-[var(--color-border-300)]'
+        : 'border-[var(--color-primary-100)]',
+
+      error ? 'border-red-500' : '',
+    ]
+      .filter(Boolean)
+      .join(' ');
 
     return (
       <input
         ref={ref}
         aria-invalid={error || undefined}
-        style={finalStyle}
         className={[baseCls, className].join(' ')}
         {...props}
       />

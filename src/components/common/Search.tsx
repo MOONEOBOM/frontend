@@ -14,12 +14,11 @@ export const Search = forwardRef<
 
       <Input
         ref={ref}
+        variant="search"
+        className={['pl-[40px] body1', props.className]
+          .filter(Boolean)
+          .join(' ')}
         {...props}
-        className={[baseCls, props.className].filter(Boolean).join(' ')}
-        style={{
-          ...(props.style || {}),
-          ['--input-border-color' as any]: 'var(--color-border-300)',
-        }}
       />
     </div>
   );
