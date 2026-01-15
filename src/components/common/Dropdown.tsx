@@ -53,7 +53,7 @@ const Dropdown = ({
     'cursor-pointer',
   ].join(' ');
   return (
-    <div ref={ref} className={baseCls}>
+    <div ref={ref} className={`${baseCls} relative`}>
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
