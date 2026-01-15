@@ -6,6 +6,13 @@ import { useState } from 'react';
 import { User } from 'firebase/auth';
 import Button from '@/components/common/Button';
 import GoogleIcon from '@/assets/icon/google.svg';
+import CryMoo from '@/assets/icon/moono_cry.svg';
+import Modal from '@/components/common/Modal';
+import LinkButton from '@/components/summary/LinkButton';
+import ToggleBox from '@/components/summary/ToggleBox';
+import Badge from '@/components/common/Badge';
+import Header from '@/components/common/Header';
+
 function App() {
   const [userData, setUserData] = useState<User | null>(null);
   function handleGoogleLogin() {
@@ -19,6 +26,15 @@ function App() {
         console.log(err);
       });
   }
+  const [isModalOpen, setIsModalOpen] = useState(true);
+  const handleBackAction = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCloseAction = () => {
+    setIsModalOpen(false);
+    // 메인 페이지나 다른 경로로 이동
+  };
 
   return (
     <div>
@@ -33,12 +49,53 @@ function App() {
       <Button
         onClick={handleGoogleLogin}
         className="bg-white"
-        variant="full"
-        buttonStyle="outline"
+        size="full"
+        variant="outline"
         icon={<GoogleIcon />}
       >
         구글로 로그인
       </Button>
+      <Modal
+        type="select"
+        isOpen={isModalOpen}
+        onBack={handleBackAction}
+        onClose={handleCloseAction}
+      >
+        상담을 종료하시겠습니까?
+        <br />
+        상담 종료시 요약이 진행됩니다
+      </Modal>
+      {/* <Modal
+        type="info"
+        isOpen={isModalOpen}
+        onBack={handleBackAction}
+        image={<CryMoo />}
+      >
+        무너봄은 음성 파일에 한해
+        <br />
+        상담 요약을 제공해드리고 있어요. 불편을 드려 죄송합니다.
+      </Modal> */}
+
+      <div className="flex flex-col gap-[20px]">
+        <LinkButton type="outline" onClick={() => {}}>
+          자세히 보기
+        </LinkButton>
+        <LinkButton type="solid" onClick={() => {}}>
+          로밍 해지하기
+        </LinkButton>
+        <LinkButton type="outline" isFull onClick={() => {}}>
+          로밍 해지하기
+        </LinkButton>
+
+        <ToggleBox>로밍으로 인한 과청구</ToggleBox>
+        <ToggleBox>로밍으로 인한 과청구</ToggleBox>
+      </div>
+
+      <Badge type="blue">대학생 요금제 추천해줘</Badge>
+      <Badge type="primary">요금제 변경</Badge>
+
+      <Header />
+      <Header type="chat" />
     </div>
   );
 }

@@ -1,22 +1,28 @@
-// Button.stories.tsx
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import Button from '../components/common/Button';
-import GoogleLogo from '@/assets/icon/google.svg';
-
+import GoogleLogo from '@/assets/icon/google.svg?react';
 const meta: Meta<typeof Button> = {
   title: 'Components/Common/Button',
   component: Button,
   tags: ['autodocs'],
   argTypes: {
-    variant: {
-      control: 'select',
+    size: {
+      control: 'inline-radio',
       options: ['half', 'full'],
       description: '버튼의 너비를 결정합니다.',
     },
-    buttonStyle: {
+    variant: {
       control: 'select',
       options: ['solid', 'outline'],
-      description: '버튼의 테두리 및 배경 스타일을 결정합니다.',
+      description: '버튼의 스타일 변형을 선택합니다.',
+    },
+    children: {
+      control: 'text',
+      description: '버튼 내부에 표시될 텍스트입니다.',
+    },
+    icon: {
+      control: 'boolean',
+      description: '아이콘 포함 여부를 테스트합니다.',
     },
     onClick: { action: 'clicked' },
   },
@@ -25,43 +31,36 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-// 1. 기본 스타일 (Solid + Full)
-export const Default: Story = {
+/**
+ * 기본 Solid 타입의 가득 찬 버튼입니다.
+ */
+export const SolidFull: Story = {
   args: {
-    children: '상담 시작하기',
-    variant: 'full',
-    buttonStyle: 'solid',
-    className: 'bg-primary-100', // 배경색 예시
+    size: 'full',
+    variant: 'solid',
+    children: '확인하기',
+    className: 'bg-primary-100 ',
   },
 };
 
-// 2. 아웃라인 스타일
-export const Outline: Story = {
+/**
+ * 테두리만 있는 Outline 타입의 절반 너비 버튼입니다.
+ */
+export const OutlineHalf: Story = {
   args: {
-    children: '상담 시작하기',
-    variant: 'full',
-    buttonStyle: 'outline',
+    size: 'half',
+    variant: 'outline',
+    children: '취소',
     className: 'bg-white ',
   },
 };
 
-// 3. 아이콘이 있는 구글 로그인 버튼
-export const WithGoogleIcon: Story = {
+export const WithIcon: Story = {
   args: {
-    children: '구글로 로그인하기',
-    variant: 'full',
-    buttonStyle: 'outline',
-    className: 'bg-white',
-    icon: <GoogleLogo width={20} height={20} />,
-  },
-};
-
-// 4. 절반 사이즈 (Half)
-export const HalfSize: Story = {
-  args: {
-    children: '확인',
-    variant: 'half',
-    buttonStyle: 'solid',
-    className: 'bg-primary-100',
+    size: 'full',
+    variant: 'outline',
+    className: 'bg-white ',
+    icon: <GoogleLogo />,
+    children: '구글로 로그인',
   },
 };

@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/nextjs-vite';
+import svgr from 'vite-plugin-svgr'; // 1. SVGR 플러그인 임포트
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -10,7 +11,17 @@ const config: StorybookConfig = {
     '@storybook/addon-onboarding',
     '@storybook/addon-essentials',
   ],
-  framework: '@storybook/nextjs-vite',
+  framework: {
+    name: '@storybook/nextjs-vite',
+    options: {},
+  },
   staticDirs: ['../public'],
+
+  viteFinal: async (config) => {
+    config.plugins = config.plugins || [];
+    config.plugins.push(svgr());
+    return config;
+  },
 };
+
 export default config;
