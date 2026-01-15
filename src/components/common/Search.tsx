@@ -10,7 +10,7 @@ export const Search = forwardRef<
 
   return (
     <div className="relative w-full ">
-      <SearchIcon className='className="pointer-events-none absolute left-[14px] top-1/2 -translate-y-1/2 text-gray-400"' />
+      <SearchIcon className="pointer-events-none absolute left-[14px] top-1/2 -translate-y-1/2 text-gray-400" />
 
       <Input
         ref={ref}
