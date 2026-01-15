@@ -6,6 +6,8 @@ import { useState } from 'react';
 import { User } from 'firebase/auth';
 import Button from '@/components/common/Button';
 import GoogleIcon from '@/assets/icon/google.svg';
+import Badge from '@/components/common/Badge';
+
 function App() {
   const [userData, setUserData] = useState<User | null>(null);
   function handleGoogleLogin() {
@@ -39,6 +41,9 @@ function App() {
       >
         구글로 로그인
       </Button>
+
+      <Badge type="blue">대학생 요금제 추천해줘</Badge>
+      <Badge type="primary">요금제 변경</Badge>
     </div>
   );
 }
