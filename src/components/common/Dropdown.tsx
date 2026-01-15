@@ -15,7 +15,7 @@ interface DropdownProps {
   width?: string;
 }
 
-export const Dropdown = ({
+const Dropdown = ({
   onChange,
   value,
   options,
@@ -81,3 +81,4 @@ export const Dropdown = ({
     </div>
   );
 };
+export default Dropdown;
