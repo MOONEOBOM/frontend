@@ -1,9 +1,3 @@
-function App() {
-  return (
-    <div>
-      <h1>홈페이지</h1>
-    </div>
-  );
-}
+import HomePage from '@/components/home/page';
 
-export default App;
+export default HomePage;
