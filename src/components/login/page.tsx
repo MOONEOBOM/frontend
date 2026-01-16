@@ -3,23 +3,10 @@ import Logo from '@/assets/icon/logo.svg';
 import Button from '../common/Button';
 import GoogleIcon from '@/assets/icon/google.svg';
 import HelloMoo from '@/assets/moono/moono_hello.svg';
-import { useState } from 'react';
-import { GoogleAuthProvider, signInWithPopup, User } from 'firebase/auth';
-import { auth } from '@/lib/firebase/firebaseClient';
+import { useLogin } from '@/lib/tanstack/mutation/auth.mutation';
 
 const LoginPage = () => {
-  const [userData, setUserData] = useState<User | null>(null);
-  function handleGoogleLogin() {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-      .then((data) => {
-        setUserData(data.user);
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  const { mutate: login } = useLogin();
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
       <HelloMoo className="mt-[195px]" />
@@ -31,7 +18,7 @@ const LoginPage = () => {
           size="full"
           variant="outline"
           icon={<GoogleIcon />}
-          onClick={handleGoogleLogin}
+          onClick={() => login()}
           className="bg-white"
         >
           구글로 로그인
