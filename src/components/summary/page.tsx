@@ -8,16 +8,18 @@ const SummaryPage = () => {
   return (
     <div className="flex flex-col items-center">
       <Header type="default" />
-      <p className="heading2 mb-[20px] w-[315px]">박예진님이 해야할 일은?</p>
 
-      <div className="flex flex-col gap-[10px]">
-        {TODO.map((todo) => {
-          return (
-            <LinkButton href="" type="outline" isFull>
-              {todo}
-            </LinkButton>
-          );
-        })}
+      <div className="flex flex-col gap-[20px]">
+        <p className="heading2 w-[315px]">박예진님이 해야할 일은?</p>
+        <div className="flex flex-col gap-[10px]">
+          {TODO.map((todo, index) => {
+            return (
+              <LinkButton key={index} href="" type="outline" isFull>
+                {todo}
+              </LinkButton>
+            );
+          })}
+        </div>
       </div>
 
       <Card />
