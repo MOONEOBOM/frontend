@@ -5,14 +5,15 @@
  */
 
 "use client";
+
 import { useState } from "react";
+import TranslateIcon from '@/assets/icon/translate.svg?react';
 
 interface HighlightToken {
   text: string;
   highlight?: boolean;
 }
 
-// 🔹 Mock 데이터
 const MOCK_ORIGINAL: HighlightToken[] = [
   { text: "지금 " },
   { text: "결합할인", highlight: true },
@@ -95,21 +96,17 @@ export function TextBubbleService() {
         )}
       </div>
 
-      {/* 요약/번역 토글 아이콘 */}
+      {/* 새로고침(번역) 버튼 */}
       <button
         onClick={() => setShowSimplified((prev) => !prev)}
         className="
-          shrink-0
-          w-7 h-7
+          mt-[10px]
+          w-[20px] h-[20px]
           flex items-center justify-center
-          rounded-full
-          bg-border-300
-          hover:bg-border-400
           cursor-pointer
         "
-        aria-label="요약 보기"
       >
-        ⟳
+        <TranslateIcon className="w-[20px] h-[20px]" />
       </button>
     </div>
   );

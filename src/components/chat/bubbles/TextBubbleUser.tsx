@@ -2,7 +2,6 @@ interface TextBubbleUserProps {
   text?: string;  // 임시로 선택사항으로 바꿈
 }
 
-// 임시 mock 데이터 (UI 테스트용)
 const MOCK_TEXT = "해외 다녀왔는데 요금이 너무 많이 나왔어요";
 
 export function TextBubbleUser({ text }: TextBubbleUserProps) {

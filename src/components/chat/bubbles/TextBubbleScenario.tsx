@@ -1,38 +1,22 @@
 'use client';
 
-import MooneoIcon from '@/assets/icon/mooneo.svg';
+import MooneoIcon from '@/assets/icon/mooneo.svg?react';
 
 const MOCK_SCENARIO_TEXT =
   '1월 12일 ~ 14일 동안 과금이 발생한 것으로 확인됩니다.';
 
 export function TextBubbleScenario() {
   return (
-    // 프로필 + 말풍선 전체 묶음의 최대 너비
-    <div className="max-w-[290px]">
+    <div className="w-full flex justify-start">
       <div className="flex items-start gap-[5px] my-4">
-        {/* 프로필 영역 */}
-        <div
-          className="
-            w-[46px] h-[46px]
-            rounded-full
-            overflow-hidden
-            flex-shrink-0
-            bg-border-200
-            border border-black
-          "
-        >
-          <img
-            src={MooneoIcon.src}
-            alt="프로필 이미지"
-            className="w-full h-full object-cover"
-          />
-        </div>
+        {/* 프로필 (테두리까지 있는 SVG 다시 다운받고 그대로 사용하기, 테두리 X) */}
+        <MooneoIcon className="w-[47px] h-[47px] flex-shrink-0" />
 
-        {/* 말풍선 */}
+        {/* 말풍선 (프로필 아이콘보다 아래로 20 더 아래에 있음) */}
         <div
           className="
-            max-w-[240px]
             mt-[20px]
+            max-w-[240px]
             px-[10px] py-[10px]
             bg-border-100
             text-black
