@@ -12,7 +12,7 @@ const Card = ({ isEasy = false }: { isEasy?: boolean }) => {
   const summaryContent = isEasy ? MockData.easy : MockData.default;
   return (
     <div className="border-primary border-box my-[40px] flex h-[415px] w-[315px] flex-col items-center gap-[30px] rounded-[10px] border-[5px] py-[30px]">
-      {isEasy ? <EyesRight /> : <EyesLeft />}
+      {isEasy ? <EyesLeft /> : <EyesRight />}
       <div className="w-[250px]">
         <p className="heading2">{MockData.title}</p>
         <div className="border-border-300 mt-[20px] mb-[40px] w-[250px] border-[1px]" />
