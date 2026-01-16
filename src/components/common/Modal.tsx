@@ -40,7 +40,9 @@ export default function Modal({
           <div className="whitespace-pre-wrap pb-[20px]">{children}</div>
         </div>
         <div className="flex w-full gap-[11px] justify-center">
-          <button className={cn('bg-border-100', buttonSize)} onClick={onBack}>
+
+          <button className={`bg-gray-100  ${buttonSize}`} onClick={onBack}>
+
             {isInfoModal ? '홈으로 돌아가기' : '돌아가기'}
           </button>
           {!isInfoModal && (
