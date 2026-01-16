@@ -1,5 +1,5 @@
 'use client';
-
+import { cn } from '@/utils/cn';
 type ButtonSize = 'half' | 'full';
 type ButtonVariant = 'solid' | 'outline';
 
@@ -29,7 +29,13 @@ export default function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`flex items-center rounded-xl justify-center transition-all active:scale-95 ${icon ? 'gap-[15px]' : ''} ${sizes[size]}${variants[variant]} ${className}`}
+      className={cn(
+        'flex items-center rounded-xl justify-center transition-all active:scale-95',
+        icon ? 'gap-[15px]' : '',
+        sizes[size],
+        variants[variant],
+        className,
+      )}
       {...props}
     >
       {/* 아이콘이 있을 경우 */}
