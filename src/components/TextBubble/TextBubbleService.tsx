@@ -75,7 +75,7 @@ export function TextBubbleService() {
             flex-shrink-0
           "
         >
-          <TranslateIcon className="w-[10px] h-[10px] block translate-x-[0.5px] translate-y-[0.5px]" />
+          <TranslateIcon className="w-[10px] h-[10px]" />
         </button>
       </div>
     </>
