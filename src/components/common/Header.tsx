@@ -1,23 +1,23 @@
 import LeftChevron from '@/assets/icon/chevron_left.svg?react';
+type HeaderProps =
+  | { type?: 'default'; onClickButton?: () => void }
+  | { type: 'chat'; onClickButton: () => void };
 
-const Header = ({
-  type = 'default',
-  onClose,
-}: {
-  type?: 'default' | 'chat';
-  onClose: () => void;
-}) => {
+const Header = ({ type = 'default', onClickButton }: HeaderProps) => {
   return (
     <div className="flex h-[62px] w-full items-center justify-between px-[20px]">
       {type == 'chat' ? (
         <>
           <div />
-          <div className="body2 text-red" onClick={onClose}>
+          <button className="body2 text-red" onClick={onClickButton}>
             상담 종료
-          </div>
+          </button>
         </>
       ) : (
-        <LeftChevron />
+        <button onClick={onClickButton}>
+          {' '}
+          <LeftChevron />
+        </button>
       )}
     </div>
   );

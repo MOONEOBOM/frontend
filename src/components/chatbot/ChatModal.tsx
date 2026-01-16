@@ -21,7 +21,7 @@ export default function ChatModal() {
   };
   return (
     <div>
-      <Header onClose={handleModal} type="chat" />
+      <Header onClickButton={handleModal} type="chat" />
       <Modal
         type="select"
         isOpen={isModalOpen}
