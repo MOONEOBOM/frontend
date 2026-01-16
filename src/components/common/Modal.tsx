@@ -29,24 +29,33 @@ export default function Modal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div
         className={cn(
-          'relative w-[230px] rounded-2xl body2 bg-white px-[18px] py-[16px] flex flex-col items-center justify-between',
+          'body2 relative flex w-[230px] flex-col items-center justify-between rounded-2xl bg-white px-[18px] py-[16px]',
           isInfoModal ? 'h-[267px]' : 'h-[121px]',
         )}
       >
         {isInfoModal && image && (
           <div className="shrink-0 pb-[20px]">{image}</div>
         )}
-        <div className="flex-1 flex items-center justify-center text-center">
-          <div className="whitespace-pre-wrap pb-[20px]">{children}</div>
+        <div className="flex flex-1 items-center justify-center text-center">
+          <div className="pb-[20px] whitespace-pre-wrap">{children}</div>
         </div>
-        <div className="flex w-full gap-[11px] justify-center">
-          <button className={cn('bg-border-100', buttonSize)} onClick={onBack}>
+        <div className="flex w-full justify-center gap-[11px]">
+          <button
+            className={cn('bg-gray-100', buttonSize)}
+            onClick={(e) => {
+              e.stopPropagation(); //클릭 이벤트가 부모로 전달되는 것 방지
+              onBack();
+            }}
+          >
             {isInfoModal ? '홈으로 돌아가기' : '돌아가기'}
           </button>
           {!isInfoModal && (
             <button
-              className={cn('bg-primary-100 ', buttonSize)}
-              onClick={() => onClose?.()}
+              className={cn('bg-primary-100', buttonSize)}
+              onClick={(e) => {
+                e.stopPropagation();
+                onClose?.();
+              }}
             >
               종료
             </button>
