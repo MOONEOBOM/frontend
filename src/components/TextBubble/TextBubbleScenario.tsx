@@ -29,7 +29,7 @@ export function TextBubbleScenario() {
           />
         </div>
 
-        {/* 말풍선 (프로필 아이콘보다 아래로 20 더 아래에 있음) */}
+        {/* 말풍선 */}
         <div
           className="
             mt-[20px]
