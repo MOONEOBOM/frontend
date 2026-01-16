@@ -6,6 +6,7 @@ interface ModalProps {
   isOpen: boolean;
   type: ModalType;
   image?: React.ReactNode;
+  onOverlayClick: (event: boolean) => void; // 오버레이 클릭 시
   onBack: () => void; // 돌아가기 버튼
   onClose?: () => void; // 종료 버튼
   children: React.ReactNode;
@@ -18,6 +19,7 @@ export default function Modal({
   onBack,
   onClose,
   children,
+  onOverlayClick,
 }: ModalProps) {
   if (!isOpen) return null;
   const isInfoModal = type === 'info';
@@ -26,7 +28,10 @@ export default function Modal({
     : 'rounded-xl h-[35px] w-[90px]';
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+      onClick={() => onOverlayClick(false)}
+    >
       <div
         className={cn(
           'body2 relative flex w-[230px] flex-col items-center justify-between rounded-2xl bg-white px-[18px] py-[16px]',
