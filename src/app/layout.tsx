@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     siteName: '무너봄',
     images: [
       {
-        url: '/og-image.svg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: '무너봄',
