@@ -24,7 +24,7 @@ const LinkButton = ({ children, type, isFull, href }: LinkButtonProps) => {
   const className = cn(
     baseStyle,
     typeStyles[type],
-    isFull ? 'w-[285px] h-[35px]' : 'w-fit',
+    isFull ? 'w-[315px] h-[35px]' : 'w-fit',
   );
 
   return (
