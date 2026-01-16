@@ -24,9 +24,7 @@ const HomePage = () => {
     <div className="flex min-h-screen flex-col items-center justify-center">
       <div className="heading1 mt-[71px]">유레카님, 반갑습니다!</div>
       <div className="script-body-14 mt-[9px]">무너가 도와드릴게요.</div>
-      <div className="mt-[50px]">
-        <HelloMoo />
-      </div>
+      <HelloMoo className="mt-[50px]" />
       <div className="mt-[76px] flex flex-row items-center justify-center gap-[10px]">
         <Button
           size="half"
@@ -48,13 +46,13 @@ const HomePage = () => {
       </div>
       <div className="mt-[58px] mb-[19px] flex w-full items-center justify-between px-[37.5px]">
         <div className="heading2">최근 상담 내역</div>
-        <div
+        <button
           className="body3 flex items-center gap-[5px]"
           onClick={handleHistory}
         >
           전체보기
           <ChevRight />
-        </div>
+        </button>
       </div>
       <div className="mb-[82px] flex flex-col gap-[15px]">
         {historyList.length > 0 ? (
@@ -64,7 +62,7 @@ const HomePage = () => {
         ) : (
           <div className="border-border-300 flex h-[115px] w-[315px] items-center justify-center rounded-xl border text-center">
             <span className="script-body-14 text-border-300">
-              아직 진행한 상담이 없어요 ㅜ _ ㅜ
+              아직 진행한 상담이 없어요 T _ T
             </span>
           </div>
         )}

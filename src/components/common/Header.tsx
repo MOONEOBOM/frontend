@@ -1,17 +1,18 @@
 import LeftChevron from '@/assets/icon/chevron_left.svg?react';
 
-const Header = ({ type = 'default' }: { type?: 'default' | 'chat' }) => {
+const Header = ({
+  type = 'default',
+  onClose,
+}: {
+  type?: 'default' | 'chat';
+  onClose: () => void;
+}) => {
   return (
-    <div className="flex items-center justify-between px-[20px] h-[62px] w-full">
+    <div className="flex h-[62px] w-full items-center justify-between px-[20px]">
       {type == 'chat' ? (
         <>
           <div />
-          <div
-            className="body2 text-red"
-            onClick={() => {
-              // TODO: 상담 요약 API 요청 및 페이지 이동
-            }}
-          >
+          <div className="body2 text-red" onClick={onClose}>
             상담 종료
           </div>
         </>

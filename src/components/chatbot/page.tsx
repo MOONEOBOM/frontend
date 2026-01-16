@@ -1,44 +1,15 @@
-'use client';
-import { useRouter } from 'next/navigation';
 import Badge from '../common/Badge';
-import Header from '../common/Header';
 import { TextBubbleService } from '../TextBubble/TextBubbleService';
 import { TextBubbleUser } from '../TextBubble/TextBubbleUser';
-import Modal from '../common/Modal';
-import { useState } from 'react';
 import SendIcon from '@/assets/icon/send.svg';
+import ChatModal from './ChatModal';
+
 const ChatbotPage = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const router = useRouter();
-
-  function handleModal() {
-    setIsModalOpen(true);
-  }
-  const handleBackAction = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCloseAction = () => {
-    setIsModalOpen(false);
-    router.push('/summary');
-  };
-
   return (
     <div className="min-h-screen bg-gray-200">
       <div className="px-[20px]">
-        <div onClick={handleModal}>
-          <Header type="chat" />
-
-          <Modal
-            type="select"
-            isOpen={isModalOpen}
-            onBack={handleBackAction}
-            onClose={handleCloseAction}
-          >
-            상담을 종료하시겠습니까?
-            <br />
-            상담 종료시 요약이 진행됩니다
-          </Modal>
+        <div>
+          <ChatModal />
         </div>
 
         <TextBubbleUser />

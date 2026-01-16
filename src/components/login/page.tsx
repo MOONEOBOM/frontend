@@ -9,7 +9,7 @@ import { auth } from '@/lib/firebase/firebaseClient';
 
 const LoginPage = () => {
   const [userData, setUserData] = useState<User | null>(null);
-  function hadleGoogleLogin() {
+  function handleGoogleLogin() {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((data) => {
@@ -22,9 +22,7 @@ const LoginPage = () => {
   }
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
-      <div className="mt-[195px]">
-        <HelloMoo />
-      </div>
+      <HelloMoo className="mt-[195px]" />
       <div className="mt-[30px]">
         <Logo />
       </div>
@@ -33,7 +31,7 @@ const LoginPage = () => {
           size="full"
           variant="outline"
           icon={<GoogleIcon />}
-          onClick={hadleGoogleLogin}
+          onClick={handleGoogleLogin}
           className="bg-white"
         >
           구글로 로그인
