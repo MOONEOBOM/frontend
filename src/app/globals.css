@@ -1,26 +1,132 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
-}
+} */
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* semantic */
+  --color-primary-100: #fff7cf;
+  --color-primary: #fbe783;
+  --color-secondary: #abe0f0;
+
+  --color-border-100: #f0f0f0;
+  --color-border-200: #f3f3f3;
+  --color-border-300: #d9d9d9;
+  --color-border-400: #6d6d6d;
+
+  --color-uplus: #f30f88;
+
+  --color-red: #e6414f;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('../assets/fonts/Pretendard-Bold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@font-face {
+  font-family: 'Pretendard';
+  src: url('../assets/fonts/Pretendard-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 세종글꽃체 */
+@font-face {
+  font-family: 'SejongGeulggot';
+  src: url('../assets/fonts/SEJONGGEULGGOT.TTF') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer components {
+  /* Pretendard체 */
+  .heading1 {
+    font-family: 'Pretendard', system-ui, sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 110%;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  .heading2 {
+    font-family: 'Pretendard', system-ui, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 110%;
+  }
+
+  .heading3 {
+    font-family: 'Pretendard', system-ui;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 110%;
+  }
+
+  .heading4 {
+    font-family: 'Pretendard', system-ui;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 110%;
+  }
+
+  .title1 {
+    font-family: 'Pretendard', system-ui;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 140%;
+  }
+
+  .body1 {
+    font-family: 'Pretendard', system-ui;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 140%;
+  }
+
+  .body2 {
+    font-family: 'Pretendard', system-ui;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 140%;
+  }
+
+  .body3 {
+    font-family: 'Pretendard', system-ui;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 140%;
+  }
+
+  /* 세종글꽃체 */
+  .script-title {
+    font-family: 'SejongGeulggot', cursive;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 120%;
+  }
+
+  .script-body-16 {
+    font-family: 'SejongGeulggot', cursive;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 140%;
+  }
+
+  .script-body-14 {
+    font-family: 'SejongGeulggot', cursive;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 140%;
+  }
 }

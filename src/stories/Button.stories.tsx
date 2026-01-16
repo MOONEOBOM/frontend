@@ -1,18 +1,66 @@
-// Button.stories.tsx
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import Button from '../components/common/Button';
-
+import GoogleLogo from '@/assets/icon/google.svg?react';
 const meta: Meta<typeof Button> = {
-  title: 'components/common/Button', // 스토리북 왼쪽 메뉴에서 보일 이름
+  title: 'Components/Common/Button',
   component: Button,
-  tags: ['autodocs'], // 자동으로 문서(Docs) 탭을 생성해줍니다
+  tags: ['autodocs'],
+  argTypes: {
+    size: {
+      control: 'inline-radio',
+      options: ['half', 'full'],
+      description: '버튼의 너비를 결정합니다.',
+    },
+    variant: {
+      control: 'select',
+      options: ['solid', 'outline'],
+      description: '버튼의 스타일 변형을 선택합니다.',
+    },
+    children: {
+      control: 'text',
+      description: '버튼 내부에 표시될 텍스트입니다.',
+    },
+    icon: {
+      control: 'boolean',
+      description: '아이콘 포함 여부를 테스트합니다.',
+    },
+    onClick: { action: 'clicked' },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-// 기본 버튼 상태
-export const Default: Story = {};
+/**
+ * 기본 Solid 타입의 가득 찬 버튼입니다.
+ */
+export const SolidFull: Story = {
+  args: {
+    size: 'full',
+    variant: 'solid',
+    children: '확인하기',
+    className: 'bg-primary-100 ',
+  },
+};
 
-// 만약 버튼에 색상이나 텍스트를 props로 받는다면 아래처럼 추가 스토리를 만들 수 있습니다.
-// 지금은 기본 버튼이라서 Default만 있어도 충분합니다!
+/**
+ * 테두리만 있는 Outline 타입의 절반 너비 버튼입니다.
+ */
+export const OutlineHalf: Story = {
+  args: {
+    size: 'half',
+    variant: 'outline',
+    children: '취소',
+    className: 'bg-white ',
+  },
+};
+
+export const WithIcon: Story = {
+  args: {
+    size: 'full',
+    variant: 'outline',
+    className: 'bg-white ',
+    icon: <GoogleLogo />,
+    children: '구글로 로그인',
+  },
+};
