@@ -1,9 +1,3 @@
-/**
- * TextBubbleService.tsx란?
- *  서비스(상대방)가 보낸 채팅 메시지를,
- *  주어진 데이터 고대로 보여주기만 하는 UI 컴포넌트
- */
-
 "use client";
 
 import { useState } from "react";
