@@ -1,6 +1,6 @@
 import RightChevron from '@/assets/icon/chevron_right.svg?react';
 import React from 'react';
-
+import { cn } from '@/utils/cn';
 const LinkButton = ({
   children,
   type,
@@ -20,11 +20,11 @@ const LinkButton = ({
     solid: 'bg-primary',
   };
 
-  const className = `
-    ${baseStyle} 
-    ${typeStyles[type]} 
-    ${isFull ? 'w-[285px] h-[35px]' : 'w-fit'}
-  `;
+  const className = cn(
+    baseStyle,
+    typeStyles[type],
+    isFull ? 'w-[285px] h-[35px]' : 'w-fit',
+  );
 
   return (
     <button type="button" className={className} onClick={onClick}>
