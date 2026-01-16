@@ -14,7 +14,7 @@ export function TextBubbleUser({ text }: TextBubbleUserProps) {
           px-[10px] py-[10px]
           bg-primary
           text-black
-          text-body2
+          body2
           rounded-[12px_2px_12px_12px]
           shadow-[0px_2px_4px_rgba(0,0,0,0.1)]
           whitespace-pre-wrap

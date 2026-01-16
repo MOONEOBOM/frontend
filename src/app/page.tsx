@@ -1,8 +1,8 @@
 'use client';
 
-import { TextBubbleService } from '@/components/chat/bubbles/TextBubbleService';
-import { TextBubbleUser } from '@/components/chat/bubbles/TextBubbleUser';
-import { TextBubbleScenario } from '@/components/chat/bubbles/TextBubbleScenario';
+import { TextBubbleService } from '@/components/TextBubble/TextBubbleService';
+import { TextBubbleUser } from '@/components/TextBubble/TextBubbleUser';
+import { TextBubbleScenario } from '@/components/TextBubble/TextBubbleScenario';
 
 export default function Page() {
   return (
