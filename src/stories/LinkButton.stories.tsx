@@ -31,7 +31,7 @@ const meta: Meta<typeof LinkButton> = {
 export default meta;
 type Story = StoryObj<typeof LinkButton>;
 
-/** 1. 기본 아웃라인 스타일 (자세히 보기) */
+/** 1. 배경색이 채워진 솔리드 스타일 (로밍 해지하기) */
 export const Solid: Story = {
   args: {
     children: '로밍 해지하기',
@@ -41,7 +41,7 @@ export const Solid: Story = {
   },
 };
 
-/** 2. 배경색이 채워진 솔리드 스타일 (로밍 해지하기) */
+/** 2. 기본 아웃라인 스타일 (자세히 보기) */
 export const Outline: Story = {
   args: {
     children: '자세히 보기',

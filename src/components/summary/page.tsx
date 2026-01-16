@@ -18,9 +18,9 @@ const SummaryPage = () => {
         <div className="flex flex-col gap-[20px]">
           <p className="heading2 w-[315px]">박예진님이 해야할 일은?</p>
           <div className="flex flex-col gap-[10px]">
-            {TODO.map((todo, index) => {
+            {TODO.map((todo) => {
               return (
-                <LinkButton key={index} href="" type="outline" isFull>
+                <LinkButton key={todo} href="" type="outline" isFull>
                   {todo}
                 </LinkButton>
               );

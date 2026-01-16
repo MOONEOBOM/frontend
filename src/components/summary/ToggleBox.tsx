@@ -12,19 +12,17 @@ const ToggleBox = ({ children }: { children: React.ReactNode }) => {
         onClick={() => setIsOpen(!isOpen)}
       >
         {children}
-        <button className="border-none bg-transparent p-0">
-          {isOpen ? <BottomChevron /> : <RightChevron />}
-        </button>
+        {isOpen ? <BottomChevron /> : <RightChevron />}
       </div>
 
       {isOpen ? (
         <div className="flex flex-col gap-[10px] p-[10px] pt-0">
           <div className="h-[1px] w-full bg-gray-300" />
           {/* TODO: 요약 내용에 따라 map하도록 수정 */}
-          <LinkButton type="solid" href="">
+          <LinkButton type="solid" href="#">
             로밍 해지하기
           </LinkButton>
-          <LinkButton type="outline" href="">
+          <LinkButton type="outline" href="#">
             자세히 보기
           </LinkButton>
         </div>

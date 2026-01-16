@@ -1,5 +1,5 @@
 import EyesRight from '@/assets/icon/mooneobom_right.svg?react';
-import EyesLeft from '@/assets/icon/mooneobom_left.svg';
+import EyesLeft from '@/assets/icon/mooneobom_left.svg?react';
 
 const MockData = {
   title: '베트남 로밍 해결 및 요금제 변경',
