@@ -1,6 +1,6 @@
 import Header from '@/components/common/Header';
-import Card from '@/components/summary/Card';
 import LinkButton from '@/components/summary/LinkButton';
+import FlipCard from './FlipCard';
 
 const TODO = ['로밍 해지하기', 'eSIM에 대해 알아보기'];
 
@@ -22,7 +22,7 @@ const SummaryPage = () => {
         </div>
       </div>
 
-      <Card />
+      <FlipCard />
       <p className="script-body-16">카드를 터치해보세요!</p>
     </div>
   );
