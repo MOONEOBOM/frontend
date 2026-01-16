@@ -28,7 +28,7 @@ const LinkButton = ({ children, type, isFull, href }: LinkButtonProps) => {
   );
 
   return (
-    <Link href={href} type="button" className={className}>
+    <Link href={href} className={className}>
       {children}
       <RightChevron />
     </Link>

@@ -1,11 +1,27 @@
+'use client';
+
 import CallingMoono from '@/assets/icon/moono_calling.svg?react';
 import Good from '@/assets/icon/moono_good.svg?react';
 import Bad from '@/assets/icon/moono_bad.svg?react';
 import Badge from '@/components/common/Badge';
+import { usePathname, useSearchParams, useRouter } from 'next/navigation';
+import router from 'next/router';
 
 const KEYWORD = ['데이터 로밍', '제로프리미엄', '400kbps'];
 
 const BottomSheet = () => {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const isHidden = searchParams.get('answered') === 'true';
+
+  const closeSheet = () => {
+    router.replace(`${pathname}?answered=true`);
+  };
+
+  if (isHidden) return null;
+
   return (
     <div className="absolute bottom-0 z-99 flex h-[80vh] w-full flex-col gap-[50px] rounded-t-[50px] bg-white pt-[75px] shadow-[0_0_10px_0_rgba(0,0,0,0.1)]">
       <div className="flex flex-col items-center gap-[20px]">
@@ -34,8 +50,16 @@ const BottomSheet = () => {
       <div className="flex flex-col items-center gap-[15px]">
         <p className="heading2 text-center">무너의 시나리오는 어땠나요?</p>
         <div className="flex gap-[20px]">
-          <Good />
-          <Bad />
+          <Good
+            onClick={() => {
+              closeSheet();
+            }}
+          />
+          <Bad
+            onClick={() => {
+              closeSheet();
+            }}
+          />
         </div>
       </div>
     </div>
