@@ -7,7 +7,7 @@ const KEYWORD = ['데이터 로밍', '제로프리미엄', '400kbps'];
 
 const BottomSheet = () => {
   return (
-    <div className="absolute bottom-0 z-99 flex h-[80vh] w-full flex-col gap-[50px] rounded-[50px] bg-white pt-[75px]">
+    <div className="absolute bottom-0 z-99 flex h-[80vh] w-full flex-col gap-[50px] rounded-t-[50px] bg-white pt-[75px] shadow-[0_0_10px_0_rgba(0,0,0,0.1)]">
       <div className="flex flex-col items-center gap-[20px]">
         <CallingMoono />
         <p className="heading2 text-center">
