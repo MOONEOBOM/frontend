@@ -2,13 +2,16 @@ import Header from '@/components/common/Header';
 import LinkButton from '@/components/summary/LinkButton';
 import FlipCard from '@/components/summary/FlipCard';
 import BottomSheet from './BottomSheet';
+import { Suspense } from 'react';
 
 const TODO = ['로밍 해지하기', 'eSIM에 대해 알아보기'];
 
 const SummaryPage = () => {
   return (
     <>
-      <BottomSheet />
+      <Suspense fallback={null}>
+        <BottomSheet />
+      </Suspense>
       <div className="flex flex-col items-center">
         <Header type="default" />
 
