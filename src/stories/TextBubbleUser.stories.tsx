@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { TextBubbleUser } from '../components/chat/bubbles/TextBubbleUser';
+import { TextBubbleUser } from '@/components/chat/bubbles/TextBubbleUser';
 
 const meta: Meta<typeof TextBubbleUser> = {
   title: 'Chat/Bubbles/TextBubbleUser',

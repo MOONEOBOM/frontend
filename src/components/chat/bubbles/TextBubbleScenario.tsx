@@ -10,7 +10,7 @@ export function TextBubbleScenario() {
     <div className="w-full flex justify-start">
       <div className="flex items-start gap-[5px] my-4">
         {/* 프로필 (테두리까지 있는 SVG 다시 다운받고 그대로 사용하기, 테두리 X) */}
-        <MooneoIcon className="w-[47px] h-[47px] flex-shrink-0" />
+        <MooneoIcon className="w-[47px] h-[47px] flex-shrink-0" aria-label="Mooneo 프로필" />
 
         {/* 말풍선 (프로필 아이콘보다 아래로 20 더 아래에 있음) */}
         <div

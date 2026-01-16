@@ -59,7 +59,6 @@ export function TextBubbleService() {
                     px-[3px] py-[3px]
                     rounded-[3px]
                     bg-primary-200
-                    cursor-pointer
                   `
                   : ""
               }
