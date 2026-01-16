@@ -14,7 +14,7 @@ export function TextBubbleScenario() {
           className="
             flex-shrink-0
             rounded-full
-            border black
+            border border-black
             bg-white
             flex items-center justify-center
             px-[8px] py-[6px]
