@@ -16,8 +16,6 @@ const geistMono = Geist_Mono({
 
 export const viewport: Viewport = {
   width: 'device-width',
-  initialScale: 1,
-  maximumScale: 1,
   themeColor: '#ffffff',
 };
 
@@ -36,10 +34,10 @@ export const metadata: Metadata = {
     siteName: '무너봄',
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-image.svg',
         width: 1200,
         height: 630,
-        alt: '무너봄 메인 이미지',
+        alt: '무너봄',
       },
     ],
     locale: 'ko_KR',
