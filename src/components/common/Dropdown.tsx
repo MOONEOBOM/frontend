@@ -63,7 +63,7 @@ const Dropdown = ({
       </button>
       {open && (
         <ul
-          className={`absolute z-10 ${width} no-scrollbar h-[180px] overflow-auto [&>li:first-child]:rounded-t-[10px] [&>li:first-child]:border-none [&>li:last-child]:rounded-b-[10px]`}
+          className={`absolute z-10 ${width} no-scrollbar max-h-[180px] overflow-auto [&>li:first-child]:rounded-t-[10px] [&>li:first-child]:border-none [&>li:last-child]:rounded-b-[10px]`}
         >
           {options.map((option) => (
             <li

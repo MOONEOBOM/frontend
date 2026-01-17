@@ -30,10 +30,9 @@ const MOCK_BUBBLE = [
 const MOCK_KEYWORD = ['요금제 변경', '요금 과다 부여', '요금제 추천'];
 
 const ScenarioResultPage = () => {
-  const [ExitModal, setExitModal] = useState(false);
+  const [exitModal, setExitModal] = useState(false);
   const [noRecordModal, setNoRecordModal] = useState(false);
   const router = useRouter();
-  const [aa, setaa] = useState<string | null>(null);
 
   //api 연결시 tanstack query의 isPending 과 변경
   const [isPending, setPending] = useState(false);
@@ -49,7 +48,7 @@ const ScenarioResultPage = () => {
     <>
       <Header onClickButton={() => setExitModal(true)} />
       <Modal
-        isOpen={ExitModal}
+        isOpen={exitModal}
         onOverlayClick={setExitModal}
         type="select"
         onBack={() => setExitModal(false)}
@@ -72,9 +71,9 @@ const ScenarioResultPage = () => {
           <span>시나리오대로 상담을 진행해보아요!</span>
         </div>
         <div className={cn('flex gap-2')}>
-          {MOCK_KEYWORD.map((keywrod, idx) => (
+          {MOCK_KEYWORD.map((keyword, idx) => (
             <Badge key={idx} type="blue">
-              {keywrod}
+              {keyword}
             </Badge>
           ))}
         </div>
@@ -110,14 +109,15 @@ const ScenarioResultPage = () => {
           <UploadLayout onClick={handleUpload} />
         )}
 
-        <span
+        <button
+          type="button"
           onClick={() => setNoRecordModal(true)}
           className={cn(
-            'script-body-16 bg-[linear-gradient(to_top,var(--color-primary)_40%,transparent_40%)] px-0.5 leading-[1.2]',
+            'script-body-16 cursor-pointer bg-[linear-gradient(to_top,var(--color-primary)_40%,transparent_40%)] px-0.5 leading-[1.2]',
           )}
         >
           녹음 파일이 없어요T_T
-        </span>
+        </button>
         <Modal
           isOpen={noRecordModal}
           image={<MoonoTako />}

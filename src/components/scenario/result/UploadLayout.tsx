@@ -29,7 +29,7 @@ const UploadLayout = ({ onClick }: UploadLayoutProps) => {
         >
           파일 업로드
         </Button>
-        <span className="body3">최대 00MB, mp3, wav 파일 지원</span>
+        <span className="body3">최대 50MB, mp3, wav 파일 지원</span>
       </div>
     </div>
   );

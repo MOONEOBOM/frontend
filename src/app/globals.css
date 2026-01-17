@@ -61,7 +61,7 @@ body {
 /* 세종글꽃체 */
 @font-face {
   font-family: 'SejongGeulggot';
-  src: url('../assets/fonts/SEJONGGEULGGOT.TTF') format('truetype');
+  src: url('../assets/fonts/SejongGeulggot.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
