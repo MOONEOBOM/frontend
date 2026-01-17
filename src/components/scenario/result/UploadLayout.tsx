@@ -1,7 +1,11 @@
 import Button from '@/components/common/Button';
 import { cn } from '@/utils/cn';
 
-const UploadLayout = () => {
+interface UploadLayoutProps {
+  onClick: () => void;
+}
+
+const UploadLayout = ({ onClick }: UploadLayoutProps) => {
   return (
     <div
       className={cn(
@@ -17,7 +21,12 @@ const UploadLayout = () => {
           'flex h-[150px] w-full flex-col items-center gap-[25px] rounded-[10px] border border-dashed bg-[var(--color-gray-200)] py-[30px]',
         )}
       >
-        <Button className="bg-white" variant="outline" size="half">
+        <Button
+          onClick={onClick}
+          className="bg-white"
+          variant="outline"
+          size="half"
+        >
           파일 업로드
         </Button>
         <span className="body3">최대 00MB, mp3, wav 파일 지원</span>

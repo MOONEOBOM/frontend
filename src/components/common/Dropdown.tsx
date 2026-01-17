@@ -63,7 +63,7 @@ const Dropdown = ({
       </button>
       {open && (
         <ul
-          className={`absolute z-10  ${width} overflow-auto [&>li:first-child]:rounded-t-[10px] [&>li:first-child]:border-none [&>li:last-child]:rounded-b-[10px]`}
+          className={`absolute z-10 ${width} no-scrollbar h-[180px] overflow-auto [&>li:first-child]:rounded-t-[10px] [&>li:first-child]:border-none [&>li:last-child]:rounded-b-[10px]`}
         >
           {options.map((option) => (
             <li
@@ -72,7 +72,7 @@ const Dropdown = ({
                 onChange(option.value);
                 setOpen(false);
               }}
-              className={`bg-[var(--color-white)] cursor-pointer hover:bg-gray-100 flex items-center h-[40px] p-[15px] border-t border-[var(--color-primary)]`}
+              className={`flex h-[40px] cursor-pointer items-center border-t border-[var(--color-primary)] bg-[var(--color-white)] p-[15px] hover:bg-gray-100`}
             >
               {option.label}
             </li>
