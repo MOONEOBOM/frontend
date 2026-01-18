@@ -37,12 +37,24 @@ export const Primary: Story = {
   },
 };
 
+/** 3. 선택된 프라이머리 타입 (배경색이 primary) */
+export const Primary_selected: Story = {
+  args: {
+    children: '요금제 변경',
+    type: 'primary',
+    isSelected: true,
+  },
+};
+
 /** 3. 여러 상태 모아보기 */
 export const AllVariants: Story = {
   render: () => (
     <div className="flex items-center gap-2">
       <Badge type="blue">사용 중</Badge>
       <Badge type="primary">추천 상품</Badge>
+      <Badge type="primary" isSelected>
+        요금제
+      </Badge>
     </div>
   ),
 };

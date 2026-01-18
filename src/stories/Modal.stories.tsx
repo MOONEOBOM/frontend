@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import Modal from '../components/common/Modal';
-import CryMoo from '@/assets/icon/moono_cry.svg?react';
+import CryMoo from '@/assets/icon/moono/moono_cry.svg?react';
 
 const meta: Meta<typeof Modal> = {
   title: 'Components/Common/Modal',
