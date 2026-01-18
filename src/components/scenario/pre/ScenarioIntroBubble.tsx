@@ -18,7 +18,7 @@ const ScenarioIntroBubble = () => {
                 gap-[10px]
                 "
             >
-                <MoonoProfile width={32} height={36} />
+                <MoonoProfile width={32} height={36} aria-hidden="true" focusable="false" />
 
                 <p className="body2 leading-snug">
                     전화 상담을 시작하기 전에,<br />

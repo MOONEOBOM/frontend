@@ -31,6 +31,7 @@ const ScenarioQuestionBox = ({consultType, setConsultType, reason, setReason}: S
               <button
                 key={item.key}
                 type="button"
+                aria-pressed={consultType === item.key}
                 onClick={() => {
                   setConsultType(item.key);
                   setReason(null);
@@ -49,6 +50,7 @@ const ScenarioQuestionBox = ({consultType, setConsultType, reason, setReason}: S
               <button
                 key={item.key}
                 type="button"
+                aria-pressed={consultType === item.key}
                 onClick={() => {
                   setConsultType(item.key);
                   setReason(null);
