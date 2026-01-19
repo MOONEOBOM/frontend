@@ -15,7 +15,6 @@ const Header = ({ type = 'default', onClickButton }: HeaderProps) => {
         </>
       ) : (
         <button type="button" aria-label="뒤로 가기" onClick={onClickButton}>
-          {' '}
           <LeftChevron />
         </button>
       )}
