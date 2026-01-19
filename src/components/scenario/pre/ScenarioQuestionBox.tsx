@@ -35,11 +35,12 @@ const ScenarioQuestionBox = ({consultType, setConsultType, reason, setReason}: S
                   setReason(null);
                 }}
               >
-                <div className={ consultType === item.key ? 'rounded-[20px] ring-2 ring-[#FBE783]' : '' }>
-                  <div className="whitespace-nowrap">
-                    <Badge type="primary">{item.label}</Badge>
-                  </div>
-                </div>
+                <Badge 
+                  type="primary" 
+                  isSelected={consultType === item.key}
+                >
+                  {item.label}
+                </Badge>
               </button>
             ))}
             
