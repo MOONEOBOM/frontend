@@ -15,7 +15,7 @@ const meta: Meta<typeof ToggleBox> = {
       description: '호출부가 홈인지 나타내는 정보입니다.',
     },
     href: {
-      control: 'boolean',
+      control: 'text',
       description: '호출부가 홈인 경우, 박스 클릭 시 이동할 경로입니다.',
     },
   },
