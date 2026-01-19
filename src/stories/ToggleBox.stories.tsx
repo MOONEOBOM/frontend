@@ -10,6 +10,14 @@ const meta: Meta<typeof ToggleBox> = {
       control: 'text',
       description: '토글 박스의 제목 영역에 표시될 내용입니다.',
     },
+    isHome: {
+      control: 'boolean',
+      description: '호출부가 홈인지 나타내는 정보입니다.',
+    },
+    href: {
+      control: 'boolean',
+      description: '호출부가 홈인 경우, 박스 클릭 시 이동할 경로입니다.',
+    },
   },
   decorators: [
     (Story) => (
@@ -35,9 +43,11 @@ export const Default: Story = {
   },
 };
 
-export const LongTitle: Story = {
+export const Home: Story = {
   args: {
-    children: '이번 달 로밍 이용 요금 및 상세 안내 사항',
+    children: '로밍 사용으로 인한 요금 과청구',
+    isHome: true,
+    href: '/history/1',
   },
 };
 

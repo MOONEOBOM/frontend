@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import Modal from '../components/common/Modal';
-import CryMoo from '@/assets/icon/moono/moono_cry.svg?react';
+import Modal from '@/components/common/Modal';
+import MoonoTako from '@/assets/moono/moono_tako.svg?react';
 
 const meta: Meta<typeof Modal> = {
   title: 'Components/Common/Modal',
@@ -52,7 +52,7 @@ export const Info: Story = {
   args: {
     isOpen: true,
     type: 'info',
-    image: <CryMoo />,
+    image: <MoonoTako />,
     onBack: () => console.log('홈으로 돌아가기 클릭'),
     children: (
       <>
