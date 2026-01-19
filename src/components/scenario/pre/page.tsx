@@ -1,7 +1,15 @@
+import ScenarioIntroBubble from './ScenarioIntroBubble';
+import ScenarioContainer from './ScenarioClientContainer';
+
 const ScenarioPrePage = () => {
+
   return (
-    <div>
-      <h1>시나리오 사전질문 페이지</h1>
+    <div className="min-h-screen w-full bg-white border">
+
+      <ScenarioContainer>
+        <ScenarioIntroBubble />
+      </ScenarioContainer>
+
     </div>
   );
 };
