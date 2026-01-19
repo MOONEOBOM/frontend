@@ -15,7 +15,7 @@ export default function GlobalError({ error, reset }: { error: Error; reset: () 
       <body>
           <ErrorPage 
           message={`앗! 무너가 길을 잃었어요.\n전체 시스템에 문제가 발생했습니다.`}
-          buttonColor="#FFE37E"
+          buttonColor="#FBE783"
           reset={reset}
           />
       </body>

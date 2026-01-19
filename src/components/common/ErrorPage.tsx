@@ -16,7 +16,7 @@ export default function ErrorPage({ message, buttonColor, reset }: ErrorPageProp
   
   const ClickReset = () => {
     reset();
-    router.push('/');
+    router.replace('/');
   };
   
   return (
@@ -40,7 +40,7 @@ export default function ErrorPage({ message, buttonColor, reset }: ErrorPageProp
         <Button
           size="full"
           variant="solid"
-          className={buttonColor ? `text-[#111111] w-full` : "bg-primary script-title w-full"}
+          className={buttonColor ? "text-[`#111111`] script-title w-full" : "bg-primary script-title w-full"}
           style={buttonColor ? { backgroundColor: buttonColor } : {}}
           onClick={ClickReset}
         >
