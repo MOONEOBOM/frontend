@@ -35,7 +35,6 @@ export default function Modal({
       <div
         className={cn(
           'body2 relative flex w-[230px] flex-col items-center justify-between rounded-2xl bg-white px-[18px] py-[16px]',
-          isInfoModal ? 'h-[267px]' : 'h-[121px]',
         )}
       >
         {isInfoModal && image && (
@@ -56,7 +55,7 @@ export default function Modal({
           </button>
           {!isInfoModal && (
             <button
-              className={cn('bg-primary-100', buttonSize)}
+              className={cn('bg-primary', buttonSize)}
               onClick={(e) => {
                 e.stopPropagation();
                 onClose?.();
