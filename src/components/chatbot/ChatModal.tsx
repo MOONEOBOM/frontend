@@ -1,38 +1,30 @@
 'use client';
+
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import Header from '../common/Header';
-import Modal from '../common/Modal';
+import Modal from '@/components/common/Modal';
 
 export default function ChatModal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
 
-  function handleModal() {
-    setIsModalOpen(true);
-  }
-  const handleBackAction = () => {
-    setIsModalOpen(false);
-  };
-
   const handleCloseAction = () => {
     setIsModalOpen(false);
+    // TODO: API 요청
     router.push('/summary');
   };
+
   return (
-    <div>
-      <Header type="chat" />
-      <Modal
-        type="select"
-        isOpen={isModalOpen}
-        onBack={handleBackAction}
-        onClose={handleCloseAction}
-        onOverlayClick={() => setIsModalOpen(false)}
-      >
-        상담을 종료하시겠습니까?
-        <br />
-        상담 종료시 요약이 진행됩니다
-      </Modal>
-    </div>
+    <Modal
+      type="select"
+      isOpen={isModalOpen}
+      onBack={() => setIsModalOpen(false)}
+      onClose={handleCloseAction}
+      onOverlayClick={() => setIsModalOpen(false)}
+    >
+      상담을 종료하시겠습니까?
+      <br />
+      상담 종료시 요약이 진행됩니다
+    </Modal>
   );
 }

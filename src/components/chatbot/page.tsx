@@ -1,15 +1,13 @@
 import Badge from '../common/Badge';
+import Header from '../common/Header';
 import { TextBubbleService } from '../TextBubble/TextBubbleService';
 import { TextBubbleUser } from '../TextBubble/TextBubbleUser';
 import SendIcon from '@/assets/icon/send.svg';
-import ChatModal from './ChatModal';
 
 const ChatbotPage = () => {
   return (
     <div className="min-h-screen bg-gray-200">
-      <div>
-        <ChatModal />
-      </div>
+      <Header type="chat" />
       <div className="px-[20px]">
         <TextBubbleUser />
         <TextBubbleService />

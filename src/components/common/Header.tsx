@@ -8,10 +8,11 @@ import Modal from './Modal';
 
 const Header = ({
   type = 'back',
+  modal,
 }: {
   type: 'back' | 'home' | 'chat' | 'scenario';
+  modal?: React.ReactNode;
 }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
 
   const handleClick = {
@@ -23,19 +24,6 @@ const Header = ({
 
   return (
     <>
-      <Modal
-        isOpen={isModalOpen}
-        onOverlayClick={() => setIsModalOpen(false)}
-        type="select"
-        onBack={() => setIsModalOpen(false)}
-        onClose={() => router.replace('/')}
-      >
-        시나리오를 종료할까요?
-        <br />
-        지금 종료하면 시나리오는 <br />
-        저장되지 않아요.
-      </Modal>
-
       <div className="flex h-[62px] w-full items-center justify-between px-[20px]">
         <LeftChevron className="cursor-pointer" onClick={handleClick[type]} />
 
