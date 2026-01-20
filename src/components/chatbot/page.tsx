@@ -7,11 +7,10 @@ import ChatModal from './ChatModal';
 const ChatbotPage = () => {
   return (
     <div className="min-h-screen bg-gray-200">
+      <div>
+        <ChatModal />
+      </div>
       <div className="px-[20px]">
-        <div>
-          <ChatModal />
-        </div>
-
         <TextBubbleUser />
         <TextBubbleService />
         <TextBubbleUser />
