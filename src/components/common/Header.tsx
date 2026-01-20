@@ -1,16 +1,12 @@
-import LeftChevron from '@/assets/icon/chevron_left.svg?react';
+import BackButton from '@/components/common/BackButton';
 
-type HeaderProps =
-  | { type?: 'default'; onClickButton?: () => void }
-  | { type: 'chat'; onClickButton: () => void };
-
-const Header = ({ type = 'default', onClickButton }: HeaderProps) => {
+const Header = ({ type = 'back' }: { type: 'back' | 'home' | 'chat' }) => {
   return (
-    <div className="flex h-[62px] w-full items-center justify-between px-[20px]">
-      <LeftChevron />
+    <div className="flex h-[62px] w-full cursor-pointer items-center justify-between px-[20px]">
+      <BackButton type={type} />
 
       {type == 'chat' ? (
-        <button className="body2 text-red" onClick={onClickButton}>
+        <button className="body2 text-red" onClick={() => {}}>
           상담 종료
         </button>
       ) : (
