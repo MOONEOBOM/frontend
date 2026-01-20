@@ -3,7 +3,6 @@ import Header from '../common/Header';
 import { TextBubbleService } from '../TextBubble/TextBubbleService';
 import { TextBubbleUser } from '../TextBubble/TextBubbleUser';
 import SendIcon from '@/assets/icon/send.svg';
-import ChatModal from './ChatModal';
 
 const ChatbotPage = () => {
   return (
