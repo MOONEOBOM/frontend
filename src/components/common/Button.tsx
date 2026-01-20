@@ -30,7 +30,7 @@ export default function Button({
   return (
     <button
       className={cn(
-        'flex items-center rounded-xl justify-center transition-all active:scale-95',
+        'flex cursor-pointer items-center justify-center rounded-xl transition-all active:scale-95',
         icon ? 'gap-[15px]' : '',
         sizes[size],
         variants[variant],
@@ -39,7 +39,7 @@ export default function Button({
       {...props}
     >
       {/* 아이콘이 있을 경우 */}
-      {icon && <span className="shrink-0 ">{icon}</span>}
+      {icon && <span className="shrink-0">{icon}</span>}
       {/* 텍스트 */}
       <span className="body1">{children}</span>
     </button>
