@@ -92,7 +92,7 @@ const ScenarioResultPage = () => {
         </div>
         <div
           className={cn(
-            'no-scrollbar flex max-h-[530px] w-full flex-col overflow-y-auto border-t border-b border-[var(--color-gray-300)]',
+            'w-full flex-col border-t border-b border-[var(--color-gray-300)]',
           )}
         >
           {MOCK_BUBBLE.map((bubble, idx) => {
