@@ -32,6 +32,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             : 'border-primary bg-white px-[15px]',
 
           error ? 'border-red-500' : '',
+          className,
         )}
         {...props}
       />
