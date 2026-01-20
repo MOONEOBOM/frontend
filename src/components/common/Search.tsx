@@ -18,7 +18,7 @@ export const Search = forwardRef<
     'bg-[var(--color-white)]',
     'border',
 
-    error ? 'border-red-500' : 'border-[var(--color-border-300)]',
+    error ? 'border-red-500' : 'border-gray-300',
     className,
   ]
     .filter(Boolean)
@@ -26,7 +26,7 @@ export const Search = forwardRef<
 
   return (
     <div className={wrapperCls}>
-      <SearchIcon width={21}/>
+      <SearchIcon width={21} />
 
       <Input ref={ref} variant="search" error={error} {...props} />
     </div>
