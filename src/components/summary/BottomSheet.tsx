@@ -29,7 +29,7 @@ const BottomSheet = () => {
           animate={{ y: 0 }}
           exit={{ y: '100%' }}
           transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-          className="fixed bottom-0 z-50 flex h-[80vh] min-w-[390px] flex-col gap-[50px] rounded-t-[50px] bg-white pt-[75px] shadow-[0_-5px_20px_0_rgba(0,0,0,0.1)]"
+          className="shadow-card fixed bottom-0 z-50 flex h-[80vh] min-w-[390px] flex-col gap-[50px] rounded-t-[50px] bg-white pt-[75px]"
         >
           <div className="flex flex-col items-center gap-[20px]">
             <CallingMoono />

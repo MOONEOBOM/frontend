@@ -86,14 +86,11 @@ const ScenarioResultPage = () => {
             통화 내용을 녹음하면 무너가 요약해드려요!
           </span>
           <span className="heading4">
-            <span className={cn('text-[var(--color-uplus)]')}>LG U+</span>{' '}
-            고객센터: 1544-0010
+            <span className={cn('text-uplus')}>LG U+</span> 고객센터: 1544-0010
           </span>
         </div>
         <div
-          className={cn(
-            'w-full flex-col border-t border-b border-[var(--color-gray-300)]',
-          )}
+          className={cn('w-full flex-col border-t border-b border-gray-300')}
         >
           {MOCK_BUBBLE.map((bubble, idx) => {
             return bubble.type === 'moono' ? (

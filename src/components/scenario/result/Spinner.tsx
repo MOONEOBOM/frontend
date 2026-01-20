@@ -18,7 +18,7 @@ const Spinner = ({ size = 'sm' }: SpinnerProps) => {
       <div
         className={cn(
           sizeClassMap[size],
-          'animate-[spin_0.8s_linear_infinite] rounded-full border-[var(--color-primary)] border-t-[var(--color-gray-200)]',
+          'border-primary animate-[spin_0.8s_linear_infinite] rounded-full border-t-gray-200',
         )}
       />
     </div>
