@@ -2,23 +2,34 @@ import RightChevron from '@/assets/icon/chevron_right.svg?react';
 import BottomChevron from '@/assets/icon/chevron_bottom.svg?react';
 import { useState } from 'react';
 import LinkButton from './LinkButton';
+import Link from 'next/link';
 
-const ToggleBox = ({ children }: { children: React.ReactNode }) => {
+interface ToggleBoxProps {
+  children: React.ReactNode;
+  isHome?: boolean;
+  href?: string;
+}
+
+const ToggleBox = ({
+  children,
+  isHome = false,
+  href = '#',
+}: ToggleBoxProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  return (
-    <div className="w-[315px] rounded-[10px] bg-white shadow-[0_0_3.4px_0_rgba(0,0,0,0.25)]">
+
+  const content = (
+    <div className="block w-[315px] overflow-hidden rounded-[10px] bg-white shadow-[0_0_3.4px_0_rgba(0,0,0,0.25)]">
       <button
-        className="heading4 flex h-[50px] w-full cursor-pointer items-center justify-between p-[10px]"
-        onClick={() => setIsOpen(!isOpen)}
+        className={`heading4 flex h-[50px] items-center justify-between p-[10px] ${!isHome ? 'cursor-pointer' : ''}`}
+        {...(!isHome && { onClick: () => setIsOpen(!isOpen) })}
       >
         {children}
         {isOpen ? <BottomChevron /> : <RightChevron />}
       </button>
 
-      {isOpen ? (
+      {!isHome && isOpen && (
         <div className="flex flex-col gap-[10px] p-[10px] pt-0">
           <div className="h-[1px] w-full bg-gray-300" />
-          {/* TODO: 요약 내용에 따라 map하도록 수정 */}
           <LinkButton type="solid" href="#">
             로밍 해지하기
           </LinkButton>
@@ -26,9 +37,15 @@ const ToggleBox = ({ children }: { children: React.ReactNode }) => {
             자세히 보기
           </LinkButton>
         </div>
-      ) : null}
+      )}
     </div>
   );
+
+  if (isHome) {
+    return <Link href={href}>{content}</Link>;
+  }
+
+  return content;
 };
 
 export default ToggleBox;
