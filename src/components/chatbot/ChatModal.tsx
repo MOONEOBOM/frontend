@@ -1,11 +1,15 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import Modal from '@/components/common/Modal';
 
-export default function ChatModal() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+export default function ChatModal({
+  isModalOpen,
+  setIsModalOpen,
+}: {
+  isModalOpen: boolean;
+  setIsModalOpen: (open: boolean) => void;
+}) {
   const router = useRouter();
 
   const handleCloseAction = () => {

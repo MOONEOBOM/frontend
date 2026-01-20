@@ -2,9 +2,13 @@ import router from 'next/router';
 import Modal from '../common/Modal';
 import { useState } from 'react';
 
-const SenarioEndModal = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
+const SenarioEndModal = ({
+  isModalOpen,
+  setIsModalOpen,
+}: {
+  isModalOpen: boolean;
+  setIsModalOpen: (open: boolean) => void;
+}) => {
   return (
     <Modal
       isOpen={isModalOpen}
