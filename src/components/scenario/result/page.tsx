@@ -46,7 +46,7 @@ const ScenarioResultPage = () => {
 
   return (
     <>
-      <Header type="scenario" />
+      <Header type="back" />
 
       <div
         className={cn(
