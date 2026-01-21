@@ -1,4 +1,4 @@
-import { useLogout } from '@/lib/tanstack/mutation/auth.mutation';
+import { useLogout } from '@/lib/tanstack/mutation/chat.mutation';
 
 export const LogoutTest = () => {
   const { mutate: logout, isPending } = useLogout();
