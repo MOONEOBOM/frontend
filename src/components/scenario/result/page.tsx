@@ -1,4 +1,5 @@
 'use client';
+
 import Badge from '@/components/common/Badge';
 import Header from '@/components/common/Header';
 import { cn } from '@/utils/cn';
@@ -30,7 +31,6 @@ const MOCK_BUBBLE = [
 const MOCK_KEYWORD = ['요금제 변경', '요금 과다 부여', '요금제 추천'];
 
 const ScenarioResultPage = () => {
-  const [exitModal, setExitModal] = useState(false);
   const [noRecordModal, setNoRecordModal] = useState(false);
   const router = useRouter();
 
@@ -46,19 +46,8 @@ const ScenarioResultPage = () => {
 
   return (
     <>
-      <Header onClickButton={() => setExitModal(true)} />
-      <Modal
-        isOpen={exitModal}
-        onOverlayClick={setExitModal}
-        type="select"
-        onBack={() => setExitModal(false)}
-        onClose={() => router.replace('/')}
-      >
-        시나리오를 종료할까요?
-        <br />
-        지금 종료하면 시나리오는 <br />
-        저장되지 않아요.
-      </Modal>
+      <Header type="back" />
+
       <div
         className={cn(
           'mt-[34px] flex w-full flex-col items-center gap-[34px] px-[25px] pb-[80px]',

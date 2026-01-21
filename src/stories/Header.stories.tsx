@@ -8,7 +8,7 @@ const meta: Meta<typeof Header> = {
   argTypes: {
     type: {
       control: 'radio',
-      options: ['default', 'chat'],
+      options: ['back', 'home', 'chat', 'scenario'],
       description: '헤더의 타입을 결정합니다.',
     },
   },
@@ -31,10 +31,10 @@ const meta: Meta<typeof Header> = {
 export default meta;
 type Story = StoryObj<typeof Header>;
 
-/** 1. 기본 헤더 (왼쪽 화살표 아이콘) */
+/** 1. 기본 헤더 (왼쪽 화살표 아이콘), 그 외의 경우 디자인은 동일하고 동작만 다름. */
 export const Default: Story = {
   args: {
-    type: 'default',
+    type: 'back',
   },
 };
 
