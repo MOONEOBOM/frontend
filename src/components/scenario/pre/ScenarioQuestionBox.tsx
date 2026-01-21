@@ -26,7 +26,7 @@ const ScenarioQuestionBox = ({
         </div>
 
         {/* 2. 상담 종류 Badge 컴포넌트 */}
-        <div className="max-width-[300px] mx-auto mt-[12px] px-[5px]">
+        <div className="mx-auto mt-[12px] max-w-[300px] px-[5px]">
           <div className="flex flex-wrap justify-between gap-y-[10px]">
             {CONSULT_TYPES.map((item) => (
               <button

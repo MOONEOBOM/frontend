@@ -24,7 +24,7 @@ const ChatbotPage = () => {
         <div className="flex h-[45px] w-[390px] items-center justify-between bg-white p-[12px]">
           <input
             type="text"
-            className="body1 flex-1 outline-none placeholder:text-gray-800"
+            className="body1 flex-1 outline-none placeholder:text-gray-300"
             placeholder="상담 내용을 입력하세요."
           />
           <SendIcon />
