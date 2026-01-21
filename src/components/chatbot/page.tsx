@@ -6,7 +6,7 @@ import ChatModal from './ChatModal';
 
 const ChatbotPage = () => {
   return (
-    <div className="min-h-screen bg-gray-200">
+    <div className="min-h-screen bg-gray-100">
       <div className="px-[20px]">
         <div>
           <ChatModal />
@@ -24,7 +24,7 @@ const ChatbotPage = () => {
         <div className="flex h-[45px] w-[390px] items-center justify-between bg-white p-[12px]">
           <input
             type="text"
-            className="body1 flex-1 outline-none placeholder:text-gray-400"
+            className="body1 flex-1 outline-none placeholder:text-gray-800"
             placeholder="상담 내용을 입력하세요."
           />
           <SendIcon />

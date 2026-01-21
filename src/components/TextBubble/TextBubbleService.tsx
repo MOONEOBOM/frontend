@@ -28,7 +28,7 @@ export function TextBubbleService() {
             <>
               <div className="my-3 border-t border-gray-300" />
               <div
-                className="whitespace-pre-wrap text-gray-400"
+                className="whitespace-pre-wrap text-gray-800"
                 dangerouslySetInnerHTML={{ __html: MOCK_SIMPLIFIED }}
               />
             </>
