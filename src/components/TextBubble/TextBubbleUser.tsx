@@ -8,7 +8,7 @@ export function TextBubbleUser({ text }: TextBubbleUserProps) {
   const displayText = text ?? MOCK_TEXT;
   return (
     <div className="my-5 flex justify-end gap-2">
-      <div className="bg-primary body2 max-w-[190px] rounded-[12px_2px_12px_12px] px-[10px] py-[10px] break-words whitespace-pre-wrap text-black shadow-[0px_2px_4px_rgba(0,0,0,0.1)]">
+      <div className="bg-primary body2 shadow-bubble max-w-[190px] rounded-[12px_2px_12px_12px] px-[10px] py-[10px] break-words whitespace-pre-wrap text-black">
         {displayText}
       </div>
     </div>

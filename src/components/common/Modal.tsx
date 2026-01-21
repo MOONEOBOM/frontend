@@ -29,7 +29,9 @@ export default function Modal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+      className={cn(
+        'fixed inset-0 z-50 flex items-center justify-center bg-black/50',
+      )}
       onClick={() => onOverlayClick(false)}
     >
       <div
@@ -38,12 +40,14 @@ export default function Modal({
         )}
       >
         {isInfoModal && image && (
-          <div className="shrink-0 pb-[20px]">{image}</div>
+          <div className={cn('shrink-0 pb-[20px]')}>{image}</div>
         )}
-        <div className="flex flex-1 items-center justify-center text-center">
-          <div className="pb-[20px] whitespace-pre-wrap">{children}</div>
+        <div
+          className={cn('flex flex-1 items-center justify-center text-center')}
+        >
+          <div className={cn('pb-[20px] whitespace-pre-wrap')}>{children}</div>
         </div>
-        <div className="flex w-full justify-center gap-[11px]">
+        <div className={cn('flex w-full justify-center gap-[11px]')}>
           <button
             className={cn('bg-gray-100', buttonSize)}
             onClick={(e) => {

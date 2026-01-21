@@ -16,18 +16,9 @@ export function TextBubbleService() {
 
   return (
     <>
-      <style>{`
-        .highlight {
-          display: inline-block;
-          padding: 3px;
-          border-radius: 3px;
-          background-color: var(--color-primary-200);
-        }
-      `}</style>
-
       <div className="my-4 flex justify-start">
         {/* 서비스 말풍선 */}
-        <div className="body2 max-w-[240px] rounded-[2px_12px_12px_12px] bg-white px-[10px] py-[10px] break-words whitespace-pre-wrap shadow-[0px_2px_4px_rgba(0,0,0,0.1)]">
+        <div className="body2 shadow-bubble max-w-[240px] rounded-[2px_12px_12px_12px] bg-white px-[10px] py-[10px] break-words whitespace-pre-wrap">
           <div
             className="whitespace-pre-wrap"
             dangerouslySetInnerHTML={{ __html: MOCK_ORIGINAL }}

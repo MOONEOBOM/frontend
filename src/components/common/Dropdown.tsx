@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import BottomChevron from '@/assets/icon/chevron_bottom.svg?react';
+import { cn } from '@/utils/cn';
 
 interface Option {
   label: string;
@@ -37,33 +38,23 @@ const Dropdown = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const baseCls = [width, 'h-[40px]', 'body2'].join(' ');
-
-  const triggerCls = [
-    'w-full',
-    'h-[40px]',
-    'flex',
-    'items-center',
-    'justify-between',
-    'p-[15px]',
-    'rounded-[10px]',
-    'bg-[var(--color-white)]',
-    'border',
-    'border-[var(--color-primary)]',
-    'cursor-pointer',
-  ].join(' ');
   return (
-    <div ref={ref} className={`${baseCls} relative`}>
+    <div ref={ref} className={cn(width, 'body2 relative h-[40px]')}>
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className={triggerCls}
+        className={cn(
+          'border-primary flex h-[40px] w-full cursor-pointer items-center justify-between rounded-[10px] border bg-white p-[15px]',
+        )}
       >
         {selected?.label ?? placeholder} <BottomChevron />
       </button>
       {open && (
         <ul
-          className={`absolute z-10 ${width} no-scrollbar max-h-[180px] overflow-auto [&>li:first-child]:rounded-t-[10px] [&>li:first-child]:border-none [&>li:last-child]:rounded-b-[10px]`}
+          className={cn(
+            width,
+            'no-scrollbar absolute z-10 max-h-[180px] overflow-auto [&>li:first-child]:rounded-t-[10px] [&>li:first-child]:border-none [&>li:last-child]:rounded-b-[10px]',
+          )}
         >
           {options.map((option) => (
             <li
@@ -72,7 +63,9 @@ const Dropdown = ({
                 onChange(option.value);
                 setOpen(false);
               }}
-              className={`flex h-[40px] cursor-pointer items-center border-t border-[var(--color-primary)] bg-[var(--color-white)] p-[15px] hover:bg-gray-100`}
+              className={cn(
+                'border-primary flex h-[40px] cursor-pointer items-center border-t bg-white p-[15px] hover:bg-gray-100',
+              )}
             >
               {option.label}
             </li>

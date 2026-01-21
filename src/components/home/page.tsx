@@ -63,7 +63,7 @@ const HomePage = () => {
             </ToggleBox>
           ))
         ) : (
-          <div className="flex h-[115px] w-[315px] items-center justify-center rounded-xl text-center shadow-[0_0_3.4px_0_rgba(0,0,0,0.25)]">
+          <div className="shadow-box flex h-[115px] w-[315px] items-center justify-center rounded-xl text-center">
             <span className="script-body-14 text-gray-400">
               아직 진행한 상담이 없어요 T_T
             </span>

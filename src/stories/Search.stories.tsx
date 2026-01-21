@@ -24,12 +24,3 @@ export const Disabled: Story = {
     disabled: true,
   },
 };
-
-/** 커스텀 스타일 */
-export const CustomStyle: Story = {
-  args: {
-    style: {
-      ['--input-border-color' as any]: 'var(--color-primary)',
-    },
-  },
-};

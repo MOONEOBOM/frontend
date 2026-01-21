@@ -21,6 +21,12 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
+.highlight {
+  display: inline-block;
+  padding: 3px;
+  border-radius: 3px;
+  background-color: var(--color-primary-200);
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -41,6 +47,10 @@ body {
   --color-uplus: #f30f88;
 
   --color-red: #e6414f;
+
+  --shadow-card: 0 -5px 20px 0 rgba(0, 0, 0, 0.1);
+  --shadow-box: 0 0 3.4px 0 rgba(0, 0, 0, 0.25);
+  --shadow-bubble: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 @font-face {
   font-family: 'Pretendard';
