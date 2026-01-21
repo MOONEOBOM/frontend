@@ -7,6 +7,7 @@ import ChatModal from './ChatModal';
 import { useChat } from '@/lib/tanstack/mutation/chat.mutation';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Header from '../common/Header';
 type Message =
   | { role: 'call' }
   | { role: 'user'; text: string }
@@ -49,7 +50,7 @@ const ChatbotPage = () => {
     <div className="min-h-screen bg-gray-200">
       <div className="px-[20px] pb-[120px]">
         <div>
-          <ChatModal />
+          <Header type="chat" />
         </div>
         {messages.map((msg, index) => {
           if (msg.role === 'user') {
