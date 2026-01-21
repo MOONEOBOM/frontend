@@ -13,7 +13,7 @@ const SummaryPage = () => {
         <BottomSheet />
       </Suspense>
       <div className="flex flex-col items-center">
-        <Header type="default" />
+        <Header type="back" />
 
         <div className="flex flex-col gap-[20px]">
           <p className="heading2 w-[315px]">박예진님이 해야할 일은?</p>
