@@ -18,7 +18,7 @@ export default function FlipCard() {
 
   return (
     <div
-      className="group group cursor-pointer [perspective:1000px]"
+      className="group cursor-pointer [perspective:1000px]"
       onClick={() => setIsTouched(!isTouched)}
     >
       <div
@@ -48,9 +48,7 @@ export default function FlipCard() {
                 {MockSummary[activeIndex].content}
               </p>
             </div>
-            <p className="body3 t bottom-[20px] text-gray-800">
-              {formattedDate}
-            </p>
+            <p className="body3 bottom-[20px] text-gray-800">{formattedDate}</p>
           </MainCard>
         </div>
       </div>

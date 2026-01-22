@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { MockSummary } from '@/data/MockSummary';
 import CardItem from './CardItem';
 import dayjs from 'dayjs';
