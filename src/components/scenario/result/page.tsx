@@ -70,7 +70,7 @@ const ScenarioResultPage = () => {
         >
           {MOCK_BUBBLE.map((bubble, idx) => {
             return bubble.type === 'moono' ? (
-              <TextBubbleScenario key={idx} />
+              <TextBubbleScenario key={idx} text={bubble.text} />
             ) : (
               <TextBubbleUser key={idx} text={bubble.text} />
             );
