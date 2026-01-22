@@ -5,7 +5,6 @@ import HelloMoo from '@/assets/moono/moono_hello.svg';
 import ToggleBox from '../summary/ToggleBox';
 import ChevRight from '@/assets/icon/chevron_right.svg';
 import { useRouter } from 'next/navigation';
-import Badge from '../common/Badge';
 
 const HomePage = () => {
   const router = useRouter();

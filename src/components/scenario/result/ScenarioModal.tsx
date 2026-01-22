@@ -1,3 +1,5 @@
+'use client';
+
 import Modal from '@/components/common/Modal';
 import { useRouter } from 'next/navigation';
 
