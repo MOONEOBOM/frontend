@@ -5,17 +5,24 @@ import Button from '../common/Button';
 import GoogleIcon from '@/assets/icon/google.svg';
 import HelloMoo from '@/assets/moono/moono_hello.svg';
 import { useLogin } from '@/lib/tanstack/mutation/auth.mutation';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const LoginPage = () => {
   const { mutate: login } = useLogin();
   const router = useRouter();
 
+  const searchParams = useSearchParams();
+  const from = searchParams.get('from');
+
+  const safeFrom =
+    from && from.startsWith('/') && !from.startsWith('//') ? from : '/';
+
   const handleLogin = () => {
     login(undefined, {
       onSuccess: () => {
-        router.replace('/');
+        router.replace(safeFrom);
       },
+
       onError: () => {
         // TODO: 토스트 에러 추가
       },
