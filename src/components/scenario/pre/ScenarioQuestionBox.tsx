@@ -19,14 +19,14 @@ const ScenarioQuestionBox = ({
 }: ScenarioQuestionBoxProps) => {
   return (
     <div className="px-[30px]">
-      <div className="h-[500px] w-[330px] rounded-[10px] bg-[#F7F7F7] px-[15px]">
+      <div className="h-[500px] w-[330px] rounded-[10px] bg-gray-100 px-[15px]">
         {/* 1. 상담 종류 질문 */}
         <div className="pt-[27px]">
           <p className="heading3">무엇에 관한 상담인가요?</p>
         </div>
 
         {/* 2. 상담 종류 Badge 컴포넌트 */}
-        <div className="max-width-[300px] mx-auto mt-[12px] px-[5px]">
+        <div className="mx-auto mt-[12px] max-w-[300px] px-[5px]">
           <div className="flex flex-wrap justify-between gap-y-[10px]">
             {CONSULT_TYPES.map((item) => (
               <button

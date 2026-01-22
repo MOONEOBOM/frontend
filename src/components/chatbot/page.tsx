@@ -6,7 +6,7 @@ import SendIcon from '@/assets/icon/send.svg';
 
 const ChatbotPage = () => {
   return (
-    <div className="min-h-screen bg-gray-200">
+    <div className="min-h-screen bg-gray-100">
       <Header type="chat" />
       <div className="px-[20px]">
         <TextBubbleUser />
@@ -21,7 +21,7 @@ const ChatbotPage = () => {
         <div className="flex h-[45px] w-[390px] items-center justify-between bg-white p-[12px]">
           <input
             type="text"
-            className="body1 flex-1 outline-none placeholder:text-gray-400"
+            className="body1 flex-1 outline-none placeholder:text-gray-300"
             placeholder="상담 내용을 입력하세요."
           />
           <SendIcon />

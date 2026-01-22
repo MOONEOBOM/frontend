@@ -17,7 +17,7 @@ const sizes: Record<ButtonSize, string> = {
 };
 const variants: Record<ButtonVariant, string> = {
   solid: ' border-none ',
-  outline: ' border border-gray-400',
+  outline: ' border border-gray-800',
 };
 export default function Button({
   children,
