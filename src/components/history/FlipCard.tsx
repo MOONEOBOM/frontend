@@ -40,7 +40,7 @@ export default function FlipCard() {
         {/* 뒷면 */}
         <div className="[transform:rotateY(180deg)] [backface-visibility:hidden] [grid-area:1/1]">
           <MainCard>
-            <Logo />
+            <Logo className="h-[34px]" />
             <div className="flex h-[200px] w-[210px] flex-col items-center gap-[15px]">
               <p className="heading3">{MockSummary[activeIndex].title}</p>
               <div className="w-[200px] border-t-1 border-gray-300" />
