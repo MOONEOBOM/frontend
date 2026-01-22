@@ -16,17 +16,11 @@ export function TextBubbleService({ normal, easy }: TextBubbleServiceProps) {
       <div className="my-4 flex justify-start">
         {/* 서비스 말풍선 */}
         <div className="body2 shadow-bubble max-w-[240px] rounded-[2px_12px_12px_12px] bg-white px-[10px] py-[10px] break-words whitespace-pre-wrap">
-          <div
-            className="whitespace-pre-wrap"
-            dangerouslySetInnerHTML={{ __html: normal }}
-          />
+          <div className="whitespace-pre-wrap">{normal}</div>
           {showSimplified && (
             <>
               <div className="my-3 border-t border-gray-300" />
-              <div
-                className="whitespace-pre-wrap text-gray-400"
-                dangerouslySetInnerHTML={{ __html: easy }}
-              />
+              <div className="whitespace-pre-wrap text-gray-400">{easy}</div>
             </>
           )}
         </div>
