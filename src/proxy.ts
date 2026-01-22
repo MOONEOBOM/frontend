@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function proxy(request: NextRequest) {
+  if (process.env.NEXT_PUBLIC_USE_PROXY === 'false') {
+    return NextResponse.next();
+  }
   const session = request.cookies.get('2team_session');
   const { pathname } = request.nextUrl;
 
