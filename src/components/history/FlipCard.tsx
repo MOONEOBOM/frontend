@@ -3,21 +3,18 @@
 import Logo from '@/assets/icon/logo_small.svg?react';
 import Moono from '@/assets/moono/moono_summary.svg?react';
 import dayjs from 'dayjs';
-
-// TODO: API 연결 이후 reponse 값으로 수정
-const MockData = {
-  title: '베트남 로밍 해결 ',
-  default:
-    '베트남에서 데이터 로밍 차단을 풀고 재부팅해서 연결했어요. 속도가 답답해 제로프리미엄으로 바꿨고 400kbps 속도로 무제한 쓸 수 있어 안심돼요.',
-  createdAt: '2026-01-21T07:30:15.123Z',
-};
+import { MockSummary } from '@/data/MockSummary';
 
 import { useState } from 'react';
 import MainCard from '@/components/history/MainCard';
+import { useHistoryStore } from '@/store/useHistoryStore';
 
 export default function FlipCard() {
   const [isTouched, setIsTouched] = useState(false);
-  const formattedDate = dayjs(MockData.createdAt).format('YYYY.MM.DD');
+  const activeIndex = useHistoryStore((state) => state.activeIndex);
+  const formattedDate = dayjs(MockSummary[activeIndex].createdAt).format(
+    'YYYY.MM.DD',
+  );
 
   return (
     <div
@@ -34,7 +31,7 @@ export default function FlipCard() {
           <MainCard>
             <Moono className="w-[140px]" />
             <div className="flex flex-col items-center gap-[20px]">
-              <p className="heading3">{MockData.title}</p>
+              <p className="heading3">{MockSummary[activeIndex].title}</p>
               <p className="body3 text-gray-800">{formattedDate}</p>
             </div>
           </MainCard>
@@ -45,9 +42,11 @@ export default function FlipCard() {
           <MainCard>
             <Logo />
             <div className="flex h-[200px] w-[210px] flex-col items-center gap-[15px]">
-              <p className="heading3">{MockData.title}</p>
+              <p className="heading3">{MockSummary[activeIndex].title}</p>
               <div className="w-[200px] border-t-1 border-gray-300" />
-              <p className="body2 text-center">{MockData.default}</p>
+              <p className="body2 text-center">
+                {MockSummary[activeIndex].content}
+              </p>
             </div>
             <p className="body3 t bottom-[20px] text-gray-800">
               {formattedDate}

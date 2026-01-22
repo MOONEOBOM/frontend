@@ -5,10 +5,12 @@ import { MockSummary } from '@/data/MockSummary';
 import CardItem from './CardItem';
 import dayjs from 'dayjs';
 import { cn } from '@/utils/cn';
+import { useHistoryStore } from '@/store/useHistoryStore';
 
 const CardList = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const activeIndex = useHistoryStore((state) => state.activeIndex);
+  const setActiveIndex = useHistoryStore((state) => state.setActiveIndex);
 
   const ITEM_WIDTH = 95 + 10;
 
