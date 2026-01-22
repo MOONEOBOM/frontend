@@ -18,7 +18,7 @@ const UploadLayout = ({ onClick }: UploadLayoutProps) => {
       </span>
       <div
         className={cn(
-          'flex h-[150px] w-full flex-col items-center gap-[25px] rounded-[10px] border border-dashed bg-gray-200 py-[30px]',
+          'flex h-[150px] w-full flex-col items-center gap-[25px] rounded-[10px] border border-dashed bg-gray-100 py-[30px]',
         )}
       >
         <Button

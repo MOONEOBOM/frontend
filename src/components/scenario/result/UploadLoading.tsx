@@ -14,7 +14,7 @@ const UploadLoading = () => {
       </span>
       <div
         className={cn(
-          'flex h-[150px] w-full flex-col items-center justify-center rounded-[10px] border border-dashed bg-gray-200 py-[30px]',
+          'flex h-[150px] w-full flex-col items-center justify-center rounded-[10px] border border-dashed bg-gray-100 py-[30px]',
         )}
       >
         <Spinner size="md" />
