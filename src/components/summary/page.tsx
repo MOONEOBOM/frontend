@@ -1,5 +1,5 @@
 import Header from '@/components/common/Header';
-import MoonobomRight from '@/assets/icon/mooneobom_right.svg';
+import MoonobomRight from '@/assets/icon/logo_small.svg';
 import SummaryFeedback from './SummaryFeedback';
 import SummaryContent from './SummaryContent';
 
