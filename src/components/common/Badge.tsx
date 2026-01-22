@@ -5,9 +5,18 @@ interface BadgeProps {
   color: 'blue' | 'primary';
   isSelected?: boolean;
   onClick?: () => void;
+  outline?: boolean;
+  size?: 'default' | 'large';
 }
 
-const Badge = ({ children, type, isSelected = false, onClick }: BadgeProps) => {
+const Badge = ({
+  children,
+  color,
+  isSelected = false,
+  onClick,
+  outline = false,
+  size = 'default',
+}: BadgeProps) => {
   return (
     <div
       onClick={onClick}
