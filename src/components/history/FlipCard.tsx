@@ -19,23 +19,23 @@ export default function FlipCard() {
 
   return (
     <div
-      className="group cursor-pointer [perspective:1000px]"
+      className="group group cursor-pointer [perspective:1000px]"
       onClick={() => setIsTouched(!isTouched)}
     >
       <div
-        className={`relative duration-700 [transform-style:preserve-3d] ${
+        className={`relative grid duration-700 [transform-style:preserve-3d] ${
           isTouched ? '[transform:rotateY(180deg)]' : ''
         }`}
       >
         {/* 앞면 */}
-        <div className="relative inset-0 [backface-visibility:hidden]">
+        <div className="[backface-visibility:hidden] [grid-area:1/1]">
           <Card>
             <Moono />
           </Card>
         </div>
 
         {/* 뒷면 */}
-        <div className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+        <div className="[transform:rotateY(180deg)] [backface-visibility:hidden] [grid-area:1/1]">
           <Card>
             <Logo />
             <div className="flex h-[200px] w-[210px] flex-col items-center gap-[15px]">
