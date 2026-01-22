@@ -1,0 +1,51 @@
+'use client';
+
+import Logo from '@/assets/icon/logo_small.svg?react';
+import Moono from '@/assets/moono/moono_summary.svg?react';
+
+const MockData = {
+  title: '베트남 로밍 해결 ',
+  default:
+    '베트남에서 데이터 로밍 차단을 풀고 재부팅해서 연결했어요. 속도가 답답해 제로프리미엄으로 바꿨고 400kbps 속도로 무제한 쓸 수 있어 안심돼요.',
+  createdAt: '2026-01-21T07:30:15.123Z',
+};
+
+import { useState } from 'react';
+import Card from '@/components/history/Card';
+
+export default function FlipCard() {
+  const [isTouched, setIsTouched] = useState(false);
+
+  return (
+    <div
+      className="group cursor-pointer [perspective:1000px]"
+      onClick={() => setIsTouched(!isTouched)}
+    >
+      <div
+        className={`relative duration-700 [transform-style:preserve-3d] ${
+          isTouched ? '[transform:rotateY(180deg)]' : ''
+        }`}
+      >
+        {/* 앞면 */}
+        <div className="relative inset-0 overflow-hidden [backface-visibility:hidden]">
+          <Card>
+            <Logo className="mt-[20px]" />
+            <div className="flex w-[210px] flex-col items-center gap-[15px]">
+              <p className="heading3">{MockData.title}</p>
+              <div className="w-[200px] border-t-1 border-gray-300" />
+              <p className="body2 text-center">{MockData.default}</p>
+            </div>
+            <p>{MockData.createdAt}</p>
+          </Card>
+        </div>
+
+        {/* 뒷면 */}
+        <div className="absolute inset-0 [transform:rotateY(180deg)] overflow-hidden [backface-visibility:hidden]">
+          <Card>
+            <Moono />
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+}
