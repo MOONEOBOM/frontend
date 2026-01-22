@@ -14,7 +14,6 @@ import { useScenarioStore } from '@/store/useScenarioStore';
 const ScenarioResultPage = () => {
   const router = useRouter();
   const scenarioResult = useScenarioStore((state) => state.scenarioResult);
-  console.log(scenarioResult);
   if (!scenarioResult || !scenarioResult.scenario || !scenarioResult.keywords) {
     if (typeof window !== 'undefined') {
       router.replace('/scenario/pre');

@@ -6,7 +6,7 @@ export const useCreateScenario = () => {
   return useMutation({
     mutationFn: async (request: ScenarioRequestDto) => {
       const response = await createScenarioApi(request);
-      return response.data;
+      return response.data.data;
     },
   });
 };

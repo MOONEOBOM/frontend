@@ -38,7 +38,7 @@ const ScenarioNextButton = ({
     clearScenarioResult();
     mutate(requestData, {
       onSuccess: (response) => {
-        setScenarioResult(response.data);
+        setScenarioResult(response);
         router.push('/scenario/result');
       },
       onError: (error) => {
