@@ -19,13 +19,13 @@ const SummaryContent = () => {
     <div className="flex w-full flex-col items-center gap-[50px]">
       <p className="heading2">{MOCK_SUMMARY.title}</p>
 
-      <p className="body1 text-centerleading-relaxed px-[50px] break-words break-keep">
+      <p className="body1 px-[50px] text-center leading-relaxed break-words break-keep">
         {MOCK_SUMMARY.content}
       </p>
       <div>
         {MOCK_SUMMARY.highlights.map((bubble, idx) => {
           return bubble.speaker === 'agent' ? (
-            <TextBubbleScenario key={idx} />
+            <TextBubbleScenario key={idx} text={bubble.text} />
           ) : (
             <TextBubbleUser key={idx} text={bubble.text} />
           );
