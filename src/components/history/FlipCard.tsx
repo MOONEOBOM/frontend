@@ -30,7 +30,7 @@ export default function FlipCard() {
         {/* 앞면 */}
         <div className="[backface-visibility:hidden] [grid-area:1/1]">
           <Card>
-            <Moono />
+            <Moono className="w-[140px]" />
           </Card>
         </div>
 
