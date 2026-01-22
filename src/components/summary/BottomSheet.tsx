@@ -44,7 +44,7 @@ const BottomSheet = () => {
                 </Badge>
               ))}
             </div>
-            <p className="body2 text-center text-gray-600">
+            <p className="body2 text-center text-gray-800">
               무너가 확인한 통화내역에서는
               <br />
               요금 과다 부여, 어쩌고만 있었어요
