@@ -2,6 +2,7 @@
 
 import Logo from '@/assets/icon/logo_small.svg?react';
 import Moono from '@/assets/moono/moono_summary.svg?react';
+import dayjs from 'dayjs';
 
 const MockData = {
   title: '베트남 로밍 해결 ',
@@ -27,22 +28,24 @@ export default function FlipCard() {
         }`}
       >
         {/* 앞면 */}
-        <div className="relative inset-0 overflow-hidden [backface-visibility:hidden]">
+        <div className="relative inset-0 [backface-visibility:hidden]">
           <Card>
-            <Logo className="mt-[20px]" />
-            <div className="flex w-[210px] flex-col items-center gap-[15px]">
-              <p className="heading3">{MockData.title}</p>
-              <div className="w-[200px] border-t-1 border-gray-300" />
-              <p className="body2 text-center">{MockData.default}</p>
-            </div>
-            <p>{MockData.createdAt}</p>
+            <Moono />
           </Card>
         </div>
 
         {/* 뒷면 */}
-        <div className="absolute inset-0 [transform:rotateY(180deg)] overflow-hidden [backface-visibility:hidden]">
+        <div className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]">
           <Card>
-            <Moono />
+            <Logo />
+            <div className="flex h-[200px] w-[210px] flex-col items-center gap-[15px]">
+              <p className="heading3">{MockData.title}</p>
+              <div className="w-[200px] border-t-1 border-gray-300" />
+              <p className="body2 text-center">{MockData.default}</p>
+            </div>
+            <p className="body3 t bottom-[20px] text-gray-800">
+              {dayjs(MockData.createdAt).format('YYYY.MM.DD')}
+            </p>
           </Card>
         </div>
       </div>
