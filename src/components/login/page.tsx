@@ -1,12 +1,27 @@
 'use client';
+
 import Logo from '@/assets/icon/logo.svg';
 import Button from '../common/Button';
 import GoogleIcon from '@/assets/icon/google.svg';
 import HelloMoo from '@/assets/moono/moono_hello.svg';
 import { useLogin } from '@/lib/tanstack/mutation/auth.mutation';
+import { useRouter } from 'next/navigation';
 
 const LoginPage = () => {
   const { mutate: login } = useLogin();
+  const router = useRouter();
+
+  const handleLogin = () => {
+    login(undefined, {
+      onSuccess: () => {
+        router.replace('/');
+      },
+      onError: () => {
+        // TODO: 토스트 에러 추가
+      },
+    });
+  };
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
       <HelloMoo className="mt-[195px]" />
@@ -18,7 +33,7 @@ const LoginPage = () => {
           size="full"
           variant="outline"
           icon={<GoogleIcon />}
-          onClick={() => login()}
+          onClick={handleLogin}
           className="bg-white"
         >
           구글로 로그인
