@@ -38,7 +38,11 @@ const ScenarioQuestionBox = ({
                   setReason(null);
                 }}
               >
-                <Badge type="primary" isSelected={consultType === item.key}>
+                <Badge
+                  color="primary"
+                  size="large"
+                  isSelected={consultType === item.key}
+                >
                   {item.label}
                 </Badge>
               </button>

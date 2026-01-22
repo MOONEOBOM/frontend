@@ -6,11 +6,18 @@ const meta: Meta<typeof Badge> = {
   component: Badge,
   tags: ['autodocs'],
   argTypes: {
-    type: {
+    // 1. props 이름이 'color'이므로 type 대신 color로 수정
+    color: {
       control: 'radio',
       options: ['blue', 'primary'],
-      description: '배지의 색상 및 스타일 타입을 선택합니다.',
+      description: '배지의 색상 타입을 선택합니다.',
     },
+    size: {
+      control: 'radio',
+      options: ['default', 'large'],
+    },
+    isSelected: { control: 'boolean' },
+    outline: { control: 'boolean' },
     children: {
       control: 'text',
       description: '배지에 표시될 텍스트 내용입니다.',
@@ -21,39 +28,66 @@ const meta: Meta<typeof Badge> = {
 export default meta;
 type Story = StoryObj<typeof Badge>;
 
-/** 1. 블루 타입 (보더 없는 스타일) */
-export const Blue: Story = {
+/** blue */
+export const BlueDefault: Story = {
   args: {
-    children: '대학생 요금제 추천해줘',
-    type: 'blue',
+    children: '요금제 변경',
+    color: 'blue',
   },
 };
 
-/** 2. 프라이머리 타입 (보더가 있고, 세로로 더 긴 스타일) */
-export const Primary: Story = {
+/** primary + large + outline */
+export const PrimaryLarge: Story = {
   args: {
     children: '요금제 변경',
-    type: 'primary',
+    color: 'primary',
+    size: 'large',
   },
 };
 
-/** 3. 선택된 프라이머리 타입 (배경색이 primary) */
-export const Primary_selected: Story = {
+/** primary + large + isSelected */
+export const PrimarySelected: Story = {
   args: {
     children: '요금제 변경',
-    type: 'primary',
+    color: 'primary',
     isSelected: true,
+    size: 'large',
   },
 };
 
-/** 3. 여러 상태 모아보기 */
-export const AllVariants: Story = {
+/** blue + outline */
+export const BlueOutline: Story = {
+  args: {
+    children: '전화 상담 연결하기',
+    color: 'blue',
+    outline: true,
+  },
+};
+
+/** primary + outline */
+export const PrimaryDefault: Story = {
+  args: {
+    children: '전화 연결하기',
+    color: 'primary',
+  },
+};
+
+/** 전체 모아보기 */
+export const List: Story = {
   render: () => (
-    <div className="flex items-center gap-2">
-      <Badge type="blue">사용 중</Badge>
-      <Badge type="primary">추천 상품</Badge>
-      <Badge type="primary" isSelected>
-        요금제
+    <div className="flex flex-col gap-4">
+      <Badge color="blue">요금제 변경</Badge>
+      <Badge color="primary" size="large">
+        요금제 변경
+      </Badge>
+      <Badge color="primary" size="large" isSelected>
+        요금제 변경
+      </Badge>
+      <Badge color="blue" outline>
+        전화 상담 연결하기
+      </Badge>
+      <Badge color="primary" outline>
+        전화 연결하기
       </Badge>
     </div>
   ),
