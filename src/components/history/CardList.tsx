@@ -35,7 +35,7 @@ const CardList = () => {
         onScroll={handleScroll}
         className={cn(
           'flex h-[200px] w-[390px] items-center gap-[10px] overflow-x-auto',
-          'scrollbar-hide touch-pan-x snap-x snap-mandatory px-[148px]',
+          'no-scrollbar touch-pan-x snap-x snap-mandatory px-[148px]',
         )}
       >
         {MockSummary.map((item, index) => (
