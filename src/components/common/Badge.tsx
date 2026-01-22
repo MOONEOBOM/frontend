@@ -2,26 +2,38 @@ import { cn } from '@/utils/cn';
 
 interface BadgeProps {
   children: React.ReactNode;
-  type: 'blue' | 'primary';
+  color: 'blue' | 'primary';
   isSelected?: boolean;
+  outline?: boolean;
+  size?: 'default' | 'large';
 }
 
-const Badge = ({ children, type, isSelected = false }: BadgeProps) => {
+const Badge = ({
+  children,
+  color,
+  isSelected = false,
+  outline = false,
+  size = 'default',
+}: BadgeProps) => {
   return (
     <div
       className={cn(
-        'body2 flex w-fit items-center rounded-full leading-none',
+        'body2 flex w-fit items-center justify-center rounded-full',
+        'box-border',
 
-        type === 'blue' && 'bg-secondary px-[10px] py-[6px]',
-        type === 'primary' &&
-          'border-primary bg-primary-100 box-border border-[1px] px-[14px] py-[8px]',
+        color === 'blue' && 'bg-secondary',
+        color === 'primary' && 'border-primary bg-primary-100 border-[1px]',
+
+        color === 'blue' && outline && 'border-secondary-dark border-[1px]',
+
+        size === 'default' && 'h-[27px] px-[10px]',
+        size === 'large' && 'h-[33px] px-[14px]',
 
         isSelected && 'bg-primary',
       )}
     >
-      {children}
+      <span className="pt-[1px] leading-none">{children}</span>
     </div>
   );
 };
-
 export default Badge;
