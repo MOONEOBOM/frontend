@@ -2,8 +2,8 @@
 
 import Badge from '@/components/common/Badge';
 import Dropdown from '@/components/common/Dropdown';
-import { CONSULT_TYPES, REASONS_BY_TYPE, ConsultTypeKey, } from './scenariotype';
-  
+import { CONSULT_TYPES, REASONS_BY_TYPE, ConsultTypeKey } from './scenariotype';
+
 interface ScenarioQuestionBoxProps {
   consultType: ConsultTypeKey | null;
   setConsultType: (v: ConsultTypeKey | null) => void;
@@ -11,19 +11,22 @@ interface ScenarioQuestionBoxProps {
   setReason: (v: string | null) => void;
 }
 
-const ScenarioQuestionBox = ({consultType, setConsultType, reason, setReason}: ScenarioQuestionBoxProps) => {
-
+const ScenarioQuestionBox = ({
+  consultType,
+  setConsultType,
+  reason,
+  setReason,
+}: ScenarioQuestionBoxProps) => {
   return (
     <div className="px-[30px]">
-      <div className="w-[330px] h-[500px] bg-[#F7F7F7] rounded-[10px] px-[15px]">
-
+      <div className="h-[500px] w-[330px] rounded-[10px] bg-[#F7F7F7] px-[15px]">
         {/* 1. 상담 종류 질문 */}
         <div className="pt-[27px]">
           <p className="heading3">무엇에 관한 상담인가요?</p>
         </div>
 
         {/* 2. 상담 종류 Badge 컴포넌트 */}
-        <div className="mt-[12px] px-[5px] max-width-[300px] mx-auto">
+        <div className="max-width-[300px] mx-auto mt-[12px] px-[5px]">
           <div className="flex flex-wrap justify-between gap-y-[10px]">
             {CONSULT_TYPES.map((item) => (
               <button
@@ -35,15 +38,15 @@ const ScenarioQuestionBox = ({consultType, setConsultType, reason, setReason}: S
                   setReason(null);
                 }}
               >
-                <Badge 
-                  type="primary" 
+                <Badge
+                  color="primary"
+                  size="large"
                   isSelected={consultType === item.key}
                 >
                   {item.label}
                 </Badge>
               </button>
             ))}
-            
           </div>
         </div>
 
@@ -67,11 +70,9 @@ const ScenarioQuestionBox = ({consultType, setConsultType, reason, setReason}: S
                 }
                 width="w-[300px]"
               />
-              </div>
-            </>
+            </div>
+          </>
         )}
-
-
       </div>
     </div>
   );

@@ -61,7 +61,7 @@ const ScenarioResultPage = () => {
         </div>
         <div className={cn('flex gap-2')}>
           {MOCK_KEYWORD.map((keyword, idx) => (
-            <Badge key={idx} type="blue">
+            <Badge key={idx} color="blue">
               {keyword}
             </Badge>
           ))}

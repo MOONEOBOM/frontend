@@ -39,7 +39,7 @@ const BottomSheet = () => {
             </p>
             <div className="flex gap-[8px]">
               {KEYWORD.map((k) => (
-                <Badge type="blue" key={k}>
+                <Badge color="blue" key={k}>
                   {k}
                 </Badge>
               ))}

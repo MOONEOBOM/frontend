@@ -16,7 +16,7 @@ const ChatbotPage = () => {
       </div>
       <div className="fixed bottom-0">
         <div className="mx-[12px] mb-[10px]">
-          <Badge type="blue">대학생 요금제 추천해줘</Badge>
+          <Badge color="blue">대학생 요금제 추천해줘</Badge>
         </div>
         <div className="flex h-[45px] w-[390px] items-center justify-between bg-white p-[12px]">
           <input
