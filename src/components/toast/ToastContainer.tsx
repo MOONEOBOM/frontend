@@ -19,6 +19,7 @@ export default function ToastContainer() {
       {isOpen && toast && (
         <div className="fixed bottom-10 left-1/2 z-[9999] -translate-x-1/2 pointer-events-none">
           <motion.div
+            role="status" aria-live="polite" aria-atomic="true"
             // 1) 나타날 때: 아래(y: 20)에서 위(y: 0)로 올라오며 생성
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

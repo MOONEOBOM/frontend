@@ -1,6 +1,9 @@
 import { useToastStore } from "@/store/useToastStore";
 import { ToastType } from "@/components/toast/toast.types";
 
+const TOAST_DURATION_MS = 2000;
+let toastTimer: ReturnType<typeof setTimeout> | null = null;
+
 export const useToastHook = () => {
 
   const { setToast, setIsOpen } = useToastStore();
@@ -20,9 +23,13 @@ export const useToastHook = () => {
     setToast(data);
     setIsOpen(true);
 
-    setTimeout(() => {
+    if (toastTimer) {
+      clearTimeout(toastTimer);
+    }
+
+    toastTimer = setTimeout(() => {
       setIsOpen(false);
-    }, 2000);
+    }, TOAST_DURATION_MS);
   };
 
   return { toast: startToast };
