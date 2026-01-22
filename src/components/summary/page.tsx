@@ -1,5 +1,5 @@
 import Header from '@/components/common/Header';
-import LinkButton from '@/components/summary/LinkButton';
+import LinkButton from '@/components/common/LinkButton';
 import FlipCard from '@/components/summary/FlipCard';
 import BottomSheet from './BottomSheet';
 import { Suspense } from 'react';

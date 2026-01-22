@@ -1,8 +1,8 @@
 'use client';
 
-import Button from '../common/Button';
+import Button from '@/components/common/Button';
 import HelloMoo from '@/assets/moono/moono_hello.svg';
-import ToggleBox from '../summary/ToggleBox';
+import ToggleBox from '@/components/common/ToggleBox';
 import ChevRight from '@/assets/icon/chevron_right.svg';
 import { useRouter } from 'next/navigation';
 

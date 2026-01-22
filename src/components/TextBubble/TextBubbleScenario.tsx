@@ -1,6 +1,6 @@
 'use client';
 
-import MooneoIcon from '@/assets/icon/moono_profile.svg?react';
+import MooneoIcon from '@/assets/moono/moono_profile.svg?react';
 
 const MOCK_SCENARIO_TEXT =
   '1월 12일 ~ 14일 동안 과금이 발생한 것으로 확인됩니다.';
