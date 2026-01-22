@@ -1,4 +1,5 @@
 import Logo from '@/assets/icon/logo_small.svg?react';
+import { cn } from '@/utils/cn';
 
 interface CardItemProps {
   title: string;
@@ -8,10 +9,29 @@ interface CardItemProps {
 
 const CardItem = ({ title, date, isSelected = false }: CardItemProps) => {
   return (
-    <div className="bg-primary-bg shadow-rest flex h-[135px] w-[95px] flex-col items-center justify-center gap-[15px] rounded-[6px]">
-      {/* <Logo width={25} /> */}
-      <p className="caption1 w-[60px] text-center break-keep">{title}</p>
-      <p className="caption2 text-gray-800">{date}</p>
+    <div
+      className={cn(
+        'flex flex-col items-center justify-center gap-[15px] transition-all duration-300',
+
+        isSelected
+          ? 'bg-primary shadow-active h-[175px] w-[125px] rounded-[8px]'
+          : 'bg-primary-bg shadow-rest h-[135px] w-[95px] rounded-[6px]',
+      )}
+    >
+      {isSelected && <Logo width={25} className="flex-shrink-0" />}
+
+      <p
+        className={cn(
+          'text-center break-keep',
+          isSelected ? 'body3 w-[100px]' : 'caption1 w-[60px]',
+        )}
+      >
+        {title}
+      </p>
+
+      <p className={cn('text-gray-800', isSelected ? 'caption1' : 'caption2')}>
+        {date}
+      </p>
     </div>
   );
 };
