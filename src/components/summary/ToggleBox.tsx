@@ -20,7 +20,7 @@ const ToggleBox = ({
   const content = (
     <div className="shadow-box block w-[315px] overflow-hidden rounded-[10px] bg-white">
       <button
-        className={`heading4 flex h-[50px] items-center justify-between p-[10px] ${!isHome ? 'cursor-pointer' : ''}`}
+        className={`heading4 flex h-[50px] w-full items-center justify-between p-[10px] ${!isHome ? 'cursor-pointer' : ''}`}
         {...(!isHome && { onClick: () => setIsOpen(!isOpen) })}
       >
         {children}
