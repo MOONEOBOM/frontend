@@ -1,4 +1,5 @@
 import Header from '../common/Header';
+import CardList from './CardList';
 import FlipCard from './FlipCard';
 
 const HistoryPage = () => {
@@ -7,6 +8,7 @@ const HistoryPage = () => {
       <Header type="back" />
       <FlipCard />
       <p className="script-body-14">카드를 터치해보세요!</p>
+      <CardList />
     </div>
   );
 };

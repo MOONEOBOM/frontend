@@ -4,6 +4,7 @@ import Logo from '@/assets/icon/logo_small.svg?react';
 import Moono from '@/assets/moono/moono_summary.svg?react';
 import dayjs from 'dayjs';
 
+// TODO: API 연결 이후 reponse 값으로 수정
 const MockData = {
   title: '베트남 로밍 해결 ',
   default:
@@ -12,7 +13,7 @@ const MockData = {
 };
 
 import { useState } from 'react';
-import Card from '@/components/history/Card';
+import MainCard from '@/components/history/MainCard';
 
 export default function FlipCard() {
   const [isTouched, setIsTouched] = useState(false);
@@ -30,18 +31,18 @@ export default function FlipCard() {
       >
         {/* 앞면 */}
         <div className="[backface-visibility:hidden] [grid-area:1/1]">
-          <Card>
+          <MainCard>
             <Moono className="w-[140px]" />
             <div className="flex flex-col items-center gap-[20px]">
               <p className="heading3">{MockData.title}</p>
               <p className="body3 text-gray-800">{formattedDate}</p>
             </div>
-          </Card>
+          </MainCard>
         </div>
 
         {/* 뒷면 */}
         <div className="[transform:rotateY(180deg)] [backface-visibility:hidden] [grid-area:1/1]">
-          <Card>
+          <MainCard>
             <Logo />
             <div className="flex h-[200px] w-[210px] flex-col items-center gap-[15px]">
               <p className="heading3">{MockData.title}</p>
@@ -51,7 +52,7 @@ export default function FlipCard() {
             <p className="body3 t bottom-[20px] text-gray-800">
               {formattedDate}
             </p>
-          </Card>
+          </MainCard>
         </div>
       </div>
     </div>
