@@ -11,7 +11,7 @@ const CardItem = ({ title, date, isSelected = false }: CardItemProps) => {
   return (
     <div
       className={cn(
-        'flex flex-col items-center justify-center gap-[15px] transition-all duration-300',
+        'flex flex-shrink-0 snap-center flex-col items-center justify-center gap-[15px] transition-all duration-300',
 
         isSelected
           ? 'bg-primary shadow-active h-[175px] w-[125px] rounded-[8px]'
