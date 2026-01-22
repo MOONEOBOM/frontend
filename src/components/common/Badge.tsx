@@ -4,11 +4,13 @@ interface BadgeProps {
   children: React.ReactNode;
   type: 'blue' | 'primary';
   isSelected?: boolean;
+  onClick?: () => void;
 }
 
-const Badge = ({ children, type, isSelected = false }: BadgeProps) => {
+const Badge = ({ children, type, isSelected = false, onClick }: BadgeProps) => {
   return (
     <div
+      onClick={onClick}
       className={cn(
         'body2 flex w-fit items-center rounded-full leading-none',
 
