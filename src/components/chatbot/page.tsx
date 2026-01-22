@@ -3,7 +3,6 @@ import Badge from '../common/Badge';
 import { TextBubbleService } from '../TextBubble/TextBubbleService';
 import { TextBubbleUser } from '../TextBubble/TextBubbleUser';
 import SendIcon from '@/assets/icon/send.svg';
-import ChatModal from './ChatModal';
 import { useChat } from '@/lib/tanstack/mutation/chat.mutation';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -52,11 +51,9 @@ const ChatbotPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-200">
+    <div className="min-h-screen bg-gray-100">
+      <Header type="chat" />
       <div className="px-[20px] pb-[120px]">
-        <div>
-          <Header type="chat" />
-        </div>
         {messages.map((msg, index) => {
           if (msg.role === 'user') {
             return <TextBubbleUser key={index} text={msg.text} />;
@@ -76,7 +73,7 @@ const ChatbotPage = () => {
           return null;
         })}
         {isPending && (
-          <div className="ml-2 text-sm text-gray-400">
+          <div className="ml-2 text-sm text-gray-800">
             <Spinner />
           </div>
         )}
@@ -96,7 +93,7 @@ const ChatbotPage = () => {
         <div className="flex h-[45px] w-[390px] items-center justify-between bg-white p-[12px]">
           <input
             type="text"
-            className="body1 flex-1 outline-none placeholder:text-gray-400"
+            className="body1 flex-1 outline-none placeholder:text-gray-300"
             placeholder="상담 내용을 입력하세요."
             value={text}
             onChange={(e) => setText(e.target.value)}

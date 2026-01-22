@@ -64,7 +64,7 @@ const HomePage = () => {
           ))
         ) : (
           <div className="shadow-box flex h-[115px] w-[315px] items-center justify-center rounded-xl text-center">
-            <span className="script-body-14 text-gray-400">
+            <span className="script-body-14 text-gray-800">
               아직 진행한 상담이 없어요 T_T
             </span>
           </div>

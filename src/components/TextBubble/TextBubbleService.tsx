@@ -20,7 +20,7 @@ export function TextBubbleService({ normal, easy }: TextBubbleServiceProps) {
           {showSimplified && (
             <>
               <div className="my-3 border-t border-gray-300" />
-              <div className="whitespace-pre-wrap text-gray-400">{easy}</div>
+              <div className="whitespace-pre-wrap text-[#7E7E7E]">{easy}</div>
             </>
           )}
         </div>
