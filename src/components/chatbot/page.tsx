@@ -80,13 +80,13 @@ const ChatbotPage = () => {
       </div>
       <div className="fixed bottom-0">
         <div className="mx-[12px] mb-[10px] flex gap-[5px]">
-          <Badge type="blue" onClick={handleAddCallButton}>
+          <Badge color="blue" onClick={handleAddCallButton}>
             전화 상담 연결하기
           </Badge>
-          <Badge type="primary" onClick={() => sendMessage('요금제 추천')}>
+          <Badge color="primary" onClick={() => sendMessage('요금제 추천')}>
             요금제 추천
           </Badge>
-          <Badge type="primary" onClick={() => sendMessage('해외 로밍 가입')}>
+          <Badge color="primary" onClick={() => sendMessage('해외 로밍 가입')}>
             해외 로밍 가입
           </Badge>
         </div>
