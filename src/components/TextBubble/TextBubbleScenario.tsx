@@ -11,7 +11,7 @@ export function TextBubbleScenario() {
       <div className="my-4 flex items-start gap-[5px]">
         {/* 프로필 무너 아이콘 */}
         <div
-          className="flex flex-shrink-0 items-center justify-center rounded-full border border-black bg-white px-[8px] py-[6px]"
+          className="flex flex-shrink-0 items-center justify-center rounded-full border border-gray-300 bg-white px-[8px] py-[6px]"
           aria-label="Mooneo 프로필"
         >
           <MooneoIcon className="h-[36px] w-[32px] translate-x-[0.5px]" />

@@ -3,14 +3,12 @@
 import Badge from '@/components/common/Badge';
 import Header from '@/components/common/Header';
 import { cn } from '@/utils/cn';
-import MoonoTako from '@/assets/moono/moono_tako.svg';
-import UploadLayout from './UploadLayout';
-import UploadLoading from './UploadLoading';
 import Modal from '@/components/common/Modal';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { TextBubbleScenario } from '@/components/TextBubble/TextBubbleScenario';
 import { TextBubbleUser } from '@/components/TextBubble/TextBubbleUser';
+import Button from '@/components/common/Button';
 
 const MOCK_BUBBLE = [
   { type: 'moono', text: 'U+ 고객센터입니다. 어떤 점이 불편하신가요?' },
@@ -31,18 +29,7 @@ const MOCK_BUBBLE = [
 const MOCK_KEYWORD = ['요금제 변경', '요금 과다 부여', '요금제 추천'];
 
 const ScenarioResultPage = () => {
-  const [noRecordModal, setNoRecordModal] = useState(false);
   const router = useRouter();
-
-  //api 연결시 tanstack query의 isPending 과 변경
-  const [isPending, setPending] = useState(false);
-
-  const handleUpload = () => {
-    setPending(true);
-    setTimeout(() => {
-      router.push('/summary');
-    }, 2000);
-  };
 
   return (
     <>
@@ -50,7 +37,7 @@ const ScenarioResultPage = () => {
 
       <div
         className={cn(
-          'mt-[34px] flex w-full flex-col items-center gap-[34px] px-[25px] pb-[80px]',
+          'my-[34px] flex w-full flex-col items-center gap-[34px] px-[25px] pb-[10px]',
         )}
       >
         <div className={cn('script-body-16 flex w-full flex-col items-center')}>
@@ -89,35 +76,9 @@ const ScenarioResultPage = () => {
             );
           })}
         </div>
-        {isPending ? (
-          <UploadLoading />
-        ) : (
-          <UploadLayout onClick={handleUpload} />
-        )}
-
-        <button
-          type="button"
-          onClick={() => setNoRecordModal(true)}
-          className={cn(
-            'script-body-16 cursor-pointer bg-[linear-gradient(to_top,var(--color-primary)_40%,transparent_40%)] px-0.5 leading-[1.2]',
-          )}
-        >
-          녹음 파일이 없어요T_T
-        </button>
-        <Modal
-          isOpen={noRecordModal}
-          image={<MoonoTako />}
-          onOverlayClick={setNoRecordModal}
-          type="info"
-          onBack={() => router.replace('/')}
-        >
-          무너봄은 음성 파일에 한해
-          <br />
-          상담 요약을 제공해드리고 있어요.
-          <br />
-          <br />
-          불편을 드려 죄송합니다.
-        </Modal>
+        <Button onClick={() => router.push('/summary')} className="bg-primary">
+          다음
+        </Button>
       </div>
     </>
   );
