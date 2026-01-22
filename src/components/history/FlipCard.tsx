@@ -16,6 +16,7 @@ import Card from '@/components/history/Card';
 
 export default function FlipCard() {
   const [isTouched, setIsTouched] = useState(false);
+  const formattedDate = dayjs(MockData.createdAt).format('YYYY.MM.DD');
 
   return (
     <div
@@ -31,6 +32,10 @@ export default function FlipCard() {
         <div className="[backface-visibility:hidden] [grid-area:1/1]">
           <Card>
             <Moono className="w-[140px]" />
+            <div className="flex flex-col items-center gap-[20px]">
+              <p className="heading3">{MockData.title}</p>
+              <p className="body3 text-gray-800">{formattedDate}</p>
+            </div>
           </Card>
         </div>
 
@@ -44,7 +49,7 @@ export default function FlipCard() {
               <p className="body2 text-center">{MockData.default}</p>
             </div>
             <p className="body3 t bottom-[20px] text-gray-800">
-              {dayjs(MockData.createdAt).format('YYYY.MM.DD')}
+              {formattedDate}
             </p>
           </Card>
         </div>
