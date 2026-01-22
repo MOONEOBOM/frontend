@@ -28,21 +28,12 @@ const HomePage = () => {
       <HelloMoo className="mt-[50px]" />
       <div className="mt-[76px] flex flex-row items-center justify-center gap-[10px]">
         <Button
-          size="half"
+          size="full"
           variant="solid"
           className="bg-primary"
           onClick={handleChatbot}
         >
-          챗봇 상담
-        </Button>
-        <Button
-          size="half"
-          variant="solid"
-          className="bg-primary"
-          onClick={handlePreScenario}
-        >
-          전화 상담이 <br />
-          필요하신가요?
+          상담 시작하기
         </Button>
       </div>
       <div className="mt-[58px] mb-[19px] flex w-full items-center justify-between px-[37.5px]">

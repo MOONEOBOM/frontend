@@ -4,19 +4,13 @@ interface BadgeProps {
   children: React.ReactNode;
   color: 'blue' | 'primary';
   isSelected?: boolean;
-  outline?: boolean;
-  size?: 'default' | 'large';
+  onClick?: () => void;
 }
 
-const Badge = ({
-  children,
-  color,
-  isSelected = false,
-  outline = false,
-  size = 'default',
-}: BadgeProps) => {
+const Badge = ({ children, type, isSelected = false, onClick }: BadgeProps) => {
   return (
     <div
+      onClick={onClick}
       className={cn(
         'body2 flex w-fit items-center justify-center rounded-full',
         'box-border',
@@ -36,4 +30,5 @@ const Badge = ({
     </div>
   );
 };
+
 export default Badge;

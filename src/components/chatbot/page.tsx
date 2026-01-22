@@ -1,30 +1,112 @@
+'use client';
 import Badge from '../common/Badge';
-import Header from '../common/Header';
 import { TextBubbleService } from '../TextBubble/TextBubbleService';
 import { TextBubbleUser } from '../TextBubble/TextBubbleUser';
 import SendIcon from '@/assets/icon/send.svg';
+import { useChat } from '@/lib/tanstack/mutation/chat.mutation';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Header from '../common/Header';
+import Spinner from '../scenario/result/Spinner';
+import TextBubbleCalling from '../TextBubble/TextBubbleCalling';
+type Message =
+  | { role: 'call' }
+  | { role: 'user'; text: string }
+  | { role: 'service'; normal: string; easy: string };
 
 const ChatbotPage = () => {
+  const router = useRouter();
+  const [text, setText] = useState('');
+  const { mutate, isPending } = useChat();
+  const [messages, setMessages] = useState<Message[]>([]);
+
+  const sendMessage = (sendMessage: string) => {
+    if (!sendMessage.trim() || isPending) return;
+    setMessages((prev) => [...prev, { role: 'user', text: sendMessage }]);
+    if (sendMessage === text) setText('');
+    mutate(sendMessage, {
+      onSuccess: (res) => {
+        if (res.data?.answer?.length > 0) {
+          const returnAnswer = res.data.answer[0];
+          setMessages((prev) => [
+            ...prev,
+            {
+              role: 'service',
+              normal: returnAnswer.normal,
+              easy: returnAnswer.easy,
+            },
+          ]);
+        }
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    });
+  };
+
+  const handleSend = () => sendMessage(text);
+
+  const handleAddCallButton = () => {
+    setMessages((prev) => [...prev, { role: 'call' }]);
+  };
+
   return (
     <div className="min-h-screen bg-gray-100">
       <Header type="chat" />
-      <div className="px-[20px]">
-        <TextBubbleUser />
-        <TextBubbleService />
-        <TextBubbleUser />
-        <TextBubbleService />
+      <div className="px-[20px] pb-[120px]">
+        {messages.map((msg, index) => {
+          if (msg.role === 'user') {
+            return <TextBubbleUser key={index} text={msg.text} />;
+          }
+          if (msg.role === 'service') {
+            return (
+              <TextBubbleService
+                key={index}
+                normal={msg.normal}
+                easy={msg.easy}
+              />
+            );
+          }
+          if (msg.role === 'call') {
+            return <TextBubbleCalling key={index} />;
+          }
+          return null;
+        })}
+        {isPending && (
+          <div className="ml-2 text-sm text-gray-800">
+            <Spinner />
+          </div>
+        )}
       </div>
       <div className="fixed bottom-0">
-        <div className="mx-[12px] mb-[10px]">
-          <Badge color="blue">대학생 요금제 추천해줘</Badge>
+        <div className="mx-[12px] mb-[10px] flex gap-[5px]">
+          <Badge type="blue" onClick={handleAddCallButton}>
+            전화 상담 연결하기
+          </Badge>
+          <Badge type="primary" onClick={() => sendMessage('요금제 추천')}>
+            요금제 추천
+          </Badge>
+          <Badge type="primary" onClick={() => sendMessage('해외 로밍 가입')}>
+            해외 로밍 가입
+          </Badge>
         </div>
         <div className="flex h-[45px] w-[390px] items-center justify-between bg-white p-[12px]">
           <input
             type="text"
             className="body1 flex-1 outline-none placeholder:text-gray-300"
             placeholder="상담 내용을 입력하세요."
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            disabled={isPending} // 전송 중일 때 입력 막기
           />
-          <SendIcon />
+          <button
+            type="button"
+            onClick={handleSend}
+            disabled={isPending || !text.trim()}
+            className={isPending ? 'opacity-50' : 'opacity-100'}
+          >
+            <SendIcon />
+          </button>
         </div>
       </div>
     </div>
