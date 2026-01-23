@@ -1,37 +1,21 @@
 import Header from '@/components/common/Header';
-import LinkButton from '@/components/summary/LinkButton';
-import FlipCard from '@/components/summary/FlipCard';
-import BottomSheet from './BottomSheet';
-import { Suspense } from 'react';
-
-const TODO = ['로밍 해지하기', 'eSIM에 대해 알아보기'];
+import MoonobomRight from '@/assets/icon/logo_small.svg';
+import SummaryFeedback from './SummaryFeedback';
+import SummaryContent from './SummaryContent';
 
 const SummaryPage = () => {
   return (
-    <>
-      <Suspense fallback={null}>
-        <BottomSheet />
-      </Suspense>
-      <div className="flex flex-col items-center">
-        <Header type="back" />
+    <div className="flex flex-col items-center">
+      <Header type="home" />
 
-        <div className="flex flex-col gap-[20px]">
-          <p className="heading2 w-[315px]">박예진님이 해야할 일은?</p>
-          <div className="flex flex-col gap-[10px]">
-            {TODO.map((todo) => {
-              return (
-                <LinkButton key={todo} href="" type="outline" isFull>
-                  {todo}
-                </LinkButton>
-              );
-            })}
-          </div>
-        </div>
-
-        <FlipCard />
-        <p className="script-body-16">카드를 터치해보세요!</p>
+      <div className="mb-[60px] flex w-full flex-col items-center gap-[50px] px-[41px]">
+        <MoonobomRight />
+        <div className="h-[1px] w-[250px] bg-gray-300" />
+        <SummaryContent />
+        <div className="h-[1px] w-[250px] bg-gray-300" />
+        <SummaryFeedback />
       </div>
-    </>
+    </div>
   );
 };
 

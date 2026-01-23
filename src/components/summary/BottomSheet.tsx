@@ -1,8 +1,8 @@
 'use client';
 
-import CallingMoono from '@/assets/icon/moono_calling.svg?react';
-import Good from '@/assets/icon/moono_good.svg?react';
-import Bad from '@/assets/icon/moono_bad.svg?react';
+import CallingMoono from '@/assets/moono/moono_calling.svg?react';
+import Good from '@/assets/moono/moono_good.svg?react';
+import Bad from '@/assets/moono/moono_bad.svg?react';
 import Badge from '@/components/common/Badge';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -39,7 +39,7 @@ const BottomSheet = () => {
             </p>
             <div className="flex gap-[8px]">
               {KEYWORD.map((k) => (
-                <Badge type="blue" key={k}>
+                <Badge color="blue" key={k}>
                   {k}
                 </Badge>
               ))}

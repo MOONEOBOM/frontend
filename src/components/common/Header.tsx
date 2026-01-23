@@ -4,8 +4,13 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import LeftChevron from '@/assets/icon/chevron_left.svg?react';
 import ChatModal from '@/components/chatbot/ChatModal';
+import ScenarioModal from '../scenario/result/ScenarioModal';
 
-const Header = ({ type = 'back' }: { type: 'back' | 'home' | 'chat' }) => {
+const Header = ({
+  type = 'back',
+}: {
+  type: 'back' | 'home' | 'chat' | 'scenario';
+}) => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -13,6 +18,7 @@ const Header = ({ type = 'back' }: { type: 'back' | 'home' | 'chat' }) => {
     back: () => router.back(),
     home: () => router.push('/'),
     chat: () => router.back(),
+    scenario: () => setIsModalOpen(true),
   };
 
   return (
@@ -35,6 +41,13 @@ const Header = ({ type = 'back' }: { type: 'back' | 'home' | 'chat' }) => {
 
       {isModalOpen && type === 'chat' && (
         <ChatModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      )}
+
+      {isModalOpen && type === 'scenario' && (
+        <ScenarioModal
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+        />
       )}
     </>
   );

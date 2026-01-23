@@ -1,6 +1,4 @@
-'use client';
-
-import MooneoIcon from '@/assets/icon/moono_profile.svg?react';
+import MooneoIcon from '@/assets/moono/moono_profile.svg?react';
 
 interface TextBubbleAgentProps {
   text: string;

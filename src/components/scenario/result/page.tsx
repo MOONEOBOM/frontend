@@ -39,7 +39,7 @@ const ScenarioResultPage = () => {
 
   return (
     <>
-      <Header type="back" />
+      <Header type="scenario" />
       <div
         className={cn(
           'my-[34px] flex w-full flex-col items-center gap-[34px] px-[25px] pb-[10px]',
@@ -53,7 +53,7 @@ const ScenarioResultPage = () => {
         </div>
         <div className={cn('flex gap-2')}>
           {result?.keywords?.map((keyword, idx) => (
-            <Badge key={idx} type="blue">
+            <Badge key={idx} color="blue">
               {keyword}
             </Badge>
           ))}
