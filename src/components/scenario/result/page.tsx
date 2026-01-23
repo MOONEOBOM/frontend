@@ -3,23 +3,22 @@
 import Badge from '@/components/common/Badge';
 import Header from '@/components/common/Header';
 import { cn } from '@/utils/cn';
-import Modal from '@/components/common/Modal';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { TextBubbleScenario } from '@/components/TextBubble/TextBubbleScenario';
 import { TextBubbleUser } from '@/components/TextBubble/TextBubbleUser';
 import Button from '@/components/common/Button';
-import { useScenarioStore } from '@/store/useScenarioStore';
+import { useGetScenario } from '@/lib/tanstack/query/scenario.query';
 
 const ScenarioResultPage = () => {
   const router = useRouter();
-  const scenarioResult = useScenarioStore((state) => state.scenarioResult);
-  if (!scenarioResult || !scenarioResult.scenario || !scenarioResult.keywords) {
-    if (typeof window !== 'undefined') {
-      router.replace('/scenario/pre');
-    }
-    return null;
-  }
+  const consultType = useSearchParams().get('consultType');
+  const reason = useSearchParams().get('reason');
+
+  const { data: result } = useGetScenario({
+    categoryKey: consultType ?? '',
+    reasonKey: reason ? [reason] : [],
+  });
+
   return (
     <>
       <Header type="back" />
@@ -35,7 +34,7 @@ const ScenarioResultPage = () => {
           <span>시나리오대로 상담을 진행해보아요!</span>
         </div>
         <div className={cn('flex gap-2')}>
-          {scenarioResult?.keywords?.map((keyword, idx) => (
+          {result?.keywords?.map((keyword, idx) => (
             <Badge key={idx} type="blue">
               {keyword}
             </Badge>
@@ -56,7 +55,7 @@ const ScenarioResultPage = () => {
         <div
           className={cn('w-full flex-col border-t border-b border-gray-300')}
         >
-          {scenarioResult?.scenario?.map((bubble, idx) => {
+          {result?.scenario?.map((bubble, idx) => {
             return bubble.role === 'agent' ? (
               <TextBubbleScenario key={idx} text={bubble.message} />
             ) : (
