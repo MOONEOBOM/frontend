@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import ToggleBox from '@/components/summary/ToggleBox';
+import ToggleBox from '@/components/common/ToggleBox';
 
 const meta: Meta<typeof ToggleBox> = {
   title: 'Components/Summary/ToggleBox',
