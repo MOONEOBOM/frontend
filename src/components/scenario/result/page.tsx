@@ -32,7 +32,7 @@ const ScenarioResultPage = () => {
     //로딩 시간은 약 5초정도, 질문에 따라 차이가 있을수 있습니다.
     return (
       <div className="flex h-screen w-full flex-col items-center justify-center">
-        <Spinner size="lg" />;
+        <Spinner size="lg" />
       </div>
     );
   }
