@@ -9,16 +9,18 @@ import { ConsultTypeKey } from './scenariotype';
 
 export default function ScenarioContainer({
   children,
+  isOnboarding,
 }: {
   children: ReactNode;
+  isOnboarding?: boolean;
 }) {
   const router = useRouter();
   const [consultType, setConsultType] = useState<ConsultTypeKey | null>(null);
   const [reason, setReason] = useState<string | null>(null);
 
   return (
-    <div>
-      <Header type="home" />
+    <div className={isOnboarding ? 'mt-[50px]' : ''}>
+      {!isOnboarding && <Header type="home" />}
 
       {children}
 
