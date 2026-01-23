@@ -5,25 +5,27 @@ import HelloMoo from '@/assets/moono/moono_hello.svg';
 import ToggleBox from '@/components/common/ToggleBox';
 import ChevRight from '@/assets/icon/chevron_right.svg';
 import { useRouter } from 'next/navigation';
+import { useSummaryRecent } from '@/lib/tanstack/query/history.query';
+import { useMe } from '@/lib/tanstack/query/user.query';
 
 const HomePage = () => {
   const router = useRouter();
+  const { data: summary, isLoading, isError } = useSummaryRecent();
+  const { data: me } = useMe();
+
   function handleChatbot() {
     router.push('/chatbot');
   }
   function handleHistory() {
     router.push('/history');
   }
-  function handlePreScenario() {
-    router.push('/scenario/pre');
-  }
-  const historyList = [
-    { id: 1, title: '로밍으로 인한 요금 과청구' },
-    { id: 2, title: '로밍으로 인한 요금 과청구' },
-  ];
+
+  if (isLoading) return <div>로딩...</div>;
+  if (isError) return <div>에러</div>;
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
-      <div className="heading1 mt-[71px]">유레카님, 반갑습니다!</div>
+      <div className="heading1 mt-[71px]">{me?.name}님, 반갑습니다!</div>
       <div className="script-body-14 mt-[9px]">무너가 도와드릴게요.</div>
       <HelloMoo className="mt-[50px]" />
       <div className="mt-[76px] flex flex-row items-center justify-center gap-[10px]">
@@ -47,9 +49,13 @@ const HomePage = () => {
         </button>
       </div>
       <div className="mb-[82px] flex flex-col gap-[15px]">
-        {historyList.length > 0 ? (
-          historyList.map((item) => (
-            <ToggleBox isHome href={`/history/${item.id}`} key={item.id}>
+        {summary && summary.length > 0 ? (
+          summary.map((item) => (
+            <ToggleBox
+              isHome
+              href={`/history?selected=${item.id}`}
+              key={item.id}
+            >
               {item.title}
             </ToggleBox>
           ))

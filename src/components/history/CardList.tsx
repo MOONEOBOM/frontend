@@ -7,15 +7,18 @@ import { cn } from '@/utils/cn';
 import { useHistoryStore } from '@/store/useHistoryStore';
 import { useSummaryInfinite } from '@/lib/tanstack/query/history.query';
 
-const CardList = () => {
+const ITEM_WIDTH = 95 + 10;
+type cardListProps = {
+  initialSelectedId?: number;
+};
+
+const CardList = ({ initialSelectedId }: cardListProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const loadMoreRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const didInitScrollRef = useRef(false);
 
-  const debounced = useHistoryStore((state) => state.activeIndex);
   const setDebounced = useHistoryStore((state) => state.setActiveIndex);
-
-  const ITEM_WIDTH = 95 + 10;
-
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const {
@@ -55,16 +58,44 @@ const CardList = () => {
     return () => observer.disconnect();
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
-  // 처음화면 카드 선택
+  // 홈에서 선택해서 들어올때, 전체보기로 들어올떄 분기점
   useEffect(() => {
     if (items.length === 0) return;
 
-    // activeIndex(=activeId)가 아직 유효하지 않으면 첫 번째 아이템 선택
+    // 선택해서 들어올시
+    if (initialSelectedId) {
+      if (didInitScrollRef.current) return;
+
+      const idx = items.findIndex((it) => it.id === initialSelectedId);
+
+      // 아직 해당 카드가 로드 안 됐으면 대기
+      if (idx === -1) return;
+
+      if (activeIndex !== initialSelectedId) {
+        setDebounced(initialSelectedId);
+        setActiveIndex(initialSelectedId);
+      }
+
+      // 가운데 정렬
+      const root = scrollRef.current;
+      const el = itemRefs.current[idx];
+      if (root && el) {
+        const elCenter = el.offsetLeft + el.offsetWidth / 2;
+        const rootCenter = root.clientWidth / 2;
+        root.scrollTo({ left: elCenter - rootCenter, behavior: 'auto' });
+        didInitScrollRef.current = true;
+      }
+
+      return;
+    }
+
+    // 전체보기로 들어올시 첫 카드 자동 선택
     const exists = items.some((it) => it.id === activeIndex);
     if (!exists) {
+      setDebounced(items[0].id);
       setActiveIndex(items[0].id);
     }
-  }, [items, activeIndex]);
+  }, [items, activeIndex, initialSelectedId]);
 
   // 디바운싱
   useEffect(() => {
@@ -75,7 +106,6 @@ const CardList = () => {
   const handleScroll = () => {
     if (!scrollRef.current) return;
 
-    console.log(activeIndex);
     // 현재 스크롤 위치를 기준으로 몇 번째 아이템이 중앙인지 계산
     const scrollLeft = scrollRef.current.scrollLeft;
     const newIndex = Math.round(scrollLeft / ITEM_WIDTH);
@@ -96,7 +126,13 @@ const CardList = () => {
         )}
       >
         {items.map((item, index) => (
-          <div key={item.id} className="flex-shrink-0 snap-center">
+          <div
+            key={item.id}
+            className="flex-shrink-0 snap-center"
+            ref={(el) => {
+              itemRefs.current[index] = el;
+            }}
+          >
             <CardItem
               title={item.title}
               date={dayjs(item.createdDate).format('YYYY.MM.DD')}

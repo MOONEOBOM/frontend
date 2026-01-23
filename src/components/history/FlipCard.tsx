@@ -32,7 +32,7 @@ export default function FlipCard() {
           <MainCard>
             <Moono className="w-[140px]" />
             <div className="flex flex-col items-center gap-[20px]">
-              <p className="heading3">{data.title}</p>
+              <p className="heading3 px-[30px]">{data.title}</p>
               <p className="body3 text-gray-800">
                 {dayjs(data.createdDate).format('YYYY.MM.DD')}
               </p>

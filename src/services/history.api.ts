@@ -22,6 +22,16 @@ export async function getSummaryList(params: {
   return res.data.data;
 }
 
+export async function getSummaryRecentList() {
+  const res = await api.get<ApiResponse<SummaryListResponse>>('/summary', {
+    params: {
+      view: 'recent',
+    },
+  });
+
+  return res.data.data.items;
+}
+
 export async function getSummaryDetail(summaryId: number) {
   const res = await api.get<ApiResponse<SummaryDetailResponse>>(
     `/summary/${summaryId}`,

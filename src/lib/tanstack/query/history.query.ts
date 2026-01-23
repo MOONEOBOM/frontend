@@ -1,4 +1,8 @@
-import { getSummaryDetail, getSummaryList } from '@/services/history.api';
+import {
+  getSummaryDetail,
+  getSummaryList,
+  getSummaryRecentList,
+} from '@/services/history.api';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 export function useSummaryInfinite(limit = 10) {
@@ -18,6 +22,13 @@ export function useSummaryInfinite(limit = 10) {
       }
       return lastPage.nextCursor;
     },
+  });
+}
+
+export function useSummaryRecent() {
+  return useQuery({
+    queryKey: ['summary', 'recent'],
+    queryFn: () => getSummaryRecentList(),
   });
 }
 
