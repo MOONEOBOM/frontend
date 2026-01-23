@@ -8,16 +8,34 @@ import { TextBubbleScenario } from '@/components/TextBubble/TextBubbleScenario';
 import { TextBubbleUser } from '@/components/TextBubble/TextBubbleUser';
 import Button from '@/components/common/Button';
 import { useGetScenario } from '@/lib/tanstack/query/scenario.query';
+import Spinner from './Spinner';
 
 const ScenarioResultPage = () => {
   const router = useRouter();
-  const consultType = useSearchParams().get('consultType');
-  const reason = useSearchParams().get('reason');
+  const searchParams = useSearchParams();
+  const consultType = searchParams.get('consultType');
+  const reason = searchParams.get('reason');
 
-  const { data: result } = useGetScenario({
+  const {
+    data: result,
+    isLoading,
+    isError,
+  } = useGetScenario({
     categoryKey: consultType ?? '',
     reasonKey: reason ? [reason] : [],
   });
+
+  if (isError) {
+    console.log('시나리오 생성 후 불러오는데 실패했습니다.');
+  }
+  if (isLoading) {
+    //로딩 시간은 약 5초정도, 질문에 따라 차이가 있을수 있습니다.
+    return (
+      <div className="flex h-screen w-full flex-col items-center justify-center">
+        <Spinner size="lg" />;
+      </div>
+    );
+  }
 
   return (
     <>

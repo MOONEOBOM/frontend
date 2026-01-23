@@ -19,7 +19,9 @@ const ScenarioNextButton = ({
 
   const handleClick = () => {
     if (isDisabled) return;
-    router.push(`/scenario/result?consultType=${consultType}&reason=${reason}`);
+    router.push(
+      `/scenario/result?consultType=${encodeURIComponent(consultType)}&reason=${encodeURIComponent(reason)}`,
+    );
   };
 
   return (
