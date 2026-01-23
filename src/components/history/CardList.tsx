@@ -115,11 +115,22 @@ const CardList = ({ initialSelectedId }: cardListProps) => {
     }
   };
 
+  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      el.scrollLeft += e.deltaY;
+      e.preventDefault(); //
+    }
+  };
+
   return (
     <div className="flex flex-col items-center gap-10">
       <div
         ref={scrollRef}
         onScroll={handleScroll}
+        onWheel={handleWheel}
         className={cn(
           'flex h-[200px] w-[390px] items-center gap-[10px] overflow-x-auto',
           'no-scrollbar touch-pan-x snap-x snap-mandatory px-[148px]',
