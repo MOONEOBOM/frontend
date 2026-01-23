@@ -5,11 +5,14 @@ import { useRouter } from 'next/navigation';
 import LeftChevron from '@/assets/icon/chevron_left.svg?react';
 import ChatModal from '@/components/chatbot/ChatModal';
 import ScenarioModal from '../scenario/result/ScenarioModal';
+import { ChatMessage } from '@/models/summary';
 
 const Header = ({
   type = 'back',
+  conversation,  // 챗봇에서만 쓰는 요약 API용
 }: {
   type: 'back' | 'home' | 'chat' | 'scenario';
+  conversation?: ChatMessage[];  // 챗봇 상담 요약 API -> 챗봇일때만 쓰니 "?" 사용
 }) => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,7 +43,12 @@ const Header = ({
       </div>
 
       {isModalOpen && type === 'chat' && (
-        <ChatModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+        // 요약 API 관련
+        <ChatModal
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          conversation={conversation ?? []}
+        />
       )}
 
       {isModalOpen && type === 'scenario' && (

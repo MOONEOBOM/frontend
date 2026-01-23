@@ -11,11 +11,11 @@ import { TextBubbleUser } from '@/components/TextBubble/TextBubbleUser';
 import Button from '@/components/common/Button';
 
 const MOCK_BUBBLE = [
-  { type: 'moono', text: 'U+ 고객센터입니다. 어떤 점이 불편하신가요?' },
+  { type: 'moono', text: 'U+ user센터입니다. 어떤 점이 불편하신가요?' },
   { type: 'user', text: '해외 다녀왔는데 요금이 너무 많이 나왔어요' },
   {
     type: 'moono',
-    text: '사용 번호 010-1234-5678 성함 이OO 고객님 맞으실까요? 본인이신가요?',
+    text: '사용 번호 010-1234-5678 성함 이OO user님 맞으실까요? 본인이신가요?',
   },
   { type: 'user', text: '네 맞아요' },
   { type: 'moono', text: '이용내역 조회 동의 가능하신가요?' },
@@ -62,7 +62,7 @@ const ScenarioResultPage = () => {
             통화 내용을 녹음하면 무너가 요약해드려요!
           </span>
           <span className="heading4">
-            <span className={cn('text-uplus')}>LG U+</span> 고객센터: 1544-0010
+            <span className={cn('text-uplus')}>LG U+</span> user센터: 1544-0010
           </span>
         </div>
         <div

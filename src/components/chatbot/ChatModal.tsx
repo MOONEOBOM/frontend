@@ -2,20 +2,37 @@
 
 import { useRouter } from 'next/navigation';
 import Modal from '@/components/common/Modal';
+import { ChatMessage } from '@/models/summary';
+import { useSummaryMutation } from '@/lib/tanstack/mutation/summary.mutation';
 
 export default function ChatModal({
   isModalOpen,
   setIsModalOpen,
+  conversation,  // 상담 대화 전문 (헤더에서 온거 받음)
 }: {
   isModalOpen: boolean;
-  setIsModalOpen: (open: boolean) => void;
+    setIsModalOpen: (open: boolean) => void;
+  conversation: ChatMessage[];
 }) {
   const router = useRouter();
+  const { mutate: createSummary } = useSummaryMutation();
 
+  // 요약 API 관련
   const handleCloseAction = () => {
-    setIsModalOpen(false);
-    // TODO: API 요청
-    router.push('/summary');
+    console.log('종료 버튼 클릭됨');
+    createSummary(
+      { conversation },
+      {
+        onSuccess: () => {
+          console.log('요약 API 요청 성공');
+          setIsModalOpen(false);
+          router.push('/summary');
+        },
+        onError: (error) => {
+          console.error('요약 API 요청 실패', error);
+        },
+      }
+    );
   };
 
   return (
