@@ -9,7 +9,7 @@ import ScenarioModal from '../scenario/result/ScenarioModal';
 const Header = ({
   type = 'back',
 }: {
-  type: 'back' | 'home' | 'chat' | 'scenario';
+  type: 'back' | 'home' | 'chat' | 'scenario' | 'onboarding';
 }) => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,14 +19,19 @@ const Header = ({
     home: () => router.push('/'),
     chat: () => router.back(),
     scenario: () => setIsModalOpen(true),
+    onboarding: () => router.push('/'),
   };
 
   return (
     <>
       <div className="flex h-[62px] w-full items-center justify-between px-[20px]">
-        <button onClick={handleClickLeft[type]}>
-          <LeftChevron className="cursor-pointer" />
-        </button>
+        {type !== 'onboarding' ? (
+          <button onClick={handleClickLeft[type]}>
+            <LeftChevron className="cursor-pointer" />
+          </button>
+        ) : (
+          <div className="w-[24px]" /> // 버튼이 빠져도 레이아웃(정렬)을 유지하고 싶다면 빈 공간 추가
+        )}
 
         {type === 'chat' && (
           <button
@@ -37,6 +42,7 @@ const Header = ({
             상담 종료
           </button>
         )}
+        {type === 'onboarding' && <div className="body1">SKIP</div>}
       </div>
 
       {isModalOpen && type === 'chat' && (
