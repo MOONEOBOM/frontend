@@ -1,5 +1,5 @@
 import api from '@/lib/axios';
-import { ApiResponse } from '@/types/common';
+import { ApiResponse } from '@/models/common';
 import type {
   SummaryDetailResponse,
   SummaryListResponse,
