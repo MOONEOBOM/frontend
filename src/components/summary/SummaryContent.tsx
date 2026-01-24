@@ -1,5 +1,8 @@
+'use client';
+
 import { TextBubbleScenario } from '../TextBubble/TextBubbleScenario';
 import { TextBubbleUser } from '../TextBubble/TextBubbleUser';
+import { useRecentSummary } from '@/lib/tanstack/query/summary.query';
 
 const MOCK_SUMMARY = {
   title: '로밍 사용으로 인한 요금 과청구',
@@ -15,21 +18,40 @@ const MOCK_SUMMARY = {
 };
 
 const SummaryContent = () => {
+
+  const { data, isLoading, isError } = useRecentSummary();
+  console.log("컴포넌트 내부 data:", data?.core_chat);
+
+  if (isLoading) {
+    return <div className="py-20 text-center">요약 불러오는 중...</div>;
+  }
+  if (isError || !data) {
+    return <div className="py-20 text-center">데이터를 가져오기 실패</div>;
+  }
+
   return (
     <div className="flex w-full flex-col items-center gap-[50px]">
-      <p className="heading2">{MOCK_SUMMARY.title}</p>
+      {/* DB에서 가져온 title */}
+      <p className="heading2 text-center">{data.title}</p>
 
+      {/* DB에서 가져온 summary (= DB에서는 content) */}
       <p className="body1 px-[50px] text-center leading-relaxed break-words break-keep">
-        {MOCK_SUMMARY.content}
+        {data.summary}
       </p>
-      <div>
-        {MOCK_SUMMARY.highlights.map((bubble, idx) => {
-          return bubble.speaker === 'agent' ? (
-            <TextBubbleScenario key={idx} text={bubble.text} />
-          ) : (
-            <TextBubbleUser key={idx} text={bubble.text} />
-          );
-        })}
+
+      {/* 3. 핵심 채팅 부분 */}
+      <div className="flex w-full flex-col gap-[16px]">
+        {data.core_chat && data.core_chat.length > 0 ? (
+          data.core_chat.map((chat, idx) => (
+            chat.speaker === 'agent' ? (
+              <TextBubbleScenario key={idx} text={chat.message} />
+            ) : (
+              <TextBubbleUser key={idx} text={chat.message} />
+            )
+          ))
+        ) : (
+          <p className="text-gray-400 text-center">핵심 대화가 없습니다.</p>
+        )}
       </div>
     </div>
   );
