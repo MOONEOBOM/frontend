@@ -20,7 +20,6 @@ const MOCK_SUMMARY = {
 const SummaryContent = () => {
 
   const { data, isLoading, isError } = useRecentSummary();
-  console.log("컴포넌트 내부 data:", data?.core_chat);
 
   if (isLoading) {
     return <div className="py-20 text-center">요약 불러오는 중...</div>;

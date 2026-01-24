@@ -45,10 +45,6 @@ const Header = ({
             className="body2 text-red cursor-pointer"
             // 요약 가능한 경우에만 모달창 뜨도록 하기 (대화없으면 클릭해도 동작 X)
             onClick={() => {
-              if (!canSummarize) {
-                toast('negative', '대화가 부족하여 요약 불가능합니다.');
-                return;
-              }
               setIsModalOpen(true);
             }}
           >
