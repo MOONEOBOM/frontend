@@ -1,6 +1,6 @@
 import api from '@/lib/axios';
 import { user } from '@/models/user';
-import { ApiResponse } from '@/types/common';
+import { ApiResponse } from '@/models/common';
 import { useQuery } from '@tanstack/react-query';
 
 export const useMe = () => {
