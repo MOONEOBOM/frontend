@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
 interface HistoryState {
-  activeIndex: number;
-  setActiveIndex: (index: number) => void;
+  activeId: number;
+  setActiveId: (index: number) => void;
 }
 
 export const useHistoryStore = create<HistoryState>((set) => ({
-  activeIndex: 0, // 초기값
-  setActiveIndex: (index) => set({ activeIndex: index }),
+  activeId: 0, // 초기값
+  setActiveId: (index) => set({ activeId: index }),
 }));

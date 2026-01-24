@@ -18,7 +18,7 @@ export function useCardList({
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<Array<HTMLDivElement | null>>([]);
 
-  const setDebounced = useHistoryStore((s) => s.setActiveIndex);
+  const setDebounced = useHistoryStore((s) => s.setActiveId);
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useSummaryInfinite(pageSize);

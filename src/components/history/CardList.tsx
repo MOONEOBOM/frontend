@@ -3,7 +3,7 @@
 import { cn } from '@/utils/cn';
 import CardItem from './CardItem';
 import dayjs from 'dayjs';
-import { useCardList } from '../../hooks/cardList/useCardList';
+import { useCardList } from '@/hooks/cardList/useCardList';
 
 type CardListProps = {
   initialSelectedId?: number;

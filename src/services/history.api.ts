@@ -3,7 +3,7 @@ import { ApiResponse } from '@/types/common';
 import type {
   SummaryDetailResponse,
   SummaryListResponse,
-} from '@/types/history';
+} from '@/models/history';
 
 export async function getSummaryList(params: {
   limit?: number;

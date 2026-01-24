@@ -11,8 +11,8 @@ import { useSummaryDetail } from '@/lib/tanstack/query/history.query';
 
 export default function FlipCard() {
   const [isTouched, setIsTouched] = useState(false);
-  const activeIndex = useHistoryStore((state) => state.activeIndex);
-  const { data, isPending, isError, error } = useSummaryDetail(activeIndex);
+  const activeId = useHistoryStore((state) => state.activeId);
+  const { data, isPending, isError, error } = useSummaryDetail(activeId);
 
   if (isPending) return <div>로딩...</div>;
   if (isError) return <div>에러: {(error as Error).message}</div>;

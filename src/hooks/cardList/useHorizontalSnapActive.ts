@@ -17,6 +17,7 @@ export function useHorizontalSnapActive({
     const el = scrollRef.current;
     if (!el) return;
     if (items.length === 0) return;
+    if (itemWidth <= 0) return;
 
     const scrollLeft = el.scrollLeft;
     const idx = Math.round(scrollLeft / itemWidth);
@@ -35,7 +36,6 @@ export function useHorizontalSnapActive({
       // 세로휠을 가로스크롤로 전환
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         el.scrollLeft += e.deltaY;
-        e.preventDefault();
       }
     },
     [scrollRef],
