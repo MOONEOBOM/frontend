@@ -1,7 +1,9 @@
 import api from '@/lib/axios';
+import { user } from '@/models/user';
+import { ApiResponse } from '@/types/common';
 
 export const loginWithGoogleApi = (idToken: string) => {
-  return api.post(
+  return api.post<ApiResponse<user>>(
     '/auth/login',
     {},
     {
