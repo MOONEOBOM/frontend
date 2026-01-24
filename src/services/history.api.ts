@@ -1,4 +1,3 @@
-// /src/services/summary.ts
 import api from '@/lib/axios';
 import { ApiResponse } from '@/types/common';
 import type {
