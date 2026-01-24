@@ -3,38 +3,43 @@
 import Badge from '@/components/common/Badge';
 import Header from '@/components/common/Header';
 import { cn } from '@/utils/cn';
-import Modal from '@/components/common/Modal';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { TextBubbleScenario } from '@/components/TextBubble/TextBubbleScenario';
 import { TextBubbleUser } from '@/components/TextBubble/TextBubbleUser';
 import Button from '@/components/common/Button';
-
-const MOCK_BUBBLE = [
-  { type: 'moono', text: 'U+ 고객센터입니다. 어떤 점이 불편하신가요?' },
-  { type: 'user', text: '해외 다녀왔는데 요금이 너무 많이 나왔어요' },
-  {
-    type: 'moono',
-    text: '사용 번호 010-1234-5678 성함 이OO 고객님 맞으실까요? 본인이신가요?',
-  },
-  { type: 'user', text: '네 맞아요' },
-  { type: 'moono', text: '이용내역 조회 동의 가능하신가요?' },
-  { type: 'user', text: '네 가능합니다' },
-  {
-    type: 'moono',
-    text: '1월 12일 ~ 14일 동안 과금이 발생한 것으로 확인됩니다.',
-  },
-];
-
-const MOCK_KEYWORD = ['요금제 변경', '요금 과다 부여', '요금제 추천'];
+import { useGetScenario } from '@/lib/tanstack/query/scenario.query';
+import Spinner from './Spinner';
 
 const ScenarioResultPage = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const consultType = searchParams.get('consultType');
+  const reason = searchParams.get('reason');
+
+  const {
+    data: result,
+    isLoading,
+    isError,
+  } = useGetScenario({
+    categoryKey: consultType ?? '',
+    reasonKey: reason ? [reason] : [],
+  });
+
+  if (isError) {
+    console.log('시나리오 생성 후 불러오는데 실패했습니다.');
+  }
+  if (isLoading) {
+    //로딩 시간은 약 5초정도, 질문에 따라 차이가 있을수 있습니다.
+    return (
+      <div className="flex h-screen w-full flex-col items-center justify-center">
+        <Spinner size="lg" />
+      </div>
+    );
+  }
 
   return (
     <>
       <Header type="scenario" />
-
       <div
         className={cn(
           'my-[34px] flex w-full flex-col items-center gap-[34px] px-[25px] pb-[10px]',
@@ -47,7 +52,7 @@ const ScenarioResultPage = () => {
           <span>시나리오대로 상담을 진행해보아요!</span>
         </div>
         <div className={cn('flex gap-2')}>
-          {MOCK_KEYWORD.map((keyword, idx) => (
+          {result?.keywords?.map((keyword, idx) => (
             <Badge key={idx} color="blue">
               {keyword}
             </Badge>
@@ -68,11 +73,11 @@ const ScenarioResultPage = () => {
         <div
           className={cn('w-full flex-col border-t border-b border-gray-300')}
         >
-          {MOCK_BUBBLE.map((bubble, idx) => {
-            return bubble.type === 'moono' ? (
-              <TextBubbleScenario key={idx} text={bubble.text} />
+          {result?.scenario?.map((bubble, idx) => {
+            return bubble.role === 'agent' ? (
+              <TextBubbleScenario key={idx} text={bubble.message} />
             ) : (
-              <TextBubbleUser key={idx} text={bubble.text} />
+              <TextBubbleUser key={idx} text={bubble.message} />
             );
           })}
         </div>

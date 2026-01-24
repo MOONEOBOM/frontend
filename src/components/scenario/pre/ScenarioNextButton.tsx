@@ -10,32 +10,27 @@ interface ScenarioNextButtonProps {
   reason: string | null;
 }
 
-const ScenarioNextButton = ({ consultType, reason }: ScenarioNextButtonProps) => {
-    
+const ScenarioNextButton = ({
+  consultType,
+  reason,
+}: ScenarioNextButtonProps) => {
   const router = useRouter();
-
-  // 상담 종류 + 이유 둘 다 선택해야 버튼 클릭 됨
   const isDisabled = !consultType || !reason;
 
   const handleClick = () => {
-    if (isDisabled) {
-      return;
-    }
-
-    // 백엔드 연동?
-    // router.push('/scenario/result');
+    if (isDisabled) return;
     router.push(
-      `/scenario/result?consultType=${consultType}&reason=${reason}`
+      `/scenario/result?consultType=${encodeURIComponent(consultType)}&reason=${encodeURIComponent(reason)}`,
     );
   };
 
   return (
-    <div className="px-[45px] mt-[24px] mb-[40px]">
+    <div className="mt-[24px] mb-[40px] px-[45px]">
       <Button
         variant="solid"
         size="full"
         disabled={isDisabled}
-        className={cn("bg-primary", isDisabled && "opacity-40")}
+        className={cn('bg-primary', isDisabled && 'opacity-40')}
         onClick={handleClick}
       >
         다음
