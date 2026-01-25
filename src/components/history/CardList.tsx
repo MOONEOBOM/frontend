@@ -1,56 +1,55 @@
 'use client';
 
-import { useRef } from 'react';
-import { MockSummary } from '@/data/MockSummary';
+import { cn } from '@/utils/cn';
 import CardItem from './CardItem';
 import dayjs from 'dayjs';
-import { cn } from '@/utils/cn';
-import { useHistoryStore } from '@/store/useHistoryStore';
+import { useCardList } from '@/hooks/cardList/useCardList';
 
-const CardList = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const activeIndex = useHistoryStore((state) => state.activeIndex);
-  const setActiveIndex = useHistoryStore((state) => state.setActiveIndex);
+type CardListProps = {
+  initialSelectedId?: number;
+};
 
-  const ITEM_WIDTH = 95 + 10;
-
-  const handleScroll = () => {
-    if (!scrollRef.current) return;
-
-    // 현재 스크롤 위치를 기준으로 몇 번째 아이템이 중앙인지 계산
-    const scrollLeft = scrollRef.current.scrollLeft;
-    const newIndex = Math.round(scrollLeft / ITEM_WIDTH);
-
-    if (
-      newIndex !== activeIndex &&
-      newIndex >= 0 &&
-      newIndex < MockSummary.length
-    ) {
-      setActiveIndex(newIndex);
-    }
-  };
+const CardList = ({ initialSelectedId }: CardListProps) => {
+  const {
+    scrollRef,
+    loadMoreRef,
+    itemRefs,
+    items,
+    activeId,
+    onScroll,
+    onWheel,
+  } = useCardList({ initialSelectedId, pageSize: 5 });
 
   return (
     <div className="flex flex-col items-center gap-10">
       <div
         ref={scrollRef}
-        onScroll={handleScroll}
+        onScroll={onScroll}
+        onWheel={onWheel}
         className={cn(
           'flex h-[200px] w-[390px] items-center gap-[10px] overflow-x-auto',
           'no-scrollbar touch-pan-x snap-x snap-mandatory px-[148px]',
         )}
       >
-        {MockSummary.map((item, index) => (
-          <div key={item.id} className="flex-shrink-0 snap-center">
+        {items.map((item, index) => (
+          <div
+            key={item.id}
+            className="flex-shrink-0 snap-center"
+            ref={(el) => {
+              itemRefs.current[index] = el;
+            }}
+          >
             <CardItem
               title={item.title}
-              date={dayjs(item.createdAt).format('YYYY.MM.DD')}
-              isSelected={index === activeIndex}
+              date={dayjs(item.createdDate).format('YYYY.MM.DD')}
+              isSelected={item.id === activeId}
             />
           </div>
         ))}
+        <div ref={loadMoreRef} className="h-[1px] w-[1px] flex-shrink-0" />
       </div>
     </div>
   );
 };
+
 export default CardList;
