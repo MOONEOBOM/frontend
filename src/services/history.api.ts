@@ -1,4 +1,5 @@
 import api from '@/lib/axios';
+import { Fetcher } from '@/lib/axios/axiosServer';
 import { ApiResponse } from '@/models/common';
 import type {
   SummaryDetailResponse,
@@ -21,12 +22,15 @@ export async function getSummaryList(params: {
   return res.data.data;
 }
 
-export async function getSummaryRecentList() {
-  const res = await api.get<ApiResponse<SummaryListResponse>>('/summary', {
-    params: {
-      view: 'recent',
+export async function getSummaryRecentList(customApi: Fetcher = api) {
+  const res = await customApi.get<ApiResponse<SummaryListResponse>>(
+    '/summary',
+    {
+      params: {
+        view: 'recent',
+      },
     },
-  });
+  );
 
   return res.data.data.items;
 }

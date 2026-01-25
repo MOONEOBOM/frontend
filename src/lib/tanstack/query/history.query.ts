@@ -3,7 +3,11 @@ import {
   getSummaryList,
   getSummaryRecentList,
 } from '@/services/history.api';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import {
+  useInfiniteQuery,
+  useQuery,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 
 export function useSummaryInfinite(limit = 10) {
   return useInfiniteQuery({
@@ -26,7 +30,7 @@ export function useSummaryInfinite(limit = 10) {
 }
 
 export function useSummaryRecent() {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: ['summary', 'recent'],
     queryFn: () => getSummaryRecentList(),
   });
