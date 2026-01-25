@@ -13,7 +13,7 @@ const Step1 = () => {
       <div className="flex w-full justify-start">
         <motion.div
           layout
-          transition={{ layout: { duration: 0.4, delay: 1 } }} // 1초 뒤 애니메이션 시작
+          transition={{ layout: { duration: 0.5, delay: 1 } }} // 1초 뒤 애니메이션 시작
           className="body2 shadow-bubble mt-[24px] max-w-[180px] rounded-[2px_12px_12px_12px] bg-white px-[8px] py-[8px] break-words whitespace-pre-wrap"
         >
           <div>안녕하세한어러에ㅑㅓㄴ집에갈랭넬ㅇ네러네</div>
@@ -34,7 +34,7 @@ const Step1 = () => {
           animate={{
             scale: [1, 1.5, 1],
           }}
-          transition={{ duration: 0.5, delay: 0.5 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
           className="mt-[24px] ml-[10px] flex h-[20px] w-[20px] flex-shrink-0 cursor-pointer items-center justify-center rounded-full bg-gray-300"
         >
           <TranslateIcon className="h-[10px] w-[10px]" />

@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import BottomChevron from '@/assets/icon/chevron_bottom.svg?react';
 import { cn } from '@/utils/cn';
+import { motion } from 'framer-motion';
 
 interface Option {
   label: string;
@@ -14,6 +15,7 @@ interface DropdownProps {
   options: Option[];
   placeholder?: string;
   width?: string;
+  isOnboarding?: boolean;
 }
 
 const Dropdown = ({
@@ -22,6 +24,7 @@ const Dropdown = ({
   options,
   placeholder = '이유를 선택하세요',
   width = 'w-[300px]',
+  isOnboarding,
 }: DropdownProps) => {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -49,6 +52,35 @@ const Dropdown = ({
       >
         {selected?.label ?? placeholder} <BottomChevron />
       </button>
+      {isOnboarding && (
+        <motion.ul
+          initial={{ opacity: 0, height: 0, scaleY: 0, originY: 0 }}
+          animate={{ opacity: 1, height: 'auto', scaleY: 1 }}
+          transition={{
+            type: 'spring',
+            stiffness: 200, // 높을수록 탄성이 강해짐 (빨라짐)
+            damping: 25, // 높을수록 반동이 빨리 멈춤 (부드러움의 핵심)
+            mass: 1,
+            duration: 0.4,
+            ease: [0.04, 0.62, 0.23, 0.98],
+          }}
+          className={cn(
+            width,
+            'no-scrollbar absolute z-10 max-h-[180px] overflow-auto [&>li:first-child]:rounded-t-[10px] [&>li:first-child]:border-none [&>li:last-child]:rounded-b-[10px]',
+          )}
+        >
+          {options.map((option) => (
+            <li
+              key={option.value}
+              className={cn(
+                'border-primary flex h-[40px] cursor-pointer items-center border-t bg-white p-[15px] hover:bg-gray-100',
+              )}
+            >
+              {option.label}
+            </li>
+          ))}
+        </motion.ul>
+      )}
       {open && (
         <ul
           className={cn(

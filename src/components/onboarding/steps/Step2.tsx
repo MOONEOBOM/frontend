@@ -1,9 +1,6 @@
 'use client';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
-import MoonoProfile from '@/assets/moono/moono_profile.svg?react';
-import { CONSULT_TYPES } from '@/components/scenario/pre/scenariotype';
-import Badge from '@/components/common/Badge';
 import ScenarioContainer from '@/components/scenario/pre/ScenarioClientContainer';
 import ScenarioIntroBubble from '@/components/scenario/pre/ScenarioIntroBubble';
 
@@ -13,10 +10,7 @@ const Step2 = () => {
   return (
     <AnimatePresence mode="wait">
       {!showScenario ? (
-        <motion.div
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.5 } }}
-        >
+        <div>
           <div className="body2 mt-[22px] h-[430px] w-[295px] rounded-t-[42px] border-t-[5px] border-r-[5px] border-l-[5px] border-gray-500 bg-gray-100 px-[15px]">
             <div className="flex w-full justify-end">
               <div className="bg-primary body2 shadow-bubble mt-[128px] max-w-[190px] rounded-[12px_2px_12px_12px] px-[8px] py-[8px] break-words whitespace-pre-wrap text-black">
@@ -36,7 +30,7 @@ const Step2 = () => {
               <motion.div
                 initial={{ scale: 1, backgroundColor: 'var(--color-white)' }}
                 animate={{
-                  scale: [1, 1.1, 1],
+                  scale: [1, 1.2, 1],
                   backgroundColor: [
                     'var(--color-white)',
                     'var(--color-primary)', //이렇게 해야 색상이 인식됩니다.
@@ -44,8 +38,8 @@ const Step2 = () => {
                   ],
                 }}
                 transition={{
-                  duration: 0.8,
-                  delay: 1.5,
+                  duration: 0.5,
+                  delay: 1, //1초 뒤 시작으로 통일
                   times: [0, 0.5, 1],
                 }}
                 onAnimationComplete={() => {
@@ -57,10 +51,10 @@ const Step2 = () => {
               </motion.div>
             </div>
           </div>
-        </motion.div>
+        </div>
       ) : (
         <div className="body2 mt-[22px] flex h-[430px] w-[295px] justify-center overflow-hidden rounded-t-[42px] border-[5px] border-b-0 border-gray-500 bg-white">
-          {/* 실제 페이지를 축소하여 작은 화면 안에 그대로 렌더링합니다.
+          {/* 실제 페이지를 축소하여 작은 화면 안에 렌더링합니다.
            */}
           <div
             style={{

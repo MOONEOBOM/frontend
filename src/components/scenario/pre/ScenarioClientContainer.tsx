@@ -29,6 +29,7 @@ export default function ScenarioContainer({
         setConsultType={setConsultType}
         reason={reason}
         setReason={setReason}
+        isOnboarding={isOnboarding}
       />
 
       <ScenarioNextButton consultType={consultType} reason={reason} />
