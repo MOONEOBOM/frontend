@@ -6,10 +6,12 @@ import GoogleIcon from '@/assets/icon/google.svg';
 import HelloMoo from '@/assets/moono/moono_hello.svg';
 import { useLogin } from '@/lib/tanstack/mutation/auth.mutation';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useToastHook } from '@/hooks/useToastHook';
 
 const LoginPage = () => {
   const { mutate: login } = useLogin();
   const router = useRouter();
+  const { toast } = useToastHook();
 
   const searchParams = useSearchParams();
   const from = searchParams.get('from');
@@ -19,12 +21,16 @@ const LoginPage = () => {
 
   const handleLogin = () => {
     login(undefined, {
-      onSuccess: () => {
+      onSuccess: (data) => {
+        if (data?.firstLogin) {
+          router.replace('/onboarding'); // 첫 로그인 전용 경로
+          return;
+        }
         router.replace(safeFrom);
       },
 
       onError: () => {
-        // TODO: 토스트 에러 추가
+        toast('negative', '로그인에 실패하였습니다.');
       },
     });
   };
