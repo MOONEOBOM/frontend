@@ -4,7 +4,7 @@ import { ApiResponse } from '@/models/common';
 import { user } from '@/models/user';
 
 export const loginWithGoogleApi = (idToken: string) => {
-  return api.post(
+  return api.post<ApiResponse<user>>(
     '/auth/login',
     {},
     {

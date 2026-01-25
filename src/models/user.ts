@@ -4,4 +4,5 @@ export interface user {
   email: string;
   name: string;
   photoUrl: string;
+  firstLogin: boolean;
 }

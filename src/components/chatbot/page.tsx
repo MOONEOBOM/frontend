@@ -1,4 +1,5 @@
 'use client';
+
 import Badge from '../common/Badge';
 import { TextBubbleService } from '../TextBubble/TextBubbleService';
 import { TextBubbleUser } from '../TextBubble/TextBubbleUser';
@@ -9,21 +10,26 @@ import { useRouter } from 'next/navigation';
 import Header from '../common/Header';
 import Spinner from '../scenario/result/Spinner';
 import TextBubbleCalling from '../TextBubble/TextBubbleCalling';
+import { ChatMessage } from '@/models/summary';
+
 type Message =
   | { role: 'call' }
   | { role: 'user'; text: string }
   | { role: 'service'; normal: string; easy: string };
 
 const ChatbotPage = () => {
+
   const router = useRouter();
   const [text, setText] = useState('');
   const { mutate, isPending } = useChat();
   const [messages, setMessages] = useState<Message[]>([]);
 
   const sendMessage = (sendMessage: string) => {
+    
     if (!sendMessage.trim() || isPending) return;
     setMessages((prev) => [...prev, { role: 'user', text: sendMessage }]);
     if (sendMessage === text) setText('');
+
     mutate(sendMessage, {
       onSuccess: (res) => {
         if (res.data?.answer?.length > 0) {
@@ -50,9 +56,20 @@ const ChatbotPage = () => {
     setMessages((prev) => [...prev, { role: 'call' }]);
   };
 
+  // 요약 API용 conversation 생성 -> 챗봇 ~ 사용자 사이의 대화
+  const conversation: ChatMessage[] = messages
+    .filter((msg) => msg.role === 'user' || msg.role === 'service')
+    .map((msg) => {
+      if (msg.role === 'user') {
+        return { role: 'user', message: msg.text };
+      }
+      return { role: 'agent', message: msg.normal };
+    });
+
   return (
     <div className="min-h-screen bg-gray-100">
-      <Header type="chat" />
+      {/* 헤더(Header.tsx)에 conversation 전달하는거 type 뒤에 추가함 */}
+      <Header type="chat" conversation={conversation} />
       <div className="px-[20px] pb-[120px]">
         {messages.map((msg, index) => {
           if (msg.role === 'user') {
@@ -78,7 +95,9 @@ const ChatbotPage = () => {
           </div>
         )}
       </div>
+
       <div className="fixed bottom-0">
+
         <div className="mx-[12px] mb-[10px] flex gap-[5px]">
           <Badge color="blue" onClick={handleAddCallButton}>
             전화 상담 연결하기
@@ -90,6 +109,7 @@ const ChatbotPage = () => {
             해외 로밍 가입
           </Badge>
         </div>
+
         <div className="flex h-[45px] w-[390px] items-center justify-between bg-white p-[12px]">
           <input
             type="text"
@@ -97,7 +117,7 @@ const ChatbotPage = () => {
             placeholder="상담 내용을 입력하세요."
             value={text}
             onChange={(e) => setText(e.target.value)}
-            disabled={isPending} // 전송 중일 때 입력 막기
+            disabled={isPending} // 챗봇에게 입력한 값을 전송 중일 때, 입력 못하도록 추가함
           />
           <button
             type="button"
@@ -108,6 +128,7 @@ const ChatbotPage = () => {
             <SendIcon />
           </button>
         </div>
+
       </div>
     </div>
   );
