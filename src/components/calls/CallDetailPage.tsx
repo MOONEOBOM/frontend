@@ -1,6 +1,7 @@
 import Button from '../common/Button';
 import Header from '../common/Header';
 
+// TODO: API 연결 후 response data로 변경
 import script from '@/data/스크립트2.json';
 import { TextBubbleScenario } from '../TextBubble/TextBubbleScenario';
 import { TextBubbleUser } from '../TextBubble/TextBubbleUser';
@@ -9,7 +10,7 @@ const CallDetailPage = () => {
   return (
     <div className="flex flex-col items-center">
       <Header type="back" />
-      <div className="flex w-[340px] flex-col">
+      <div className="mb-[50px] flex w-[340px] flex-col">
         {script.map((item) => {
           return (
             <div key={item.message} className="w-full">
