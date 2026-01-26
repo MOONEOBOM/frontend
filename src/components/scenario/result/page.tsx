@@ -34,8 +34,8 @@ const ScenarioResultPage = () => {
   const searchParams = useSearchParams();
   const consultType = searchParams.get('consultType');
   const reason = searchParams.get('reason');
+  const isOnboardingParam = searchParams.get('isOnboarding') === 'true';
 
-  const { isOnboarding } = useOnboardingStore();
   const {
     data: result,
     isLoading,
@@ -43,16 +43,17 @@ const ScenarioResultPage = () => {
   } = useGetScenario({
     categoryKey: consultType ?? '',
     reasonKey: reason ? [reason] : [],
-    enabled: !isOnboarding,
+    enabled: !isOnboardingParam,
   });
 
-  const displayScenario = isOnboarding ? ONBOARD_BUBBLE : result?.scenario;
-  const displayKeywords = isOnboarding ? ONBOARD_KEYWORD : result?.keywords;
-
-  if (!isOnboarding && isError) {
+  const displayScenario =
+    (isOnboardingParam ? ONBOARD_BUBBLE : result?.scenario) || [];
+  const displayKeywords =
+    (isOnboardingParam ? ONBOARD_KEYWORD : result?.keywords) || [];
+  if (!isOnboardingParam && isError) {
     console.log('시나리오 생성 후 불러오는데 실패했습니다.');
   }
-  if (!isOnboarding && isLoading) {
+  if (!isOnboardingParam && isLoading) {
     //로딩 시간은 약 5초정도, 질문에 따라 차이가 있을수 있습니다.
     return (
       <div className="flex h-screen w-full flex-col items-center justify-center">
@@ -60,7 +61,7 @@ const ScenarioResultPage = () => {
       </div>
     );
   }
-
+  console.log({ displayScenario, displayKeywords });
   return (
     <>
       <Header type="scenario" />

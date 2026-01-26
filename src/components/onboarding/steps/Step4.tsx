@@ -1,3 +1,4 @@
+'use client';
 import MoonobomRight from '@/assets/icon/logo_small.svg';
 import SummaryContent from '@/components/summary/SummaryContent';
 

@@ -1,3 +1,4 @@
+'use client';
 import { motion } from 'framer-motion';
 
 const Step3 = () => {
@@ -24,7 +25,7 @@ const Step3 = () => {
           }}
         >
           <iframe
-            src="/scenario/result"
+            src="/scenario/result?isOnboarding=true"
             style={{
               width: '100%',
               height: '100%',

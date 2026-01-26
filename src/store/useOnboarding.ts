@@ -7,7 +7,7 @@ interface OnboardingState {
 }
 
 export const useOnboardingStore = create<OnboardingState>((set) => ({
-  isOnboarding: true, // 초기값
+  isOnboarding: false, // 초기값
   startOnboarding: () => set({ isOnboarding: true }),
   stopOnboarding: () => set({ isOnboarding: false }),
 }));
