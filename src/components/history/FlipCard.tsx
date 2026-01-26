@@ -2,20 +2,56 @@
 
 import Logo from '@/assets/icon/logo_small.svg?react';
 import Moono from '@/assets/moono/moono_summary.svg?react';
+import MoonoTako from '@/assets/moono/moono_tako.svg?react';
 import dayjs from 'dayjs';
 
 import { useState } from 'react';
 import MainCard from '@/components/history/MainCard';
 import { useHistoryStore } from '@/store/useHistoryStore';
 import { useSummaryDetail } from '@/lib/tanstack/query/history.query';
+import Restart from '@/assets/icon/restart.svg';
+import Button from '../common/Button';
+import { cn } from '@/utils/cn';
 
 export default function FlipCard() {
   const [isTouched, setIsTouched] = useState(false);
   const activeId = useHistoryStore((state) => state.activeId);
-  const { data, isPending, isError, error } = useSummaryDetail(activeId);
+  const { data, isPending, isError, isRefetching, refetch } =
+    useSummaryDetail(activeId);
 
-  if (isPending) return <div>로딩...</div>;
-  if (isError) return <div>에러: {(error as Error).message}</div>;
+  if (isPending)
+    return (
+      <MainCard>
+        <div
+          className={cn(
+            'flex flex-shrink-0 flex-col items-center justify-center gap-[30px]',
+            'h-full w-full animate-pulse rounded-[20px] bg-gray-100',
+          )}
+        >
+          <div className="h-[100px] w-[150px] rounded bg-gray-200" />
+
+          <div className="h-[20px] w-[130px] rounded bg-gray-200" />
+          <div className="h-[15px] w-[130px] rounded bg-gray-200" />
+        </div>
+      </MainCard>
+    );
+  if (isError)
+    return (
+      <MainCard>
+        <div
+          className={cn(
+            'flex flex-shrink-0 flex-col items-center justify-center gap-[30px]',
+            'h-full w-full rounded-[20px] bg-gray-100',
+          )}
+        >
+          <MoonoTako className="w-[100px]" />
+          <p className="body1">내용을 불러오지 못했어요..</p>
+          <button onClick={() => refetch()}>
+            <Restart className="h-8 w-8 text-gray-800" />
+          </button>
+        </div>
+      </MainCard>
+    );
 
   return (
     <div

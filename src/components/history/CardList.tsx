@@ -18,7 +18,7 @@ const CardList = ({ initialSelectedId }: CardListProps) => {
     activeId,
     onScroll,
     onWheel,
-  } = useCardList({ initialSelectedId, pageSize: 5 });
+  } = useCardList({ initialSelectedId, pageSize: 10 });
 
   return (
     <div className="flex flex-col items-center gap-10">

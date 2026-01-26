@@ -4,13 +4,13 @@ import {
   getSummaryRecentList,
 } from '@/services/history.api';
 import {
-  useInfiniteQuery,
   useQuery,
+  useSuspenseInfiniteQuery,
   useSuspenseQuery,
 } from '@tanstack/react-query';
 
 export function useSummaryInfinite(limit = 10) {
-  return useInfiniteQuery({
+  return useSuspenseInfiniteQuery({
     queryKey: ['summary', 'list', limit],
     queryFn: ({ pageParam }) =>
       getSummaryList({
@@ -21,7 +21,7 @@ export function useSummaryInfinite(limit = 10) {
     initialPageParam: null as number | null,
 
     getNextPageParam: (lastPage) => {
-      if (!lastPage || lastPage.nextCursor === null) {
+      if (lastPage.nextCursor === null || lastPage.nextCursor === undefined) {
         return undefined;
       }
       return lastPage.nextCursor;
@@ -41,5 +41,6 @@ export function useSummaryDetail(summaryId: number) {
     queryKey: ['summary', 'detail', summaryId],
     queryFn: () => getSummaryDetail(summaryId),
     enabled: !!summaryId,
+    placeholderData: (previousData) => previousData,
   });
 }

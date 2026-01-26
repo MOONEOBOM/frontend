@@ -5,11 +5,11 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-import { Suspense } from 'react';
 import Spinner from '../scenario/result/Spinner';
 import { fetchMe } from '@/services/auth.api';
 import { getSummaryRecentList } from '@/services/history.api';
 import { serverApi } from '@/lib/axios/axiosServer';
+import ApiBoundary from '@/components/common/ApiBoundary';
 
 const HomePage = async () => {
   const queryClient = new QueryClient();
@@ -25,14 +25,13 @@ const HomePage = async () => {
     }),
   ]);
 
-  const dehydratedState = dehydrate(queryClient);
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
-      <HydrationBoundary state={dehydratedState}>
-        <Suspense fallback={<Spinner size="lg" />}>
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <ApiBoundary fallback={<Spinner size="lg" />}>
           <HomeProfile />
           <RecentHistory />
-        </Suspense>
+        </ApiBoundary>
       </HydrationBoundary>
     </div>
   );
