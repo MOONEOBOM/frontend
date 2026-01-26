@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { TextBubbleScenario } from '../TextBubble/TextBubbleScenario';
 import { TextBubbleUser } from '../TextBubble/TextBubbleUser';
 import { useRecentSummary } from '@/lib/tanstack/query/summary.query';
@@ -9,9 +10,20 @@ import { SummaryError } from './SummaryError';
 
 // 실제 데이터 관련 (아래 본문에서 호출하고 사용함)
 const SummaryData = () => {
+
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   
   // useSuspenseQuery를 사용하면 data가 undefined일 수 없음 -> (?.) 없이도 타입 에러가 나지 않음
   const { data } = useRecentSummary();  // useSuspenseQuery 사용
+
+  // 중요: 마운트되기 전(빌드/서버 타임)에는 아무것도 렌더링하지 않아 API 호출을 차단
+  if (!isMounted) {
+    return <SummaryLoading />;
+  }
 
   return (
     <div className="flex w-full flex-col items-center gap-[50px]">

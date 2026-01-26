@@ -3,6 +3,9 @@ import MoonobomRight from '@/assets/icon/logo_small.svg';
 import SummaryFeedback from './SummaryFeedback';
 import SummaryContent from './SummaryContent';
 
+export const dynamic = 'force-dynamic';
+
+
 const SummaryPage = () => {
   return (
     <div className="flex flex-col items-center">

@@ -23,25 +23,25 @@ export const useRecentSummary = () => {
       return {
         title: rawData.title,
         summary: rawData.content,
-        // core_chat: (rawData.highlights || []).map((item: any) => ({
-        //   speaker: item.role, 
-        //   message: item.message 
-        // })),
-        core_chat: (rawData.highlights || []).map((item: any) => {
-          // [해결방법] 한글 값을 프론트엔드용 영문 키워드로 치환
-          let speakerType = item.role; // 기본값
+        core_chat: (rawData.highlights || []).map((item: any) => ({
+          speaker: item.role, 
+          message: item.message 
+        })),
+        // core_chat: (rawData.highlights || []).map((item: any) => {
+        //   // [해결방법] 한글 값을 프론트엔드용 영문 키워드로 치환
+        //   let speakerType = item.role; // 기본값
           
-          if (item.role === '상담사') {
-            speakerType = 'agent';
-          } else if (item.role === '고객') {
-            speakerType = 'user';
-          }
+        //   if (item.role === '상담사') {
+        //     speakerType = 'agent';
+        //   } else if (item.role === '고객') {
+        //     speakerType = 'user';
+        //   }
 
-          return {
-            speaker: speakerType, 
-            message: item.message 
-          };
-        }),
+        //   return {
+        //     speaker: speakerType, 
+        //     message: item.message 
+        //   };
+        // }),
       };
     },
     // retry: false, // 일부러 에러 발생시킬 때 풀기
