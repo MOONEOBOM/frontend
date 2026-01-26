@@ -2,7 +2,7 @@ import Button from '../common/Button';
 import Header from '../common/Header';
 
 // TODO: API 연결 후 response data로 변경
-import script from '@/data/스크립트2.json';
+import script from '@/data/script2.json';
 import { TextBubbleScenario } from '../TextBubble/TextBubbleScenario';
 import { TextBubbleUser } from '../TextBubble/TextBubbleUser';
 
