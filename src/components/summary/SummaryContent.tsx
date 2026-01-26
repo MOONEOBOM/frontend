@@ -6,6 +6,7 @@ import { TextBubbleUser } from '../TextBubble/TextBubbleUser';
 import { motion } from 'framer-motion';
 
 import { useRecentSummary } from '@/lib/tanstack/query/summary.query';
+import { useOnboardingStore } from '@/store/useOnboarding';
 
 const ONBOARD_SUMMARY = {
   title: '로밍 사용으로 인한 요금 과청구',
@@ -34,7 +35,8 @@ const containerVariants = {
   },
 };
 
-const SummaryContent = ({ isOnboarding }: { isOnboarding?: boolean }) => {
+const SummaryContent = () => {
+  const { isOnboarding } = useOnboardingStore();
   const { data, isLoading, isError } = useRecentSummary({
     enabled: !isOnboarding,
   });

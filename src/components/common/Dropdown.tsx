@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import BottomChevron from '@/assets/icon/chevron_bottom.svg?react';
 import { cn } from '@/utils/cn';
 import { motion } from 'framer-motion';
+import { useOnboardingStore } from '@/store/useOnboarding';
 
 interface Option {
   label: string;
@@ -15,7 +16,6 @@ interface DropdownProps {
   options: Option[];
   placeholder?: string;
   width?: string;
-  isOnboarding?: boolean;
 }
 
 const Dropdown = ({
@@ -24,8 +24,8 @@ const Dropdown = ({
   options,
   placeholder = '이유를 선택하세요',
   width = 'w-[300px]',
-  isOnboarding,
 }: DropdownProps) => {
+  const { isOnboarding } = useOnboardingStore();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const selected = options.find((o) => o.value === value);

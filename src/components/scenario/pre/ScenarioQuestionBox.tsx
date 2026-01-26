@@ -3,13 +3,13 @@
 import Badge from '@/components/common/Badge';
 import Dropdown from '@/components/common/Dropdown';
 import { CONSULT_TYPES, REASONS_BY_TYPE, ConsultTypeKey } from './scenariotype';
+import { useOnboardingStore } from '@/store/useOnboarding';
 
 interface ScenarioQuestionBoxProps {
   consultType: ConsultTypeKey | null;
   setConsultType: (v: ConsultTypeKey | null) => void;
   reason: string | null;
   setReason: (v: string | null) => void;
-  isOnboarding?: boolean;
 }
 
 const ScenarioQuestionBox = ({
@@ -17,8 +17,8 @@ const ScenarioQuestionBox = ({
   setConsultType,
   reason,
   setReason,
-  isOnboarding,
 }: ScenarioQuestionBoxProps) => {
+  const { isOnboarding } = useOnboardingStore();
   const activeType =
     consultType || (isOnboarding ? CONSULT_TYPES[0].key : null);
   return (
@@ -66,7 +66,6 @@ const ScenarioQuestionBox = ({
             <div className="mt-[12px]">
               <Dropdown
                 value={reason}
-                isOnboarding={isOnboarding}
                 onChange={setReason}
                 options={REASONS_BY_TYPE[activeType] || []}
                 placeholder={

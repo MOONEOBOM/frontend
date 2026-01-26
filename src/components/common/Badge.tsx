@@ -1,3 +1,4 @@
+import { useOnboardingStore } from '@/store/useOnboarding';
 import { cn } from '@/utils/cn';
 import { motion } from 'framer-motion';
 interface BadgeProps {

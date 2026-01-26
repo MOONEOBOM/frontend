@@ -16,7 +16,6 @@ export default function BottomBoard({
 }: BoardingProps) {
   const { mutate: completeOnboarding, isPending } = useCompleteFirstLogin();
   const stopOnboarding = useOnboardingStore((state) => state.stopOnboarding);
-  const startOnboarding = useOnboardingStore((state) => state.startOnboarding);
   const isOnboarding = useOnboardingStore((state) => state.isOnboarding);
   const handleStart = () => {
     stopOnboarding();
@@ -24,6 +23,7 @@ export default function BottomBoard({
     completeOnboarding(undefined, {
       onSuccess: () => {
         console.log('온보딩 완료 성공!');
+        stopOnboarding;
         const currentState = useOnboardingStore.getState().isOnboarding;
         console.log('현재 온보딩:', currentState); // 여기서 false가 나옵니다!
         onNext();

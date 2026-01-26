@@ -9,15 +9,21 @@ import MainCard from '@/components/history/MainCard';
 import { useHistoryStore } from '@/store/useHistoryStore';
 import { useSummaryDetail } from '@/lib/tanstack/query/history.query';
 import { MockSummary } from '@/data/MockSummary';
+import { useOnboardingStore } from '@/store/useOnboarding';
 
-export default function FlipCard({ isOnboarding }: { isOnboarding?: boolean }) {
+export default function FlipCard() {
   const [isTouched, setIsTouched] = useState(false);
+  const { isOnboarding } = useOnboardingStore();
   const activeId = useHistoryStore((state) => state.activeId);
   const { data, isPending, isError, error } = useSummaryDetail(activeId, {
     enabled: !isOnboarding,
   });
   const cardData = isOnboarding ? MockSummary[activeId] : data;
-
+  if (isOnboarding) {
+    setTimeout(() => {
+      setIsTouched(true);
+    }, 2000); // 2초 후 앞면으로 복귀
+  }
   if (!isOnboarding && isPending) return <div>로딩...</div>;
   if (!isOnboarding && isError)
     return <div>에러: {(error as Error).message}</div>;
