@@ -48,7 +48,7 @@ const CallList = () => {
         return (
           <button key={c.id} onClick={() => router.push(`/calls/${c.id}`)}>
             <Box
-              date={dayjs(c.date).format('YYYY.MM.DD A h:MM')}
+              date={dayjs(c.date).format('YYYY.MM.DD A h:mm')}
               text={c.text}
               isNew={c.id === 1}
             />

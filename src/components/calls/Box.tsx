@@ -1,4 +1,4 @@
-import Chervon from '@/assets/icon/chevron_right.svg?react';
+import Chevron from '@/assets/icon/chevron_right.svg?react';
 
 const Box = ({
   date,
@@ -22,7 +22,7 @@ const Box = ({
         </div>
         <p className="body2">{text}</p>
       </div>
-      <Chervon />
+      <Chevron />
     </div>
   );
 };
