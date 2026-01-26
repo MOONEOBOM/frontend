@@ -4,7 +4,7 @@ import TranslateIcon from '@/assets/icon/generate.svg?react';
 
 const Step1 = () => {
   return (
-    <div className="body2 mt-[22px] h-[430px] w-[295px] rounded-t-[42px] border-t-[5px] border-r-[5px] border-l-[5px] border-gray-500 bg-gray-100 px-[15px]">
+    <div className="body2 mt-[22px] h-[510px] w-[295px] rounded-t-[42px] border-t-[5px] border-r-[5px] border-l-[5px] border-gray-500 bg-gray-100 px-[15px]">
       <div className="flex w-full justify-end">
         <div className="bg-primary body2 shadow-bubble mt-[128px] max-w-[190px] rounded-[12px_2px_12px_12px] px-[8px] py-[8px] break-words whitespace-pre-wrap text-black">
           안녕하세한어러에ㅑㅓㄴ

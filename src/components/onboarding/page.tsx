@@ -7,6 +7,7 @@ import Step2 from './steps/Step2';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Step3 from './steps/Step3';
+import Step4 from './steps/Step4';
 
 const ONBOARDING_STEPS = [
   {
@@ -23,6 +24,11 @@ const ONBOARDING_STEPS = [
     component: Step3,
     title: '전화 상담이 필요하신가요?',
     text: '전화 상담 이전에 무너와 함께 시나리오를 만들 수 있어요.',
+  },
+  {
+    component: Step4,
+    title: '상담한 내용을 무너가 요약해 드려요.',
+    text: '무너와 함께 한눈에 확인하세요!',
   },
   // ...
 ];

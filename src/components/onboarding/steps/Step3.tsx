@@ -1,16 +1,16 @@
 import { motion } from 'framer-motion';
 
 const Step3 = () => {
-  const scrollDistance = -500; // -500px
+  const scrollDistance = -400; // -500px
 
   return (
     <>
-      <div className="body2 mt-[22px] flex h-[430px] w-[295px] justify-center overflow-hidden rounded-t-[42px] border-[5px] border-b-0 border-gray-500 bg-white">
+      <div className="body2 mt-[22px] flex h-[510px] w-[295px] justify-center overflow-hidden rounded-t-[42px] border-[5px] border-b-0 border-gray-500 bg-white">
         <motion.div
           initial={{ y: 0 }}
           animate={{ y: scrollDistance }}
           transition={{
-            duration: 6,
+            duration: 4,
             ease: 'linear',
           }}
           style={{

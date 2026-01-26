@@ -1,15 +1,20 @@
 import MooneoIcon from '@/assets/moono/moono_profile.svg?react';
+import { Variants, motion } from 'framer-motion';
 
 interface TextBubbleScenarioProps {
   text?: string;
+  itemVariants?: Variants;
 }
 const MOCK_SCENARIO_TEXT =
   '1월 12일 ~ 14일 동안 과금이 발생한 것으로 확인됩니다.';
 
-export function TextBubbleScenario({ text }: TextBubbleScenarioProps) {
+export function TextBubbleScenario({
+  text,
+  itemVariants,
+}: TextBubbleScenarioProps) {
   const displayText = text ?? MOCK_SCENARIO_TEXT;
   return (
-    <div className="flex w-full justify-start">
+    <motion.div variants={itemVariants} className="flex w-full justify-start">
       <div className="my-4 flex items-start gap-[5px]">
         {/* 프로필 무너 아이콘 */}
         <div
@@ -24,6 +29,6 @@ export function TextBubbleScenario({ text }: TextBubbleScenarioProps) {
           {displayText}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

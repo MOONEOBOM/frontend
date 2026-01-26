@@ -12,7 +12,7 @@ const Step2 = () => {
     <AnimatePresence mode="wait">
       {!showScenario ? (
         <div>
-          <div className="body2 mt-[22px] h-[430px] w-[295px] rounded-t-[42px] border-t-[5px] border-r-[5px] border-l-[5px] border-gray-500 bg-gray-100 px-[15px]">
+          <div className="body2 mt-[22px] h-[510px] w-[295px] rounded-t-[42px] border-t-[5px] border-r-[5px] border-l-[5px] border-gray-500 bg-gray-100 px-[15px]">
             <div className="flex w-full justify-end">
               <div className="bg-primary body2 shadow-bubble mt-[128px] max-w-[190px] rounded-[12px_2px_12px_12px] px-[8px] py-[8px] break-words whitespace-pre-wrap text-black">
                 전화상담 연결하기
@@ -54,7 +54,7 @@ const Step2 = () => {
           </div>
         </div>
       ) : (
-        <div className="body2 mt-[22px] flex h-[430px] w-[295px] justify-center overflow-hidden rounded-t-[42px] border-[5px] border-b-0 border-gray-500 bg-white">
+        <div className="body2 mt-[22px] flex h-[510px] w-[295px] justify-center overflow-hidden rounded-t-[42px] border-[5px] border-b-0 border-gray-500 bg-white">
           {/* 실제 페이지를 축소하여 작은 화면 안에 렌더링합니다.
            */}
           <div
