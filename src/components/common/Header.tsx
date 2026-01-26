@@ -42,7 +42,11 @@ const Header = ({
             상담 종료
           </button>
         )}
-        {type === 'onboarding' && <div className="body1">SKIP</div>}
+        {type === 'onboarding' && (
+          <div className="body1" onClick={() => router.push('/')}>
+            SKIP
+          </div>
+        )}
       </div>
 
       {isModalOpen && type === 'chat' && (
