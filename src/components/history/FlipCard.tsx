@@ -9,7 +9,7 @@ import { useState } from 'react';
 import MainCard from '@/components/history/MainCard';
 import { useHistoryStore } from '@/store/useHistoryStore';
 
-export default function FlipCard() {
+export default function FlipCard({ isOnboarding }: { isOnboarding?: boolean }) {
   const [isTouched, setIsTouched] = useState(false);
   const activeIndex = useHistoryStore((state) => state.activeIndex);
   const formattedDate = dayjs(MockSummary[activeIndex].createdAt).format(
@@ -23,7 +23,7 @@ export default function FlipCard() {
     >
       <div
         className={`relative grid duration-700 [transform-style:preserve-3d] ${
-          isTouched ? '[transform:rotateY(180deg)]' : ''
+          isTouched || isOnboarding ? '[transform:rotateY(180deg)]' : ''
         }`}
       >
         {/* 앞면 */}

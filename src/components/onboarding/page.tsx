@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Step3 from './steps/Step3';
 import Step4 from './steps/Step4';
+import Step5 from './steps/Step5';
 
 const ONBOARDING_STEPS = [
   {
@@ -30,12 +31,16 @@ const ONBOARDING_STEPS = [
     title: '상담한 내용을 무너가 요약해 드려요.',
     text: '무너와 함께 한눈에 확인하세요!',
   },
+  {
+    component: Step5,
+    title: '요약 내역을 확인할 수 있어요.',
+    text: '카드를 뒤집어 요약 내용을 확인해 보세요!',
+  },
   // ...
 ];
 
 const OnboardingPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const router = useRouter;
   const handleNext = () => {
     if (currentStep < ONBOARDING_STEPS.length - 1) {
       setCurrentStep((prev) => prev + 1);
@@ -44,16 +49,17 @@ const OnboardingPage = () => {
     }
   };
   const CurrentStepContent = ONBOARDING_STEPS[currentStep].component;
+  const isLastStep = currentStep === ONBOARDING_STEPS.length - 1;
   return (
     <div className="flex flex-col items-center justify-center">
       <Header type="onboarding" />
       <CurrentStepContent />
 
       <BottomBoard
-        type="white"
         title={ONBOARDING_STEPS[currentStep].title}
         text={ONBOARDING_STEPS[currentStep].text}
         onNext={handleNext}
+        isLast={isLastStep}
       />
     </div>
   );
