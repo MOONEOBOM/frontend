@@ -1,14 +1,16 @@
 'use client';
+
 import { cn } from '@/utils/cn';
 type ModalType = 'select' | 'info';
 
 interface ModalProps {
   isOpen: boolean;
-  type: ModalType;
+  type?: ModalType;
   image?: React.ReactNode;
   onOverlayClick: (event: boolean) => void; // 오버레이 클릭 시
   onBack: () => void; // 돌아가기 버튼
-  onClose?: () => void; // 종료 버튼
+  onActive?: () => void; // 종료 버튼
+  activeText: string;
   children: React.ReactNode;
 }
 
@@ -17,8 +19,9 @@ export default function Modal({
   type,
   image,
   onBack,
-  onClose,
+  onActive,
   children,
+  activeText,
   onOverlayClick,
 }: ModalProps) {
   if (!isOpen) return null;
@@ -62,10 +65,10 @@ export default function Modal({
               className={cn('bg-primary', buttonSize)}
               onClick={(e) => {
                 e.stopPropagation();
-                onClose?.();
+                onActive?.();
               }}
             >
-              종료
+              {activeText}
             </button>
           )}
         </div>

@@ -9,10 +9,10 @@ import { useSummaryMutation } from '@/lib/tanstack/mutation/summary.mutation';
 export default function ChatModal({
   isModalOpen,
   setIsModalOpen,
-  conversation,  // 상담 대화 전문 (헤더에서 온거 받음)
+  conversation, // 상담 대화 전문 (헤더에서 온거 받음)
 }: {
   isModalOpen: boolean;
-    setIsModalOpen: (open: boolean) => void;
+  setIsModalOpen: (open: boolean) => void;
   conversation: ChatMessage[];
 }) {
   const router = useRouter();
@@ -43,7 +43,7 @@ export default function ChatModal({
           console.error('요약 API 요청 실패', error);
           toast('negative', '요약 생성 중 오류가 발생했습니다');
         },
-      }
+      },
     );
   };
 
@@ -52,8 +52,9 @@ export default function ChatModal({
       type="select"
       isOpen={isModalOpen}
       onBack={() => setIsModalOpen(false)}
-      onClose={handleCloseAction}
+      onActive={handleCloseAction}
       onOverlayClick={() => setIsModalOpen(false)}
+      activeText="종료"
     >
       상담을 종료하시겠습니까?
       <br />

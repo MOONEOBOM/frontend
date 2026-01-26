@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import CallButton from './CallButton';
 
 export default function TextBubbleCalling() {
   return (
@@ -10,9 +11,7 @@ export default function TextBubbleCalling() {
         </div>
       </div>
       <div className="py-[9px]">
-        <button className="focus:bg-primary-100 body2 shadow-bubble mr-[5px] max-w-[105px] cursor-pointer rounded-[20px] bg-white px-[14px] py-[8px] break-words whitespace-pre-wrap">
-          전화 상담
-        </button>
+        <CallButton />
         <Link
           href="/scenario/pre"
           className="focus:bg-primary-100 body2 shadow-bubble max-w-[105px] cursor-pointer rounded-[20px] bg-white px-[14px] py-[8px] break-words whitespace-pre-wrap"
