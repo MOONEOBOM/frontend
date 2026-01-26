@@ -1,8 +1,6 @@
-'use client';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function TextBubbleCalling() {
-  const router = useRouter();
   return (
     <>
       <div className="body2 shadow-bubble max-w-[240px] rounded-[2px_12px_12px_12px] bg-white px-[10px] py-[10px] break-words whitespace-pre-wrap">
@@ -12,17 +10,15 @@ export default function TextBubbleCalling() {
         </div>
       </div>
       <div className="py-[9px]">
-        <button className="body2 shadow-bubble mr-[5px] max-w-[105px] rounded-[20px] bg-white px-[14px] py-[8px] break-words whitespace-pre-wrap">
+        <button className="focus:bg-primary-100 body2 shadow-bubble mr-[5px] max-w-[105px] cursor-pointer rounded-[20px] bg-white px-[14px] py-[8px] break-words whitespace-pre-wrap">
           전화 상담
         </button>
-        <button
-          onClick={() => {
-            router.push('/scenario/pre');
-          }}
-          className="body2 shadow-bubble max-w-[105px] rounded-[20px] bg-white px-[14px] py-[8px] break-words whitespace-pre-wrap"
+        <Link
+          href="/scenario/pre"
+          className="focus:bg-primary-100 body2 shadow-bubble max-w-[105px] cursor-pointer rounded-[20px] bg-white px-[14px] py-[8px] break-words whitespace-pre-wrap"
         >
           시나리오 생성
-        </button>
+        </Link>
       </div>
     </>
   );
