@@ -9,21 +9,10 @@ import { SummaryLoading } from './SummaryLoading';
 import { SummaryError } from './SummaryError';
 
 // 실제 데이터 관련 (아래 본문에서 호출하고 사용함)
-const SummaryData = () => {
-
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+const SummaryDataInside = () => {
   
   // useSuspenseQuery를 사용하면 data가 undefined일 수 없음 -> (?.) 없이도 타입 에러가 나지 않음
   const { data } = useRecentSummary();  // useSuspenseQuery 사용
-
-  // 중요: 마운트되기 전(빌드/서버 타임)에는 아무것도 렌더링하지 않아 API 호출을 차단
-  if (!isMounted) {
-    return <SummaryLoading />;
-  }
 
   return (
     <div className="flex w-full flex-col items-center gap-[50px]">
@@ -52,6 +41,18 @@ const SummaryData = () => {
 };
 
 const SummaryContent = () => {
+
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // 빌드 시점(서버)에서는 아예 QueryBoundary와 그 자식들을 렌더링하지 않음
+  if (!isMounted) {
+    return <SummaryLoading />;
+  }
+
   return (
     <QueryBoundary
       // 로딩 시 보여줄 전용 UI 파일
@@ -59,7 +60,7 @@ const SummaryContent = () => {
       // 에러 시 보여줄 전용 UI 파일 (reset 함수 전달)
       errorFallback={(reset) => <SummaryError reset={reset} />}
     >
-      <SummaryData />
+      <SummaryDataInside />
     </QueryBoundary>
   );
 };
