@@ -2,8 +2,8 @@
 
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
-import { useRouter } from 'next/navigation';
 import Box from '@/components/calls/Box';
+import Link from 'next/link';
 
 dayjs.locale('ko');
 
@@ -41,18 +41,17 @@ const SCRIPT = [
 ];
 
 const CallList = () => {
-  const router = useRouter();
   return (
     <div className="flex flex-col gap-[25px]">
       {SCRIPT.map((c) => {
         return (
-          <button key={c.id} onClick={() => router.push(`/calls/${c.id}`)}>
+          <Link key={c.id} href={`/calls/${c.id}`}>
             <Box
               date={dayjs(c.date).format('YYYY.MM.DD A h:mm')}
               text={c.text}
               isNew={c.id === 1}
             />
-          </button>
+          </Link>
         );
       })}
     </div>
