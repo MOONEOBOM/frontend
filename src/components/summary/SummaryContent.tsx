@@ -17,14 +17,14 @@ const SummaryDataInside = () => {
   return (
     <div className="flex w-full flex-col items-center gap-[50px]">
       {/* DB에서 가져온 title */}
-      <p className="heading2 text-center">{data.title}</p>
+      <p className="heading2 text-center">{data?.title}</p>
       {/* DB에서 가져온 summary (= DB에서는 content) */}
       <p className="body1 px-[50px] text-center leading-relaxed break-words break-keep">
-        {data.summary}
+        {data?.summary}
       </p>
       {/* 핵심 채팅 부분 */}
       <div className="flex w-full flex-col gap-[16px]">
-        {data.core_chat && data.core_chat.length > 0 ? (
+        {data?.core_chat && data.core_chat.length > 0 ? (
           data.core_chat.map((chat, idx) => (
             chat.speaker === 'agent' ? (
               <TextBubbleScenario key={idx} text={chat.message} />
