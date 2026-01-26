@@ -6,25 +6,33 @@ import GoogleIcon from '@/assets/icon/google.svg';
 import HelloMoo from '@/assets/moono/moono_hello.svg';
 import { useLogin } from '@/lib/tanstack/mutation/auth.mutation';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useToastHook } from '@/hooks/useToastHook';
+import { useOnboardingStore } from '@/store/useOnboarding';
 
 const LoginPage = () => {
   const { mutate: login } = useLogin();
   const router = useRouter();
+  const { toast } = useToastHook();
 
   const searchParams = useSearchParams();
   const from = searchParams.get('from');
 
   const safeFrom =
     from && from.startsWith('/') && !from.startsWith('//') ? from : '/';
-
+  const startOnboarding = useOnboardingStore((state) => state.startOnboarding);
   const handleLogin = () => {
     login(undefined, {
-      onSuccess: () => {
+      onSuccess: (data) => {
+        if (data?.firstLogin) {
+          startOnboarding();
+          router.replace('/onboarding');
+          return;
+        }
         router.replace(safeFrom);
       },
 
       onError: () => {
-        // TODO: 토스트 에러 추가
+        toast('negative', '로그인에 실패하였습니다.');
       },
     });
   };

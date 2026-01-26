@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 
 const Step3 = () => {
-  const scrollDistance = -400; // -500px
+  const scrollDistance = -400; // -400px
 
   return (
     <>

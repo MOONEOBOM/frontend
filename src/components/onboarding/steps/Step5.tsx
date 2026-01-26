@@ -1,4 +1,3 @@
-import Header from '@/components/common/Header';
 import CardList from '@/components/history/CardList';
 import FlipCard from '@/components/history/FlipCard';
 import { useOnboardingStore } from '@/store/useOnboarding';

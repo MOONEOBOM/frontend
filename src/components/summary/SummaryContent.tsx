@@ -1,8 +1,13 @@
+'use client';
+
 import { TextBubbleScenario } from '../TextBubble/TextBubbleScenario';
 import { TextBubbleUser } from '../TextBubble/TextBubbleUser';
+
 import { motion } from 'framer-motion';
 
-const MOCK_SUMMARY = {
+import { useRecentSummary } from '@/lib/tanstack/query/summary.query';
+
+const ONBOARD_SUMMARY = {
   title: '로밍 사용으로 인한 요금 과청구',
   content:
     '고객은 해외에서 로밍 서비스를 이용한 이후 높은 요금이 청구된 것에 대해 문의함. 상담 과정에서 로밍 요금 산정 기준과 실제 사용 내역에 대한 설명을받음.',
@@ -30,20 +35,30 @@ const containerVariants = {
 };
 
 const SummaryContent = ({ isOnboarding }: { isOnboarding?: boolean }) => {
+  const { data, isLoading, isError } = useRecentSummary({
+    enabled: !isOnboarding,
+  });
+
+  if (!isOnboarding && isLoading) {
+    return <div className="py-20 text-center">요약 불러오는 중...</div>;
+  }
+  if (!isOnboarding && (isError || !data)) {
+    return <div className="py-20 text-center">데이터를 가져오기 실패</div>;
+  }
   if (isOnboarding) {
     return (
       <div className="flex w-full flex-col items-center gap-[30px]">
-        <p className="heading3">{MOCK_SUMMARY.title}</p>
+        <p className="heading3">{ONBOARD_SUMMARY.title}</p>
 
         <p className="body2 px-[40px] text-center leading-relaxed break-words break-keep">
-          {MOCK_SUMMARY.content}
+          {ONBOARD_SUMMARY.content}
         </p>
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {MOCK_SUMMARY.highlights.map((bubble, idx) => {
+          {ONBOARD_SUMMARY.highlights.map((bubble, idx) => {
             return bubble.speaker === 'agent' ? (
               <TextBubbleScenario
                 key={idx}
@@ -62,22 +77,29 @@ const SummaryContent = ({ isOnboarding }: { isOnboarding?: boolean }) => {
       </div>
     );
   }
-
   return (
     <div className="flex w-full flex-col items-center gap-[50px]">
-      <p className="heading2">{MOCK_SUMMARY.title}</p>
+      {/* DB에서 가져온 title */}
+      <p className="heading2 text-center">{data?.title}</p>
 
+      {/* DB에서 가져온 summary (= DB에서는 content) */}
       <p className="body1 px-[50px] text-center leading-relaxed break-words break-keep">
-        {MOCK_SUMMARY.content}
+        {data?.summary}
       </p>
-      <div>
-        {MOCK_SUMMARY.highlights.map((bubble, idx) => {
-          return bubble.speaker === 'agent' ? (
-            <TextBubbleScenario key={idx} text={bubble.text} />
-          ) : (
-            <TextBubbleUser key={idx} text={bubble.text} />
-          );
-        })}
+
+      {/* 3. 핵심 채팅 부분 */}
+      <div className="flex w-full flex-col gap-[16px]">
+        {data?.core_chat && data.core_chat.length > 0 ? (
+          data.core_chat.map((chat, idx) =>
+            chat.speaker === 'agent' ? (
+              <TextBubbleScenario key={idx} text={chat.message} />
+            ) : (
+              <TextBubbleUser key={idx} text={chat.message} />
+            ),
+          )
+        ) : (
+          <p className="text-center text-gray-400">핵심 대화가 없습니다.</p>
+        )}
       </div>
     </div>
   );

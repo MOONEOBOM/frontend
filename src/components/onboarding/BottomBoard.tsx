@@ -1,4 +1,6 @@
+import { useCompleteFirstLogin } from '@/lib/tanstack/mutation/user.mutation';
 import Button from '../common/Button';
+import { useOnboardingStore } from '@/store/useOnboarding';
 
 interface BoardingProps {
   title: string;
@@ -12,6 +14,26 @@ export default function BottomBoard({
   onNext,
   isLast,
 }: BoardingProps) {
+  const { mutate: completeOnboarding, isPending } = useCompleteFirstLogin();
+  const stopOnboarding = useOnboardingStore((state) => state.stopOnboarding);
+  const startOnboarding = useOnboardingStore((state) => state.startOnboarding);
+  const isOnboarding = useOnboardingStore((state) => state.isOnboarding);
+  const handleStart = () => {
+    stopOnboarding();
+
+    completeOnboarding(undefined, {
+      onSuccess: () => {
+        console.log('온보딩 완료 성공!');
+        const currentState = useOnboardingStore.getState().isOnboarding;
+        console.log('현재 온보딩:', currentState); // 여기서 false가 나옵니다!
+        onNext();
+      },
+      onError: (err) => {
+        console.error('완료 처리 실패:', err);
+        onNext();
+      },
+    });
+  };
   return (
     <div className="fixed bottom-0 mb-[60px] flex flex-col items-center justify-center">
       <div className="body1">{title}</div>
@@ -28,7 +50,7 @@ export default function BottomBoard({
           </Button>
         ) : (
           <Button
-            onClick={onNext}
+            onClick={handleStart}
             className="bg-primary"
             size="full"
             variant="solid"

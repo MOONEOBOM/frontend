@@ -40,7 +40,7 @@ export function proxy(request: NextRequest) {
   }
 
   // 2. 로그인이 안 된 상태인데 /login 이외의 보호된 페이지로 가려고 할 때
-  if (!session && pathname !== '/login' && pathname !== '/onboarding') {
+  if (!session && pathname !== '/login') {
     const loginUrl = new URL('/login', request.url);
     loginUrl.searchParams.set('from', pathname);
     return NextResponse.redirect(loginUrl);

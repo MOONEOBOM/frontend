@@ -3,18 +3,24 @@
 import Logo from '@/assets/icon/logo_small.svg?react';
 import Moono from '@/assets/moono/moono_summary.svg?react';
 import dayjs from 'dayjs';
-import { MockSummary } from '@/data/MockSummary';
 
 import { useState } from 'react';
 import MainCard from '@/components/history/MainCard';
 import { useHistoryStore } from '@/store/useHistoryStore';
+import { useSummaryDetail } from '@/lib/tanstack/query/history.query';
+import { MockSummary } from '@/data/MockSummary';
 
 export default function FlipCard({ isOnboarding }: { isOnboarding?: boolean }) {
   const [isTouched, setIsTouched] = useState(false);
-  const activeIndex = useHistoryStore((state) => state.activeIndex);
-  const formattedDate = dayjs(MockSummary[activeIndex].createdAt).format(
-    'YYYY.MM.DD',
-  );
+  const activeId = useHistoryStore((state) => state.activeId);
+  const { data, isPending, isError, error } = useSummaryDetail(activeId, {
+    enabled: !isOnboarding,
+  });
+  const cardData = isOnboarding ? MockSummary[activeId] : data;
+
+  if (!isOnboarding && isPending) return <div>로딩...</div>;
+  if (!isOnboarding && isError)
+    return <div>에러: {(error as Error).message}</div>;
 
   return (
     <div
@@ -23,7 +29,7 @@ export default function FlipCard({ isOnboarding }: { isOnboarding?: boolean }) {
     >
       <div
         className={`relative grid duration-700 [transform-style:preserve-3d] ${
-          isTouched || isOnboarding ? '[transform:rotateY(180deg)]' : ''
+          isTouched ? '[transform:rotateY(180deg)]' : ''
         }`}
       >
         {/* 앞면 */}
@@ -31,8 +37,10 @@ export default function FlipCard({ isOnboarding }: { isOnboarding?: boolean }) {
           <MainCard>
             <Moono className="w-[140px]" />
             <div className="flex flex-col items-center gap-[20px]">
-              <p className="heading3">{MockSummary[activeIndex].title}</p>
-              <p className="body3 text-gray-800">{formattedDate}</p>
+              <p className="heading3 px-[30px]">{cardData?.title}</p>
+              <p className="body3 text-gray-800">
+                {dayjs(cardData?.createdDate).format('YYYY.MM.DD')}
+              </p>
             </div>
           </MainCard>
         </div>
@@ -42,13 +50,13 @@ export default function FlipCard({ isOnboarding }: { isOnboarding?: boolean }) {
           <MainCard>
             <Logo className="h-[34px]" />
             <div className="flex h-[200px] w-[210px] flex-col items-center gap-[15px]">
-              <p className="heading3">{MockSummary[activeIndex].title}</p>
+              <p className="heading3">{cardData?.title}</p>
               <div className="w-[200px] border-t-1 border-gray-300" />
-              <p className="body2 text-center">
-                {MockSummary[activeIndex].content}
-              </p>
+              <p className="body2 text-center">{cardData?.content}</p>
             </div>
-            <p className="body3 bottom-[20px] text-gray-800">{formattedDate}</p>
+            <p className="body3 bottom-[20px] text-gray-800">
+              {dayjs(cardData?.createdDate).format('YYYY.MM.DD')}
+            </p>
           </MainCard>
         </div>
       </div>

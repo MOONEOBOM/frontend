@@ -1,3 +1,3 @@
-import ScenarioResultPage from "@/components/scenario/result/page";
+import ScenarioResultPage from '@/components/scenario/result/page';
 
 export default ScenarioResultPage;

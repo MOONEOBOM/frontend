@@ -10,7 +10,8 @@ export const useLogin = () => {
       const result = await signInWithPopup(auth, provider);
 
       const idToken = await result.user.getIdToken();
-      await loginWithGoogleApi(idToken);
+      const res = await loginWithGoogleApi(idToken);
+      return res.data.data;
     },
   });
 };

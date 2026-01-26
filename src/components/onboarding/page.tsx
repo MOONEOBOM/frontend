@@ -5,10 +5,10 @@ import BottomBoard from './BottomBoard';
 import Step1 from './steps/Step1';
 import Step2 from './steps/Step2';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Step3 from './steps/Step3';
 import Step4 from './steps/Step4';
 import Step5 from './steps/Step5';
+import { useRouter } from 'next/navigation';
 
 const ONBOARDING_STEPS = [
   {
@@ -36,16 +36,16 @@ const ONBOARDING_STEPS = [
     title: '요약 내역을 확인할 수 있어요.',
     text: '카드를 뒤집어 요약 내용을 확인해 보세요!',
   },
-  // ...
 ];
 
 const OnboardingPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
+  const router = useRouter();
   const handleNext = () => {
     if (currentStep < ONBOARDING_STEPS.length - 1) {
       setCurrentStep((prev) => prev + 1);
     } else {
-      console.log('?');
+      router.push('/');
     }
   };
   const CurrentStepContent = ONBOARDING_STEPS[currentStep].component;

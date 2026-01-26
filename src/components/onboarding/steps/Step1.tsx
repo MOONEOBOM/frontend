@@ -1,8 +1,11 @@
 'use client';
 import { motion } from 'framer-motion';
 import TranslateIcon from '@/assets/icon/generate.svg?react';
+import { useOnboardingStore } from '@/store/useOnboarding';
 
 const Step1 = () => {
+  const isOnboarding = useOnboardingStore((state) => state.isOnboarding);
+  console.log(isOnboarding);
   return (
     <div className="body2 mt-[22px] h-[510px] w-[295px] rounded-t-[42px] border-t-[5px] border-r-[5px] border-l-[5px] border-gray-500 bg-gray-100 px-[15px]">
       <div className="flex w-full justify-end">
