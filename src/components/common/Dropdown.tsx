@@ -52,41 +52,23 @@ const Dropdown = ({
       >
         {selected?.label ?? placeholder} <BottomChevron />
       </button>
-      {isOnboarding && (
+      {(open || isOnboarding) && (
         <motion.ul
-          initial={{ opacity: 0, height: 0, scaleY: 0, originY: 0 }}
-          animate={{ opacity: 1, height: 'auto', scaleY: 1 }}
-          transition={{
-            type: 'spring',
-            stiffness: 200, // 높을수록 탄성이 강해짐 (빨라짐)
-            damping: 25, // 높을수록 반동이 빨리 멈춤 (부드러움의 핵심)
-            mass: 1,
-            duration: 0.4,
-            ease: [0.04, 0.62, 0.23, 0.98],
-          }}
           className={cn(
             width,
             'no-scrollbar absolute z-10 max-h-[180px] overflow-auto [&>li:first-child]:rounded-t-[10px] [&>li:first-child]:border-none [&>li:last-child]:rounded-b-[10px]',
           )}
-        >
-          {options.map((option) => (
-            <li
-              key={option.value}
-              className={cn(
-                'border-primary flex h-[40px] cursor-pointer items-center border-t bg-white p-[15px] hover:bg-gray-100',
-              )}
-            >
-              {option.label}
-            </li>
-          ))}
-        </motion.ul>
-      )}
-      {open && (
-        <ul
-          className={cn(
-            width,
-            'no-scrollbar absolute z-10 max-h-[180px] overflow-auto [&>li:first-child]:rounded-t-[10px] [&>li:first-child]:border-none [&>li:last-child]:rounded-b-[10px]',
-          )}
+          initial={
+            isOnboarding
+              ? { opacity: 0, scaleY: 0, originY: 0 }
+              : { opacity: 1 }
+          }
+          animate={isOnboarding ? { opacity: 1, scaleY: 1 } : { opacity: 1 }}
+          transition={
+            isOnboarding
+              ? { duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 1 }
+              : { duration: 0.1 } // 일반 오픈 시
+          }
         >
           {options.map((option) => (
             <li
@@ -102,7 +84,7 @@ const Dropdown = ({
               {option.label}
             </li>
           ))}
-        </ul>
+        </motion.ul>
       )}
     </div>
   );

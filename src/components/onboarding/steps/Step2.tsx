@@ -3,10 +3,11 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import ScenarioContainer from '@/components/scenario/pre/ScenarioClientContainer';
 import ScenarioIntroBubble from '@/components/scenario/pre/ScenarioIntroBubble';
+import { useOnboardingStore } from '@/store/useOnboarding';
 
 const Step2 = () => {
   const [showScenario, setShowScenario] = useState(false);
-
+  const { isOnboarding } = useOnboardingStore();
   return (
     <AnimatePresence mode="wait">
       {!showScenario ? (
@@ -39,7 +40,7 @@ const Step2 = () => {
                 }}
                 transition={{
                   duration: 0.5,
-                  delay: 1, //1초 뒤 시작으로 통일
+                  delay: 1,
                   times: [0, 0.5, 1],
                 }}
                 onAnimationComplete={() => {
@@ -64,7 +65,7 @@ const Step2 = () => {
               pointerEvents: 'none',
             }}
           >
-            <ScenarioContainer isOnboarding={true}>
+            <ScenarioContainer isOnboarding={isOnboarding}>
               <ScenarioIntroBubble />
             </ScenarioContainer>
           </div>
