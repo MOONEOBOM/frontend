@@ -26,19 +26,23 @@ const HistoryPage = async ({ searchParams }: historyPageProps) => {
     : undefined;
 
   const queryClient = new QueryClient();
-  await queryClient.prefetchInfiniteQuery({
-    queryKey: ['summary', 'list', 10],
-    queryFn: ({ pageParam }) =>
-      getSummaryList({ limit: 10, cursor: pageParam ?? null }, serverApi),
-    initialPageParam: null as number | null,
-    getNextPageParam: (lastPage) => {
-      if (lastPage.nextCursor === null || lastPage.nextCursor === undefined) {
-        return undefined;
-      }
-      return lastPage.nextCursor;
-    },
-    pages: 1,
-  });
+  try {
+    await queryClient.prefetchInfiniteQuery({
+      queryKey: ['summary', 'list', 10],
+      queryFn: ({ pageParam }) =>
+        getSummaryList({ limit: 10, cursor: pageParam ?? null }, serverApi),
+      initialPageParam: null as number | null,
+      getNextPageParam: (lastPage) => {
+        if (lastPage.nextCursor === null || lastPage.nextCursor === undefined) {
+          return undefined;
+        }
+        return lastPage.nextCursor;
+      },
+      pages: 1,
+    });
+  } catch (error) {
+    console.error('빌드 시점 상담내역 API 프리패치 실패 :', error);
+  }
 
   return (
     <div className="flex flex-col items-center">

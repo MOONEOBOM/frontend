@@ -9,7 +9,7 @@ import MoonoError from '@/assets/moono/moono_lost.svg?react';
 interface Props {
   children: ReactNode;
   fallback: ReactNode; // 로딩 시 보여줄 UI (Suspense용)
-  errorFallback?: (props: FallbackProps) => ReactNode; // 에러 시 보여줄 UI
+  errorFallback?: React.ComponentType<FallbackProps>; // 에러 시 보여줄 UI
 }
 
 // 기본 에러 UI (따로 지정 안 했을 때 나옴)

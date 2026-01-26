@@ -47,7 +47,7 @@ export default function FlipCard() {
           <MoonoTako className="w-[100px]" />
           <p className="body1">내용을 불러오지 못했어요..</p>
           <button onClick={() => refetch()}>
-            <Restart className="h-8 w-8 text-gray-800" />
+            <Restart className="text-primary h-8 w-8" />
           </button>
         </div>
       </MainCard>
