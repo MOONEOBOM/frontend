@@ -34,6 +34,21 @@ body {
   filter: saturate(1.2);
 }
 
+@keyframes wave {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-fast-wave {
+  display: inline-block;
+  animation: wave 1s ease-in-out infinite;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
