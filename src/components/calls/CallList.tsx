@@ -1,8 +1,11 @@
 'use client';
 
 import dayjs from 'dayjs';
-import Box from './Box';
+import 'dayjs/locale/ko';
 import { useRouter } from 'next/navigation';
+import Box from '@/components/calls/Box';
+
+dayjs.locale('ko');
 
 const SCRIPT = [
   {
@@ -45,7 +48,7 @@ const CallList = () => {
         return (
           <button key={c.id} onClick={() => router.push(`/calls/${c.id}`)}>
             <Box
-              date={dayjs(c.date).format('YYYY.MM.DD HH:MM')}
+              date={dayjs(c.date).format('YYYY.MM.DD A h:MM')}
               text={c.text}
               isNew={c.id === 1}
             />
