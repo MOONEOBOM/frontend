@@ -19,7 +19,7 @@ const CallButton = () => {
             setIsModalOpen(false);
           }}
           onActive={() => {
-            router.push('');
+            router.push('/calls');
           }}
           activeText="연결하기"
         >

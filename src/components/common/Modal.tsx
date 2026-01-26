@@ -52,7 +52,7 @@ export default function Modal({
         </div>
         <div className={cn('flex w-full justify-center gap-[11px]')}>
           <button
-            className={cn('bg-gray-100', buttonSize)}
+            className={cn('cursor-pointer bg-gray-100', buttonSize)}
             onClick={(e) => {
               e.stopPropagation(); //클릭 이벤트가 부모로 전달되는 것 방지
               onBack();
@@ -62,7 +62,7 @@ export default function Modal({
           </button>
           {!isInfoModal && (
             <button
-              className={cn('bg-primary', buttonSize)}
+              className={cn('bg-primary cursor-pointer', buttonSize)}
               onClick={(e) => {
                 e.stopPropagation();
                 onActive?.();

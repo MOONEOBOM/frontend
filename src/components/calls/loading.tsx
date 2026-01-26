@@ -1,7 +1,6 @@
-import './globals.css';
 import MoonoSummary from '@/assets/moono/moono_summary.svg?react';
 
-export default function Loading() {
+const CallLoading = () => {
   return (
     <div className="flex min-h-screen flex-col items-center bg-white pt-[255px]">
       {/* 무너 로딩 이미지 */}
@@ -17,4 +16,6 @@ export default function Loading() {
       </div>
     </div>
   );
-}
+};
+
+export default CallLoading;
