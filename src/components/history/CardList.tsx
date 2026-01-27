@@ -4,6 +4,7 @@ import { cn } from '@/utils/cn';
 import CardItem from './CardItem';
 import dayjs from 'dayjs';
 import { useCardList } from '@/hooks/cardList/useCardList';
+import { useDrag } from '@/hooks/cardList/useDrag';
 
 type CardListProps = {
   initialSelectedId?: number;
@@ -20,6 +21,9 @@ const CardList = ({ initialSelectedId }: CardListProps) => {
     onWheel,
   } = useCardList({ initialSelectedId, pageSize: 10 });
 
+  const { isDragging, onMouseDown, onMouseMove, onMouseUp, onMouseLeave } =
+    useDrag();
+
   if (items.length === 0)
     return (
       <div className="shadow-box flex h-[115px] w-[315px] items-center justify-center rounded-xl text-center">
@@ -34,15 +38,25 @@ const CardList = ({ initialSelectedId }: CardListProps) => {
         ref={scrollRef}
         onScroll={onScroll}
         onWheel={onWheel}
+        // 드래그 이벤트 연결
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUp}
+        onMouseLeave={onMouseLeave}
         className={cn(
-          'flex h-[200px] w-[390px] items-center gap-[10px] overflow-x-auto',
-          'no-scrollbar touch-pan-x snap-x snap-mandatory px-[148px]',
+          'no-scrollbar flex h-[200px] w-[390px] touch-pan-x items-center gap-[10px] overflow-x-auto px-[148px]',
+          isDragging
+            ? 'cursor-grabbing snap-none scroll-auto'
+            : 'cursor-grab snap-x snap-mandatory scroll-smooth',
         )}
       >
         {items.map((item, index) => (
           <div
             key={item.id}
-            className="flex-shrink-0 snap-center"
+            className={cn(
+              'flex-shrink-0 snap-center',
+              isDragging && 'pointer-events-none',
+            )}
             ref={(el) => {
               itemRefs.current[index] = el;
             }}
