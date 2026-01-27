@@ -23,7 +23,7 @@ const ToggleBox = ({
         className={`heading4 flex h-[50px] w-full items-center justify-between p-[10px] ${!isHome ? 'cursor-pointer' : ''}`}
         {...(!isHome && { onClick: () => setIsOpen(!isOpen) })}
       >
-        {children}
+        <p className="heading4 truncate">{children}</p>
         {isOpen ? <BottomChevron /> : <RightChevron />}
       </button>
 

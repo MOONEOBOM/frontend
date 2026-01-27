@@ -1,25 +1,46 @@
+'use client';
 import Button from '../common/Button';
 import Header from '../common/Header';
 
-// TODO: API 연결 후 response data로 변경
-import script from '@/data/script2.json';
 import { TextBubbleScenario } from '../TextBubble/TextBubbleScenario';
 import { TextBubbleUser } from '../TextBubble/TextBubbleUser';
+import { useCallMessages } from '@/lib/tanstack/query/calls.query';
+import { useParams, useRouter } from 'next/navigation';
+import { SummaryRequest } from '@/models/summary';
+import { CallMessagesResponse } from '@/models/calls';
+import { useSummaryMutation } from '@/lib/tanstack/mutation/summary.mutation';
+
+function toSummaryRequest(
+  messages: CallMessagesResponse[] | undefined,
+): SummaryRequest {
+  if (messages === undefined) {
+    return { conversation: [] };
+  }
+  return {
+    conversation: messages.map(({ role, message }) => ({
+      role,
+      message,
+    })),
+  };
+}
 
 const CallDetailPage = () => {
+  const { id } = useParams();
+  const router = useRouter();
+  const { data: call } = useCallMessages(Number(id));
+  const { mutate: summary } = useSummaryMutation();
+
   return (
     <div className="flex flex-col items-center">
       <Header type="back" />
       <div className="mb-[50px] flex w-[340px] flex-col">
-        {script.map((item) => {
+        {call?.map((item) => {
           return (
-            <div key={item.message} className="w-full">
-              {item.speaker === '상담사' && (
+            <div key={item.seq} className="w-full">
+              {item.role === 'agent' && (
                 <TextBubbleScenario text={item.message} />
               )}
-              {item.speaker === '고객' && (
-                <TextBubbleUser text={item.message} />
-              )}
+              {item.role === 'user' && <TextBubbleUser text={item.message} />}
             </div>
           );
         })}
@@ -28,6 +49,13 @@ const CallDetailPage = () => {
         className="bg-primary sticky bottom-[30px]"
         size="full"
         variant="solid"
+        onClick={() => {
+          summary(toSummaryRequest(call), {
+            onSuccess: (summryId) => {
+              router.replace(`/summary?id=${summryId.data.data}`);
+            },
+          });
+        }}
       >
         요약하기
       </Button>

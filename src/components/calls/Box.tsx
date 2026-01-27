@@ -11,7 +11,7 @@ const Box = ({
 }) => {
   return (
     <div className="shadow-box flex h-[62px] w-[315px] cursor-pointer items-center justify-between rounded-[10px] px-[15px]">
-      <div className="flex flex-col">
+      <div className="flex w-[270px] flex-col">
         <div className="body3 flex items-center gap-[7px]">
           {isNew && (
             <div className="bg-uplus text-w-700 rounded-[2px] px-[6px] text-white">
@@ -20,7 +20,7 @@ const Box = ({
           )}
           {date}
         </div>
-        <p className="body2">{text}</p>
+        <p className="body2 truncate">{text}</p>
       </div>
       <Chevron />
     </div>
