@@ -10,6 +10,8 @@ import Step4 from './steps/Step4';
 import Step5 from './steps/Step5';
 import { useRouter } from 'next/navigation';
 import ScalingDots from './ScalingDots';
+import { useOnboardingStore } from '@/store/useOnboarding';
+import ErrorPage from '../common/ErrorPage';
 
 const ONBOARDING_STEPS = [
   {
@@ -41,6 +43,7 @@ const ONBOARDING_STEPS = [
 
 const OnboardingPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
+  const { isOnboarding } = useOnboardingStore();
   const router = useRouter();
   const handleNext = () => {
     if (currentStep < ONBOARDING_STEPS.length - 1) {
@@ -51,6 +54,15 @@ const OnboardingPage = () => {
   };
   const CurrentStepContent = ONBOARDING_STEPS[currentStep].component;
   const isLastStep = currentStep === ONBOARDING_STEPS.length - 1;
+  if (!isOnboarding) {
+    return (
+      <ErrorPage
+        message={`이미 온보딩을 완료하셨습니다.\n메인 화면으로 이동할까요?`}
+        reset={() => router.push('/')}
+      />
+    );
+  }
+
   return (
     <div className="flex flex-col items-center justify-center">
       <Header type="onboarding" />
