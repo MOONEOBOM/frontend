@@ -10,7 +10,7 @@ import Button from '@/components/common/Button';
 import { useGetScenario } from '@/lib/tanstack/query/scenario.query';
 import Spinner from './Spinner';
 
-const ScenarioResultPage = () => {
+const ScenarioResultContent = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const consultType = searchParams.get('consultType');
