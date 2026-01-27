@@ -81,8 +81,8 @@ const ScenarioResultPage = () => {
             );
           })}
         </div>
-        <Button onClick={() => router.push('/summary')} className="bg-primary">
-          다음
+        <Button onClick={() => router.push('/calls/ex')} className="bg-primary">
+          전화 연결하기
         </Button>
       </div>
     </>
