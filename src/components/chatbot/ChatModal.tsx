@@ -61,8 +61,9 @@ export default function ChatModal({
         type="select"
         isOpen={isModalOpen}
         onBack={() => setIsModalOpen(false)}
-        onClose={handleCloseAction}
+        onActive={handleCloseAction}
         onOverlayClick={() => setIsModalOpen(false)}
+        activeText='종료'
       >
         상담을 종료하시겠습니까?
         <br />
