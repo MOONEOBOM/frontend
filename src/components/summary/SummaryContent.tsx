@@ -16,10 +16,10 @@ const ONBOARD_SUMMARY = {
   content:
     '고객은 해외에서 로밍 서비스를 이용한 이후 높은 요금이 청구된 것에 대해 문의함. 상담 과정에서 로밍 요금 산정 기준과 실제 사용 내역에 대한 설명을 받음.',
   highlights: [
-    { speaker: 'user', text: '해외 다녀왔는데 요금이 너무 많이 나왔어요' },
+    { speaker: 'user', text: '해외 다녀왔는데\n요금이 너무 많이 나왔어요' },
     {
       speaker: 'agent',
-      text: '로밍 종량 과금은 현지 요율로 적용되어 단가가 높을 수 있습니다.',
+      text: '로밍 종량 과금은 \n현지 요율로 적용되어\n단가가 높을 수 있습니다.',
     },
   ],
 };
@@ -58,6 +58,7 @@ const SummaryData = ({ summaryId }: { summaryId: number }) => {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
+          className="flex w-full flex-col"
         >
           {ONBOARD_SUMMARY.highlights.map((bubble, idx) => {
             return bubble.speaker === 'agent' ? (

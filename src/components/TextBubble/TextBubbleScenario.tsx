@@ -1,4 +1,7 @@
+'use client';
 import MooneoIcon from '@/assets/moono/moono_profile.svg?react';
+import { useOnboardingStore } from '@/store/useOnboarding';
+import { cn } from '@/utils/cn';
 import { Variants, motion } from 'framer-motion';
 
 interface TextBubbleScenarioProps {
@@ -10,9 +13,15 @@ export function TextBubbleScenario({
   text,
   itemVariants,
 }: TextBubbleScenarioProps) {
+  const { isOnboarding } = useOnboardingStore();
   return (
     <motion.div variants={itemVariants} className="flex w-full justify-start">
-      <div className="my-4 flex items-start gap-[5px]">
+      <div
+        className={cn(
+          'flex items-start gap-[5px]',
+          isOnboarding ? 'my-0' : 'my-4',
+        )}
+      >
         {/* 프로필 무너 아이콘 */}
         <div
           className="flex flex-shrink-0 items-center justify-center rounded-full border border-gray-300 bg-white px-[8px] py-[6px]"
