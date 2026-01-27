@@ -11,10 +11,10 @@ import { useState } from 'react';
 export default function ChatModal({
   isModalOpen,
   setIsModalOpen,
-  conversation,  // 상담 대화 전문 (헤더에서 온거 받음)
+  conversation, // 상담 대화 전문 (헤더에서 온거 받음)
 }: {
   isModalOpen: boolean;
-    setIsModalOpen: (open: boolean) => void;
+  setIsModalOpen: (open: boolean) => void;
   conversation: ChatMessage[];
 }) {
   const router = useRouter();
@@ -51,7 +51,7 @@ export default function ChatModal({
           toast('negative', '요약 생성 중 오류가 발생했습니다');
           setIsRouting(false);
         },
-      }
+      },
     );
   };
 

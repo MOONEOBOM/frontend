@@ -17,7 +17,8 @@ const ScenarioModal = ({
       onOverlayClick={() => setIsModalOpen(false)}
       type="select"
       onBack={() => setIsModalOpen(false)}
-      onClose={() => router.replace('/')}
+      onActive={() => router.replace('/')}
+      activeText="종료"
     >
       시나리오를 종료할까요?
       <br />

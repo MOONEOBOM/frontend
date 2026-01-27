@@ -17,7 +17,7 @@ const meta: Meta<typeof Modal> = {
       description: '모달의 표시 여부를 결정합니다.',
     },
     onBack: { action: 'back clicked' },
-    onClose: { action: 'close clicked' },
+    onActive: { action: 'close clicked' },
   },
 
   decorators: [
@@ -41,7 +41,7 @@ export const Select: Story = {
     type: 'select',
     children: '정말로 종료하시겠습니까?\n내용은 저장되지 않습니다.',
     onBack: () => console.log('Back'),
-    onClose: () => console.log('Close'),
+    onActive: () => console.log('Close'),
   },
 };
 
