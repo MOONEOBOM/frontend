@@ -58,7 +58,7 @@ const OnboardingPage = () => {
     return (
       <ErrorPage
         message={`이미 온보딩을 완료하셨습니다.\n메인 화면으로 이동할까요?`}
-        reset={() => router.push('/')}
+        reset={() => {}}
       />
     );
   }
