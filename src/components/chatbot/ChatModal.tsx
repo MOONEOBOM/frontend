@@ -21,12 +21,12 @@ export default function ChatModal({
   const { mutate: createSummary, isPending } = useSummaryMutation();
   const { toast } = useToastHook();
 
-  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+  const [isRouting, setIsRouting] = useState(false);
 
   // 요약 API 관련
   const handleCloseAction = () => {
     // 이미 요약 API 호출 중이라면 아무것도 X (중복 호출 방지)
-    if (isPending || isOverlayVisible) {
+    if (isPending || isRouting) {
       return;
     }
     // 대화가 비어있으면 토스트 띄우고 종료
@@ -35,19 +35,21 @@ export default function ChatModal({
       return;
     }
 
-    setIsOverlayVisible(true);
+    setIsRouting(true);
 
     createSummary(
       { conversation },
       {
-        onSuccess: () => {
+        onSuccess: (summaryId) => {
           // setIsModalOpen(false);  // ispending() = false -> API 완료 (성공)
-          router.push('/summary');  // 데이터 저장 및 요약 완료 -> 결과 페이지로 이동
+          // 데이터 저장 및 요약 완료 -> 결과 페이지로 이동
+          // 서버에서 받은 number 타입의 summaryId를 쿼리 파라미터로 전달
+          router.push(`/summary?id=${summaryId}`);
         },
         onError: (error) => {
           console.error('요약 API 요청 실패', error);
           toast('negative', '요약 생성 중 오류가 발생했습니다');
-          setIsOverlayVisible(false);
+          setIsRouting(false);
         },
       }
     );
@@ -67,7 +69,7 @@ export default function ChatModal({
         상담 종료시 요약이 진행됩니다
       </Modal>
       {/* isPending이 true일 때(= API 호출 중) 로딩 화면을 띄워줌 */}
-      {(isPending || isOverlayVisible) && <ChatbotLoading />}
+      {(isPending || isRouting) && <ChatbotLoading />}
     </>
   );
 }

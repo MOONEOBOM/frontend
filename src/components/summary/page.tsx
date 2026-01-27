@@ -12,7 +12,7 @@ const SummaryPage = () => {
       <Header type="home" />
 
       <div className="mb-[60px] flex w-full flex-col items-center gap-[50px] px-[41px]">
-        <MoonobomRight />
+        <MoonobomRight width={34} height={32} />
         <div className="h-[1px] w-[250px] bg-gray-300" />
         <SummaryContent />
         <div className="h-[1px] w-[250px] bg-gray-300" />

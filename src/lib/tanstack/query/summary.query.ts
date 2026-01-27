@@ -1,29 +1,23 @@
 // src/lib/tanstack/query/summary.query.ts
 import api from '@/lib/axios';
 import { SummaryResponse } from '@/models/summary';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { getSummaryDetailApi } from '@/services/summary.api';
 
-export const useRecentSummary = () => {
+export const useRecentSummary = (summaryId: number) => {
 
-  return useQuery<SummaryResponse>({
-    
-    queryKey: ['summary', 'recent'],
+  return useSuspenseQuery<SummaryResponse>({
+    queryKey: ['summary', 'detail', summaryId],
     queryFn: async () => {
-      const listResponse = await api.get('/summary?view=recent');
-      const items = listResponse.data.data.items;
-      
-      if (!items || items.length === 0) {
-        throw new Error('데이터 없음');
-      }
+      // throw new Error("서버 점검 중입니다.");  // 강제 에러
+      // GET) /api/v1/summary/{summaryId}?bubble=true URL 가져옴
+      const { data: apiResponse } = await getSummaryDetailApi(summaryId);
+      const rawData = apiResponse.data; // SummaryDetailResponseDto 안꺼를 꺼내옴
 
-      const recentId = items[0].id;
-      const detailResponse = await api.get(`/summary/${recentId}?bubble=true`);
-      const rawData = detailResponse.data.data;
-
+      // 백엔드랑 맞추기
       return {
         title: rawData.title,
         summary: rawData.content,
-        // 백엔드랑 맞추기
         core_chat: (rawData.highlights || []).map((item: any) => ({
           speaker: item.role, 
           message: item.message 
