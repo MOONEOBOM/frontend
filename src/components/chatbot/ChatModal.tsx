@@ -11,7 +11,7 @@ import { useState } from 'react';
 export default function ChatModal({
   isModalOpen,
   setIsModalOpen,
-  conversation, // 상담 대화 전문 (헤더에서 온거 받음)
+  conversation,
 }: {
   isModalOpen: boolean;
   setIsModalOpen: (open: boolean) => void;
@@ -23,13 +23,10 @@ export default function ChatModal({
 
   const [isRouting, setIsRouting] = useState(false);
 
-  // 요약 API 관련
   const handleCloseAction = () => {
-    // 이미 요약 API 호출 중이라면 아무것도 X (중복 호출 방지)
     if (isPending || isRouting) {
       return;
     }
-    // 대화가 비어있으면 토스트 띄우고 종료
     if (!conversation.length) {
       toast('normal', '저장할 대화 내용이 없습니다');
       return;
@@ -42,8 +39,6 @@ export default function ChatModal({
       {
         onSuccess: (summaryId) => {
           // setIsModalOpen(false);  // ispending() = false -> API 완료 (성공)
-          // 데이터 저장 및 요약 완료 -> 결과 페이지로 이동
-          // 서버에서 받은 number 타입의 summaryId를 쿼리 파라미터로 전달
           router.push(`/summary?id=${summaryId}`);
         },
         onError: (error) => {

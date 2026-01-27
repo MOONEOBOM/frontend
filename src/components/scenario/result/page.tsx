@@ -114,7 +114,6 @@ const ScenarioResultContent = () => {
   );
 };
 
-// 3. 메인 페이지 컴포넌트에서는 Header와 함께 Suspense로 감싸서 내보내기
 const ScenarioResultPage = () => {
   return (
     <>

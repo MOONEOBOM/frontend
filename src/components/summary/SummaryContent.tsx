@@ -43,9 +43,6 @@ const containerVariants = {
 const SummaryData = ({ summaryId }: { summaryId: number }) => {
 
   const { isOnboarding } = useOnboardingStore();
-
-  // 1. 인자를 쉼표(,)로 구분하여 2개(ID, 옵션객체)로 전달합니다. 
-  // query 파일의 export const useRecentSummary = (summaryId, options) 구조와 맞춤
   const { data } = useRecentSummary(summaryId, {
     enabled: !isOnboarding && !!summaryId,
   });
@@ -86,13 +83,10 @@ const SummaryData = ({ summaryId }: { summaryId: number }) => {
 
   return (
     <div className="flex w-full flex-col items-center gap-[50px]">
-      {/* DB에서 가져온 title */}
       <p className="heading2 text-center">{data.title}</p>
-      {/* DB에서 가져온 summary (= DB에서는 content) */}
       <p className="body1 px-[50px] text-center leading-relaxed break-words break-keep">
         {data.summary}
       </p>
-      {/* 핵심 채팅 부분 */}
       <div className="flex w-full flex-col gap-[16px]">
         {data.core_chat && data.core_chat.length > 0 ? (
           data.core_chat.map((chat, idx) =>
@@ -113,11 +107,9 @@ const SummaryData = ({ summaryId }: { summaryId: number }) => {
 const SummaryContent = () => {
 
   const searchParams = useSearchParams();
-  // 2) URL에서 summaryId 추출하고 이를 Number 타입으로 한 다음, id라는 변수에 새로 저장 (쿼리 파라미터)
   const id = searchParams.get('id');
-  const summaryId = id ? Number(id) : null;  // 있으면 Number 타입으로 바꾸고 없으면 null
+  const summaryId = id ? Number(id) : null;
 
-  // 3) id가 없음 -> 예외 처리 (안내문)
   if (!summaryId) {
     return (
       <div className="flex min-h-screen items-center justify-center">
@@ -128,9 +120,7 @@ const SummaryContent = () => {
 
   return (
     <QueryBoundary
-      // 로딩 시 보여줄 전용 UI 파일
       loadingFallback={<SummaryLoading />}
-      // 에러 시 보여줄 전용 UI 파일 (reset 함수 전달)
       errorFallback={(reset) => <SummaryError reset={reset} />}
     >
       <SummaryData summaryId={summaryId} />

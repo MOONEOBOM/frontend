@@ -1,14 +1,14 @@
 // src/lib/tanstack/query/summary.query.ts
 import api from '@/lib/axios';
 import { SummaryResponse } from '@/models/summary';
-import { useQuery } from '@tanstack/react-query'; // 1. useQuery로 변경
+import { useQuery } from '@tanstack/react-query';
 import { getSummaryDetailApi } from '@/services/summary.api';
 
 export const useRecentSummary = (
   summaryId: number, 
   options?: { enabled?: boolean }
 ) => {
-  return useQuery<SummaryResponse>({ // 2. useQuery로 변경
+  return useQuery<SummaryResponse>({
     queryKey: ['summary', 'detail', summaryId],
     queryFn: async () => {
       const { data: apiResponse } = await getSummaryDetailApi(summaryId);
