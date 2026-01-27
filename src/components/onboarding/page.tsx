@@ -9,6 +9,7 @@ import Step3 from './steps/Step3';
 import Step4 from './steps/Step4';
 import Step5 from './steps/Step5';
 import { useRouter } from 'next/navigation';
+import ScalingDots from './ScalingDots';
 
 const ONBOARDING_STEPS = [
   {
@@ -53,6 +54,7 @@ const OnboardingPage = () => {
   return (
     <div className="flex flex-col items-center justify-center">
       <Header type="onboarding" />
+      <ScalingDots total={ONBOARDING_STEPS.length} current={currentStep} />
       <CurrentStepContent />
 
       <BottomBoard
