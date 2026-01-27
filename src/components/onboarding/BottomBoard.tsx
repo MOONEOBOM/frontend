@@ -26,7 +26,6 @@ export default function BottomBoard({
       },
       onError: (err) => {
         console.error('완료 처리 실패:', err);
-        onNext();
       },
     });
   };

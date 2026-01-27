@@ -11,7 +11,7 @@ import { useOnboardingStore } from '@/store/useOnboarding';
 const ONBOARD_SUMMARY = {
   title: '로밍 사용으로 인한 요금 과청구',
   content:
-    '고객은 해외에서 로밍 서비스를 이용한 이후 높은 요금이 청구된 것에 대해 문의함. 상담 과정에서 로밍 요금 산정 기준과 실제 사용 내역에 대한 설명을받음.',
+    '고객은 해외에서 로밍 서비스를 이용한 이후 높은 요금이 청구된 것에 대해 문의함. 상담 과정에서 로밍 요금 산정 기준과 실제 사용 내역에 대한 설명을 받음.',
   highlights: [
     { speaker: 'user', text: '해외 다녀왔는데 요금이 너무 많이 나왔어요' },
     {
