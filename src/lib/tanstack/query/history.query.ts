@@ -32,10 +32,13 @@ export function useSummaryRecent() {
   });
 }
 
-export function useSummaryDetail(summaryId: number) {
+export function useSummaryDetail(
+  summaryId: number,
+  options?: { enabled?: boolean },
+) {
   return useQuery({
     queryKey: ['summary', 'detail', summaryId],
     queryFn: () => getSummaryDetail(summaryId),
-    enabled: !!summaryId,
+    enabled: !!summaryId && (options?.enabled ?? true),
   });
 }

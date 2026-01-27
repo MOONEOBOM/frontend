@@ -1,5 +1,6 @@
+import { useOnboardingStore } from '@/store/useOnboarding';
 import { cn } from '@/utils/cn';
-
+import { motion } from 'framer-motion';
 interface BadgeProps {
   children: React.ReactNode;
   color: 'blue' | 'primary';
@@ -7,6 +8,7 @@ interface BadgeProps {
   onClick?: () => void;
   outline?: boolean;
   size?: 'default' | 'large';
+  isOnboarding?: boolean;
 }
 
 const Badge = ({
@@ -16,10 +18,33 @@ const Badge = ({
   onClick,
   outline = false,
   size = 'default',
+  isOnboarding,
 }: BadgeProps) => {
   return (
-    <div
+    <motion.div
       onClick={onClick}
+      initial={
+        isOnboarding
+          ? { scale: 1, backgroundColor: 'var(--color-primary-100)' }
+          : false
+      }
+      animate={
+        isOnboarding
+          ? {
+              scale: [1, 1.3, 1],
+              backgroundColor: [
+                'var(--color-primary-100)',
+                'var(--color-primary)',
+                'var(--color-primary)',
+              ],
+            }
+          : {}
+      }
+      transition={{
+        duration: 0.6,
+        delay: 0.5,
+        times: [0, 0.5, 1],
+      }}
       className={cn(
         'body2 flex w-fit items-center justify-center rounded-full',
         'box-border',
@@ -36,7 +61,7 @@ const Badge = ({
       )}
     >
       <span className="pt-[1px] leading-none">{children}</span>
-    </div>
+    </motion.div>
   );
 };
 

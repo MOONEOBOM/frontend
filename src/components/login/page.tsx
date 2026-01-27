@@ -8,6 +8,7 @@ import { useLogin } from '@/lib/tanstack/mutation/auth.mutation';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useToastHook } from '@/hooks/useToastHook';
 import { Suspense } from 'react'
+import { useOnboardingStore } from '@/store/useOnboarding';
 
 // 1. 실제 로그인 로직을 담은 내부 컴포넌트 생성
 const LoginForm = () => {
@@ -21,14 +22,17 @@ const LoginForm = () => {
 
   const safeFrom =
     from && from.startsWith('/') && !from.startsWith('//') ? from : '/';
-
+  const startOnboarding = useOnboardingStore((state) => state.startOnboarding);
+  const stopOnboarding = useOnboardingStore((state) => state.stopOnboarding);
   const handleLogin = () => {
     login(undefined, {
       onSuccess: (data) => {
         if (data?.firstLogin) {
+          startOnboarding();
           router.replace('/onboarding');
           return;
         }
+        stopOnboarding();
         router.replace(safeFrom);
       },
       onError: () => {

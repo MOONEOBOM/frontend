@@ -1,28 +1,29 @@
 // src/lib/tanstack/query/summary.query.ts
 import api from '@/lib/axios';
 import { SummaryResponse } from '@/models/summary';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query'; // 1. useQuery로 변경
 import { getSummaryDetailApi } from '@/services/summary.api';
 
-export const useRecentSummary = (summaryId: number) => {
-
-  return useSuspenseQuery<SummaryResponse>({
+export const useRecentSummary = (
+  summaryId: number, 
+  options?: { enabled?: boolean }
+) => {
+  return useQuery<SummaryResponse>({ // 2. useQuery로 변경
     queryKey: ['summary', 'detail', summaryId],
     queryFn: async () => {
-      // throw new Error("서버 점검 중입니다.");  // 강제 에러
-      // GET) /api/v1/summary/{summaryId}?bubble=true URL 가져옴
       const { data: apiResponse } = await getSummaryDetailApi(summaryId);
-      const rawData = apiResponse.data; // SummaryDetailResponseDto 안꺼를 꺼내옴
+      const rawData = apiResponse.data;
 
-      // 백엔드랑 맞추기
       return {
         title: rawData.title,
         summary: rawData.content,
         core_chat: (rawData.highlights || []).map((item: any) => ({
-          speaker: item.role, 
-          message: item.message 
+          speaker: item.role,
+          message: item.message,
         })),
       };
     },
+    enabled: options?.enabled ?? true,
+    throwOnError: true,
   });
 };
