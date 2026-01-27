@@ -1,4 +1,3 @@
-'use client';
 import CardList from '@/components/history/CardList';
 import FlipCard from '@/components/history/FlipCard';
 

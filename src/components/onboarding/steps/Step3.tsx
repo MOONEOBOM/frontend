@@ -1,4 +1,3 @@
-'use client';
 import { motion } from 'framer-motion';
 
 const Step3 = () => {
@@ -14,15 +13,7 @@ const Step3 = () => {
             duration: 4,
             ease: 'linear',
           }}
-          style={{
-            width: '375px',
-            height: '1500px',
-            transformOrigin: 'top center',
-            flexShrink: 0,
-            scale: 0.786,
-            willChange: 'transform', // 이렇게 하지 않으면 페이지가 꿀렁거리면서 내려갑니다.
-            WebkitFontSmoothing: 'antialiased',
-          }}
+          className="h-[1500px] w-[375px] shrink-0 origin-top scale-[0.786] antialiased will-change-transform"
         >
           <iframe
             src="/scenario/result?isOnboarding=true"
