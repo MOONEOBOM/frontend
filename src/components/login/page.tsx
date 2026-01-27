@@ -20,6 +20,7 @@ const LoginPage = () => {
   const safeFrom =
     from && from.startsWith('/') && !from.startsWith('//') ? from : '/';
   const startOnboarding = useOnboardingStore((state) => state.startOnboarding);
+  const stopOnboarding = useOnboardingStore((state) => state.stopOnboarding);
   const handleLogin = () => {
     login(undefined, {
       onSuccess: (data) => {
@@ -28,6 +29,7 @@ const LoginPage = () => {
           router.replace('/onboarding');
           return;
         }
+        stopOnboarding();
         router.replace(safeFrom);
       },
 

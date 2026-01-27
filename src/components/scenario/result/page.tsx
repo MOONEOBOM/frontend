@@ -9,7 +9,6 @@ import { TextBubbleUser } from '@/components/TextBubble/TextBubbleUser';
 import Button from '@/components/common/Button';
 import { useGetScenario } from '@/lib/tanstack/query/scenario.query';
 import Spinner from './Spinner';
-import { useOnboardingStore } from '@/store/useOnboarding';
 
 const ONBOARD_BUBBLE = [
   { role: 'agent', message: 'U+ 고객센터입니다. 어떤 점이 불편하신가요?' },
@@ -40,11 +39,13 @@ const ScenarioResultPage = () => {
     data: result,
     isLoading,
     isError,
-  } = useGetScenario({
-    categoryKey: consultType ?? '',
-    reasonKey: reason ? [reason] : [],
-    enabled: !isOnboardingParam,
-  });
+  } = useGetScenario(
+    {
+      categoryKey: consultType ?? '',
+      reasonKey: reason ? [reason] : [],
+    },
+    { enabled: !isOnboardingParam },
+  );
 
   const displayScenario =
     (isOnboardingParam ? ONBOARD_BUBBLE : result?.scenario) || [];
@@ -61,7 +62,7 @@ const ScenarioResultPage = () => {
       </div>
     );
   }
-  console.log({ displayScenario, displayKeywords });
+
   return (
     <>
       <Header type="scenario" />

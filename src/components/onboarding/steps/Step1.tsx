@@ -7,7 +7,7 @@ const Step1 = () => {
     <div className="body2 mt-[22px] h-[510px] w-[295px] rounded-t-[42px] border-t-[5px] border-r-[5px] border-l-[5px] border-gray-500 bg-gray-100 px-[15px]">
       <div className="flex w-full justify-end">
         <div className="bg-primary body2 shadow-bubble mt-[128px] max-w-[190px] rounded-[12px_2px_12px_12px] px-[8px] py-[8px] break-words whitespace-pre-wrap text-black">
-          안녕하세한어러에ㅑㅓㄴ
+          안녕하세요, 반갑습니다.
         </div>
       </div>
       <div className="flex w-full justify-start">
@@ -16,7 +16,7 @@ const Step1 = () => {
           transition={{ layout: { duration: 0.5, delay: 1 } }} // 1초 뒤 애니메이션 시작
           className="body2 shadow-bubble mt-[24px] max-w-[180px] rounded-[2px_12px_12px_12px] bg-white px-[8px] py-[8px] break-words whitespace-pre-wrap"
         >
-          <div>안녕하세한어러에ㅑㅓㄴ집에갈랭넬ㅇ네러네</div>
+          <div>안녕하세요? 온보딩입니다. </div>
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
@@ -25,7 +25,7 @@ const Step1 = () => {
           >
             <div className="my-3 border-t border-gray-300" />
             <div className="text-sm whitespace-pre-wrap text-[#7E7E7E]">
-              <div>안녕하세요, 집에 가려고 합니다.</div>
+              <div>상세 설명입니다. 보다 쉬운 용어로 풀어 설명해드릴게요.</div>
             </div>
           </motion.div>
         </motion.div>

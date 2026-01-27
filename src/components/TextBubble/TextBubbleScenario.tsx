@@ -5,15 +5,11 @@ interface TextBubbleScenarioProps {
   text?: string;
   itemVariants?: Variants;
 }
-const MOCK_SCENARIO_TEXT =
-  '1월 12일 ~ 14일 동안 과금이 발생한 것으로 확인됩니다.';
 
 export function TextBubbleScenario({
   text,
   itemVariants,
 }: TextBubbleScenarioProps) {
-  const displayText = text ?? MOCK_SCENARIO_TEXT;
-
   return (
     <motion.div variants={itemVariants} className="flex w-full justify-start">
       <div className="my-4 flex items-start gap-[5px]">

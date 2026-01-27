@@ -1,7 +1,6 @@
 export interface ScenarioRequestDto {
   categoryKey: string;
   reasonKey: string[];
-  enabled?: boolean;
 }
 
 export interface ScenarioResponseDto {

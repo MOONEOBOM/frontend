@@ -14,18 +14,14 @@ export default function BottomBoard({
   onNext,
   isLast,
 }: BoardingProps) {
-  const { mutate: completeOnboarding, isPending } = useCompleteFirstLogin();
+  const { mutate: completeOnboarding } = useCompleteFirstLogin();
   const stopOnboarding = useOnboardingStore((state) => state.stopOnboarding);
-  const isOnboarding = useOnboardingStore((state) => state.isOnboarding);
-  const handleStart = () => {
-    stopOnboarding();
 
+  const handleStart = () => {
     completeOnboarding(undefined, {
       onSuccess: () => {
         console.log('온보딩 완료 성공!');
-        stopOnboarding;
-        const currentState = useOnboardingStore.getState().isOnboarding;
-        console.log('현재 온보딩:', currentState); // 여기서 false가 나옵니다!
+        stopOnboarding();
         onNext();
       },
       onError: (err) => {

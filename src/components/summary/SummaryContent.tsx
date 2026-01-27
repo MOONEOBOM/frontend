@@ -16,7 +16,7 @@ const ONBOARD_SUMMARY = {
     { speaker: 'user', text: '해외 다녀왔는데 요금이 너무 많이 나왔어요' },
     {
       speaker: 'agent',
-      text: '사용 번호 010-1234-5678 성함 이OO 고객님 맞으실까요? 본인이신가요?',
+      text: '로밍 종량 과금은 현지 요율로 적용되어 단가가 높을 수 있습니다.',
     },
   ],
 };

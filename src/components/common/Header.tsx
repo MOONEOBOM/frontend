@@ -58,9 +58,9 @@ const Header = ({
           </button>
         )}
         {type === 'onboarding' && (
-          <div className="body1" onClick={() => router.push('/')}>
+          <button className="body1" onClick={() => router.push('/')}>
             SKIP
-          </div>
+          </button>
         )}
       </div>
 

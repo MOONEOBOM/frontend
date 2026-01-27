@@ -4,7 +4,7 @@ import Logo from '@/assets/icon/logo_small.svg?react';
 import Moono from '@/assets/moono/moono_summary.svg?react';
 import dayjs from 'dayjs';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import MainCard from '@/components/history/MainCard';
 import { useHistoryStore } from '@/store/useHistoryStore';
 import { useSummaryDetail } from '@/lib/tanstack/query/history.query';
@@ -18,8 +18,9 @@ export default function FlipCard() {
   const { data, isPending, isError, error } = useSummaryDetail(activeId, {
     enabled: !isOnboarding,
   });
+  const hasAnimated = useRef(false);
   const cardData = isOnboarding ? MockSummary[activeId] : data;
-  if (isOnboarding) {
+  if (isOnboarding && !hasAnimated.current) {
     setTimeout(() => {
       setIsTouched(true);
     }, 2000); // 2초 후 앞면으로 복귀
