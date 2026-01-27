@@ -48,7 +48,7 @@ api.interceptors.response.use(
       //원래 요청 재시도
       return api.request(original);
     } catch {
-      window.location.href = '/signin';
+      window.location.href = '/login';
       return Promise.reject(error);
     }
   },

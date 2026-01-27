@@ -4,7 +4,7 @@ import { useSummaryRecent } from '@/lib/tanstack/query/history.query';
 import ChevRight from '@/assets/icon/chevron_right.svg';
 import { useRouter } from 'next/navigation';
 const RecentHistory = () => {
-  const { data: summary, isLoading, isError } = useSummaryRecent();
+  const { data: summary } = useSummaryRecent();
   const router = useRouter();
 
   function handleHistory() {
