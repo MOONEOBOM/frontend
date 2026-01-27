@@ -1,8 +1,8 @@
 import { getCallList, getCallMessages } from '@/services/calls.api';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 export function useCallList() {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: ['call', 'list'],
     queryFn: () => getCallList(),
   });

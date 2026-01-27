@@ -9,6 +9,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { SummaryRequest } from '@/models/summary';
 import { CallMessagesResponse } from '@/models/calls';
 import { useSummaryMutation } from '@/lib/tanstack/mutation/summary.mutation';
+import { useToastHook } from '@/hooks/useToastHook';
 
 function toSummaryRequest(
   messages: CallMessagesResponse[] | undefined,
@@ -29,6 +30,7 @@ const CallDetailPage = () => {
   const router = useRouter();
   const { data: call } = useCallMessages(Number(id));
   const { mutate: summary } = useSummaryMutation();
+  const { toast } = useToastHook();
 
   return (
     <div className="flex flex-col items-center">
@@ -51,8 +53,11 @@ const CallDetailPage = () => {
         variant="solid"
         onClick={() => {
           summary(toSummaryRequest(call), {
-            onSuccess: (summryId) => {
-              router.replace(`/summary?id=${summryId.data.data}`);
+            onSuccess: (summaryId) => {
+              router.replace(`/summary?id=${summaryId.data.data}`);
+            },
+            onError: () => {
+              toast('negative', '요약 생성 중 오류가 발생했습니다');
             },
           });
         }}
