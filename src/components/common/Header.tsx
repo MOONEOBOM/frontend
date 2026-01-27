@@ -10,10 +10,11 @@ import { useToastHook } from '@/hooks/useToastHook';
 
 const Header = ({
   type = 'back',
-  conversation,  // 챗봇에서만 쓰는 요약 API용
+  conversation, // 챗봇에서만 쓰는 요약 API용
 }: {
-  type: 'back' | 'home' | 'chat' | 'scenario';
-  conversation?: ChatMessage[];  // 챗봇 상담 요약 API -> 챗봇일때만 쓰니 "?" 사용
+  type: 'back' | 'home' | 'chat' | 'scenario' | 'onboarding';
+
+  conversation?: ChatMessage[]; // 챗봇 상담 요약 API -> 챗봇일때만 쓰니 "?" 사용
 }) => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,14 +31,19 @@ const Header = ({
     home: () => router.push('/'),
     chat: () => router.back(),
     scenario: () => setIsModalOpen(true),
+    onboarding: () => router.push('/'),
   };
 
   return (
     <>
       <div className="flex h-[62px] w-full items-center justify-between px-[20px]">
-        <button onClick={handleClickLeft[type]}>
-          <LeftChevron className="cursor-pointer" />
-        </button>
+        {type !== 'onboarding' ? (
+          <button onClick={handleClickLeft[type]}>
+            <LeftChevron className="cursor-pointer" />
+          </button>
+        ) : (
+          <div className="w-[24px]" /> // 버튼이 빠져도 레이아웃(정렬)을 유지하고 싶다면 빈 공간 추가
+        )}
 
         {type === 'chat' && (
           <button
@@ -51,6 +57,11 @@ const Header = ({
             상담 종료
           </button>
         )}
+        {type === 'onboarding' && (
+          <button className="body1" onClick={() => router.push('/')}>
+            SKIP
+          </button>
+        )}
       </div>
 
       {/* 대화가 존재하고, 대화가 1턴 이상 지속된 경우에만 모달 작동 */}
@@ -58,13 +69,13 @@ const Header = ({
         type === 'chat' &&
         conversation &&
         conversation.length > 0 && (
-        // 요약 API 관련
-        <ChatModal
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-          conversation={conversation}
-        />
-      )}
+          // 요약 API 관련
+          <ChatModal
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+            conversation={conversation}
+          />
+        )}
 
       {isModalOpen && type === 'scenario' && (
         <ScenarioModal

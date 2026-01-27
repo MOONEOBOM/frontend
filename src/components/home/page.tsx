@@ -1,7 +1,5 @@
 import HomeProfile from './HomeProfile';
 import RecentHistory from './RecentHistory';
-import axios from 'axios';
-import { ApiErrorResponse } from '@/models/common';
 
 const HomePage = () => {
   return (

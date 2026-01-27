@@ -6,6 +6,7 @@ import Header from '@/components/common/Header';
 import ScenarioQuestionBox from './ScenarioQuestionBox';
 import ScenarioNextButton from './ScenarioNextButton';
 import { ConsultTypeKey } from './scenariotype';
+import { useOnboardingStore } from '@/store/useOnboarding';
 
 export default function ScenarioContainer({
   children,
@@ -15,10 +16,10 @@ export default function ScenarioContainer({
   const router = useRouter();
   const [consultType, setConsultType] = useState<ConsultTypeKey | null>(null);
   const [reason, setReason] = useState<string | null>(null);
-
+  const { isOnboarding } = useOnboardingStore();
   return (
-    <div>
-      <Header type="home" />
+    <div className={isOnboarding ? 'mt-[50px]' : ''}>
+      {!isOnboarding && <Header type="home" />}
 
       {children}
 

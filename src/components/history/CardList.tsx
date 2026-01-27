@@ -4,6 +4,8 @@ import { cn } from '@/utils/cn';
 import CardItem from './CardItem';
 import dayjs from 'dayjs';
 import { useCardList } from '@/hooks/cardList/useCardList';
+import { useOnboardingStore } from '@/store/useOnboarding';
+import { MockSummary } from '@/data/MockSummary';
 import { useDrag } from '@/hooks/cardList/useDrag';
 
 type CardListProps = {
@@ -21,8 +23,32 @@ const CardList = ({ initialSelectedId }: CardListProps) => {
     onWheel,
   } = useCardList({ initialSelectedId, pageSize: 5 });
 
+  const { isOnboarding } = useOnboardingStore();
   const { isDragging, onMouseDown, onMouseMove, onMouseUp, onMouseLeave } =
     useDrag();
+
+  if (isOnboarding) {
+    return (
+      <div className="flex flex-col items-center gap-10">
+        <div
+          ref={scrollRef}
+          className={cn(
+            'flex h-[200px] w-[390px] items-center gap-[10px] overflow-x-auto',
+            'no-scrollbar touch-pan-x snap-x snap-mandatory',
+          )}
+        >
+          {MockSummary.map((item) => (
+            <div key={item.id} className="flex-shrink-0 snap-center">
+              <CardItem
+                title={item.title}
+                date={dayjs(item.createdDate).format('YYYY.MM.DD')}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center gap-10">
