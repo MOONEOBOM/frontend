@@ -20,6 +20,14 @@ const CardList = ({ initialSelectedId }: CardListProps) => {
     onWheel,
   } = useCardList({ initialSelectedId, pageSize: 10 });
 
+  if (items.length === 0)
+    return (
+      <div className="shadow-box flex h-[115px] w-[315px] items-center justify-center rounded-xl text-center">
+        <span className="script-body-16 text-gray-800">
+          아직 진행한 상담이 없어요 T_T
+        </span>
+      </div>
+    );
   return (
     <div className="flex flex-col items-center gap-10">
       <div
