@@ -19,8 +19,7 @@ const ScenarioQuestionBox = ({
   setReason,
 }: ScenarioQuestionBoxProps) => {
   const { isOnboarding } = useOnboardingStore();
-  const activeType =
-    consultType || (isOnboarding ? CONSULT_TYPES[0].key : null);
+  const activeType = isOnboarding ? CONSULT_TYPES[0].key : null;
   return (
     <div className="px-[30px]">
       <div className="h-[500px] w-[330px] rounded-[10px] bg-gray-100 px-[15px]">
