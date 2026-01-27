@@ -24,6 +24,9 @@ const CardList = ({ initialSelectedId }: CardListProps) => {
   } = useCardList({ initialSelectedId, pageSize: 5 });
 
   const { isOnboarding } = useOnboardingStore();
+  const { isDragging, onMouseDown, onMouseMove, onMouseUp, onMouseLeave } =
+    useDrag();
+
   if (isOnboarding) {
     return (
       <div className="flex flex-col items-center gap-10">
@@ -46,9 +49,6 @@ const CardList = ({ initialSelectedId }: CardListProps) => {
       </div>
     );
   }
-
-  const { isDragging, onMouseDown, onMouseMove, onMouseUp, onMouseLeave } =
-    useDrag();
 
   return (
     <div className="flex flex-col items-center gap-10">
