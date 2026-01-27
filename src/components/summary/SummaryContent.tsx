@@ -1,11 +1,14 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { TextBubbleScenario } from '../TextBubble/TextBubbleScenario';
 import { TextBubbleUser } from '../TextBubble/TextBubbleUser';
-
-import { motion } from 'framer-motion';
-
 import { useRecentSummary } from '@/lib/tanstack/query/summary.query';
+import { QueryBoundary } from '@/utils/QueryBoundary';
+import { SummaryLoading } from './SummaryLoading';
+import { SummaryError } from './SummaryError';
+import { useSearchParams } from 'next/navigation';
+import { motion } from 'framer-motion';
 import { useOnboardingStore } from '@/store/useOnboarding';
 
 const ONBOARD_SUMMARY = {
@@ -20,10 +23,12 @@ const ONBOARD_SUMMARY = {
     },
   ],
 };
+
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 },
 };
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -35,23 +40,17 @@ const containerVariants = {
   },
 };
 
-const SummaryContent = () => {
+const SummaryData = ({ summaryId }: { summaryId: number }) => {
+
   const { isOnboarding } = useOnboardingStore();
-  const { data, isLoading, isError } = useRecentSummary({
-    enabled: !isOnboarding,
+  const { data } = useRecentSummary(summaryId, {
+    enabled: !isOnboarding && !!summaryId,
   });
 
-  if (!isOnboarding && isLoading) {
-    return <div className="py-20 text-center">요약 불러오는 중...</div>;
-  }
-  if (!isOnboarding && (isError || !data)) {
-    return <div className="py-20 text-center">데이터를 가져오기 실패</div>;
-  }
   if (isOnboarding) {
     return (
       <div className="flex w-full flex-col items-center gap-[30px]">
         <p className="heading3">{ONBOARD_SUMMARY.title}</p>
-
         <p className="body2 px-[40px] text-center leading-relaxed break-words break-keep">
           {ONBOARD_SUMMARY.content}
         </p>
@@ -79,19 +78,17 @@ const SummaryContent = () => {
       </div>
     );
   }
+  
+  if (!data) return null;
+
   return (
     <div className="flex w-full flex-col items-center gap-[50px]">
-      {/* DB에서 가져온 title */}
-      <p className="heading2 text-center">{data?.title}</p>
-
-      {/* DB에서 가져온 summary (= DB에서는 content) */}
+      <p className="heading2 text-center">{data.title}</p>
       <p className="body1 px-[50px] text-center leading-relaxed break-words break-keep">
-        {data?.summary}
+        {data.summary}
       </p>
-
-      {/* 3. 핵심 채팅 부분 */}
       <div className="flex w-full flex-col gap-[16px]">
-        {data?.core_chat && data.core_chat.length > 0 ? (
+        {data.core_chat && data.core_chat.length > 0 ? (
           data.core_chat.map((chat, idx) =>
             chat.speaker === 'agent' ? (
               <TextBubbleScenario key={idx} text={chat.message} />
@@ -100,10 +97,34 @@ const SummaryContent = () => {
             ),
           )
         ) : (
-          <p className="text-center text-gray-400">핵심 대화가 없습니다.</p>
+          <p className="text-gray-400 text-center script-title">핵심 대화가 없어요...</p>
         )}
       </div>
     </div>
+  );
+};
+
+const SummaryContent = () => {
+
+  const searchParams = useSearchParams();
+  const id = searchParams.get('id');
+  const summaryId = id ? Number(id) : null;
+
+  if (!summaryId) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <p className="text-gray-500 script-body-16">요약 내역을 찾을 수 없어요...</p>
+      </div>
+    );
+  }
+
+  return (
+    <QueryBoundary
+      loadingFallback={<SummaryLoading />}
+      errorFallback={(reset) => <SummaryError reset={reset} />}
+    >
+      <SummaryData summaryId={summaryId} />
+    </QueryBoundary>
   );
 };
 

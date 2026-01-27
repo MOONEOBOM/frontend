@@ -2,26 +2,21 @@
 import api from '@/lib/axios';
 import { SummaryResponse } from '@/models/summary';
 import { useQuery } from '@tanstack/react-query';
+import { getSummaryDetailApi } from '@/services/summary.api';
 
-export const useRecentSummary = (options?: { enabled?: boolean }) => {
+export const useRecentSummary = (
+  summaryId: number, 
+  options?: { enabled?: boolean }
+) => {
   return useQuery<SummaryResponse>({
-    queryKey: ['summary', 'recent'],
+    queryKey: ['summary', 'detail', summaryId],
     queryFn: async () => {
-      const listResponse = await api.get('/summary?view=recent');
-      const items = listResponse.data.data.items;
-
-      if (!items || items.length === 0) {
-        throw new Error('데이터 없음');
-      }
-
-      const recentId = items[0].id;
-      const detailResponse = await api.get(`/summary/${recentId}?bubble=true`);
-      const rawData = detailResponse.data.data;
+      const { data: apiResponse } = await getSummaryDetailApi(summaryId);
+      const rawData = apiResponse.data;
 
       return {
         title: rawData.title,
         summary: rawData.content,
-        // 백엔드랑 맞추기
         core_chat: (rawData.highlights || []).map((item: any) => ({
           speaker: item.role,
           message: item.message,
@@ -29,5 +24,6 @@ export const useRecentSummary = (options?: { enabled?: boolean }) => {
       };
     },
     enabled: options?.enabled ?? true,
+    throwOnError: true,
   });
 };

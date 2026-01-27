@@ -2,6 +2,11 @@ import Header from '@/components/common/Header';
 import MoonobomRight from '@/assets/icon/logo_small.svg';
 import SummaryFeedback from './SummaryFeedback';
 import SummaryContent from './SummaryContent';
+import { Suspense } from 'react';
+import { SummaryLoading } from './SummaryLoading';
+
+export const dynamic = 'force-dynamic';
+
 
 const SummaryPage = () => {
   return (
@@ -9,9 +14,11 @@ const SummaryPage = () => {
       <Header type="home" />
 
       <div className="mb-[60px] flex w-full flex-col items-center gap-[50px] px-[41px]">
-        <MoonobomRight />
+        <MoonobomRight width={34} height={32} />
         <div className="h-[1px] w-[250px] bg-gray-300" />
-        <SummaryContent />
+         <Suspense fallback={<SummaryLoading />}>
+          <SummaryContent />
+        </Suspense>
         <div className="h-[1px] w-[250px] bg-gray-300" />
         <SummaryFeedback />
       </div>
