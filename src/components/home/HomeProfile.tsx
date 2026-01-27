@@ -16,7 +16,7 @@ const HomeProfile = () => {
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="heading1 mt-[71px]">{me.name}님, 반갑습니다!</div>
-      <div className="script-body-14 mt-[9px]">무너가 도와드릴게요.</div>
+      <div className="script-body-14 mt-[9px]">무너에게 물어보세요.</div>
       <HelloMoo className="mt-[50px]" />
       <div className="mt-[76px] flex flex-row items-center justify-center gap-[10px]">
         <Button

@@ -15,11 +15,10 @@ const RecentHistory = () => {
       <div className="mt-[58px] mb-[19px] flex w-full items-center justify-between px-[37.5px]">
         <div className="heading2">최근 상담 내역</div>
         <button
-          className="body3 flex items-center gap-[5px]"
+          className="body3 flex cursor-pointer items-center gap-[5px]"
           onClick={handleHistory}
         >
-          전체보기
-          <ChevRight />
+          전체보기 &gt;
         </button>
       </div>
       <div className="mb-[82px] flex flex-col gap-[15px]">
