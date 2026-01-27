@@ -54,11 +54,12 @@ const CallDetailPage = () => {
         onClick={() => {
           summary(toSummaryRequest(call), {
             onSuccess: (summaryId) => {
-              router.replace(`/summary?id=${summaryId.data.data}`);
+              router.replace(`/summary?id=${summaryId}`);
             },
             onError: () => {
               toast('negative', '요약 생성 중 오류가 발생했습니다');
             },
+            
           });
         }}
       >
