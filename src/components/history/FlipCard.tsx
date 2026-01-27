@@ -5,21 +5,34 @@ import Moono from '@/assets/moono/moono_summary.svg?react';
 import MoonoTako from '@/assets/moono/moono_tako.svg?react';
 import dayjs from 'dayjs';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import MainCard from '@/components/history/MainCard';
 import { useHistoryStore } from '@/store/useHistoryStore';
 import { useSummaryDetail } from '@/lib/tanstack/query/history.query';
+import { MockSummary } from '@/data/MockSummary';
+import { useOnboardingStore } from '@/store/useOnboarding';
 import Restart from '@/assets/icon/restart.svg';
 import Button from '../common/Button';
 import { cn } from '@/utils/cn';
 
 export default function FlipCard() {
   const [isTouched, setIsTouched] = useState(false);
+  const { isOnboarding } = useOnboardingStore();
   const activeId = useHistoryStore((state) => state.activeId);
-  const { data, isPending, isError, isRefetching, refetch } =
-    useSummaryDetail(activeId);
-
-  if (isPending)
+  const { data, isPending, isError, isRefetching, refetch } = useSummaryDetail(
+    activeId,
+    {
+      enabled: !isOnboarding,
+    },
+  );
+  const hasAnimated = useRef(false);
+  const cardData = isOnboarding ? MockSummary[activeId] : data;
+  if (isOnboarding && !hasAnimated.current) {
+    setTimeout(() => {
+      setIsTouched(true);
+    }, 2000); // 2초 후 앞면으로 복귀
+  }
+  if (!isOnboarding && isPending)
     return (
       <MainCard>
         <div
@@ -35,7 +48,7 @@ export default function FlipCard() {
         </div>
       </MainCard>
     );
-  if (isError)
+  if (!isOnboarding && isError)
     return (
       <MainCard>
         <div
@@ -68,9 +81,9 @@ export default function FlipCard() {
           <MainCard>
             <Moono className="w-[140px]" />
             <div className="flex flex-col items-center gap-[20px]">
-              <p className="heading3 px-[30px]">{data.title}</p>
+              <p className="heading3 px-[30px]">{cardData?.title}</p>
               <p className="body3 text-gray-800">
-                {dayjs(data.createdDate).format('YYYY.MM.DD')}
+                {dayjs(cardData?.createdDate).format('YYYY.MM.DD')}
               </p>
             </div>
           </MainCard>
@@ -81,12 +94,12 @@ export default function FlipCard() {
           <MainCard>
             <Logo className="h-[34px]" />
             <div className="flex h-[200px] w-[210px] flex-col items-center gap-[15px]">
-              <p className="heading3">{data.title}</p>
+              <p className="heading3">{cardData?.title}</p>
               <div className="w-[200px] border-t-1 border-gray-300" />
-              <p className="body2 text-center">{data.content}</p>
+              <p className="body2 text-center">{cardData?.content}</p>
             </div>
             <p className="body3 bottom-[20px] text-gray-800">
-              {dayjs(data.createdDate).format('YYYY.MM.DD')}
+              {dayjs(cardData?.createdDate).format('YYYY.MM.DD')}
             </p>
           </MainCard>
         </div>

@@ -18,14 +18,12 @@ type Message =
   | { role: 'service'; normal: string; easy: string };
 
 const ChatbotPage = () => {
-
   const router = useRouter();
   const [text, setText] = useState('');
   const { mutate, isPending } = useChat();
   const [messages, setMessages] = useState<Message[]>([]);
 
   const sendMessage = (sendMessage: string) => {
-    
     if (!sendMessage.trim() || isPending) return;
     setMessages((prev) => [...prev, { role: 'user', text: sendMessage }]);
     if (sendMessage === text) setText('');
@@ -97,7 +95,6 @@ const ChatbotPage = () => {
       </div>
 
       <div className="fixed bottom-0">
-
         <div className="mx-[12px] mb-[10px] flex gap-[5px]">
           <Badge color="blue" onClick={handleAddCallButton}>
             전화 상담 연결하기
@@ -128,7 +125,6 @@ const ChatbotPage = () => {
             <SendIcon />
           </button>
         </div>
-
       </div>
     </div>
   );

@@ -1,11 +1,17 @@
 import MooneoIcon from '@/assets/moono/moono_profile.svg?react';
+import { Variants, motion } from 'framer-motion';
 
-interface TextBubbleAgentProps {
-  text: string;
+interface TextBubbleScenarioProps {
+  text?: string;
+  itemVariants?: Variants;
 }
-export function TextBubbleScenario({ text }: TextBubbleAgentProps) {
+
+export function TextBubbleScenario({
+  text,
+  itemVariants,
+}: TextBubbleScenarioProps) {
   return (
-    <div className="flex w-full justify-start">
+    <motion.div variants={itemVariants} className="flex w-full justify-start">
       <div className="my-4 flex items-start gap-[5px]">
         {/* 프로필 무너 아이콘 */}
         <div
@@ -19,6 +25,6 @@ export function TextBubbleScenario({ text }: TextBubbleAgentProps) {
           {text}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

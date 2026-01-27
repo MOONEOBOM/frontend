@@ -7,6 +7,7 @@ import HelloMoo from '@/assets/moono/moono_hello.svg';
 import { useLogin } from '@/lib/tanstack/mutation/auth.mutation';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useToastHook } from '@/hooks/useToastHook';
+import { useOnboardingStore } from '@/store/useOnboarding';
 
 const LoginPage = () => {
   const { mutate: login } = useLogin();
@@ -18,14 +19,17 @@ const LoginPage = () => {
 
   const safeFrom =
     from && from.startsWith('/') && !from.startsWith('//') ? from : '/';
-
+  const startOnboarding = useOnboardingStore((state) => state.startOnboarding);
+  const stopOnboarding = useOnboardingStore((state) => state.stopOnboarding);
   const handleLogin = () => {
     login(undefined, {
       onSuccess: (data) => {
         if (data?.firstLogin) {
-          router.replace('/onboarding'); // 첫 로그인 전용 경로
+          startOnboarding();
+          router.replace('/onboarding');
           return;
         }
+        stopOnboarding();
         router.replace(safeFrom);
       },
 
