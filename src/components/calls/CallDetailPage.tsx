@@ -34,9 +34,9 @@ const CallDetailPage = () => {
   const { mutate: summary } = useSummaryMutation();
   const { toast } = useToastHook();
 
-  const [isloading, setIsloading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  if (isloading) {
+  if (isLoading) {
     return <Loading text="무너가 통화내역을 가져오고 있어요" />;
   }
 
@@ -60,14 +60,14 @@ const CallDetailPage = () => {
         size="full"
         variant="solid"
         onClick={() => {
-          setIsloading(true);
+          setIsLoading(true);
           summary(toSummaryRequest(call), {
             onSuccess: (summaryId) => {
               router.replace(`/summary?id=${summaryId}`);
             },
             onError: () => {
               toast('negative', '요약 생성 중 오류가 발생했습니다');
-              setIsloading(false);
+              setIsLoading(false);
             },
           });
         }}
