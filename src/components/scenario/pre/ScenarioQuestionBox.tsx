@@ -38,7 +38,7 @@ const ScenarioQuestionBox = ({
                 <button
                   key={item.key}
                   type="button"
-                  className="block"
+                  className="block cursor-pointer"
                   onClick={() => {
                     setConsultType(item.key);
                     setReason(null);

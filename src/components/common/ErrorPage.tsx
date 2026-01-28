@@ -5,20 +5,22 @@ import MoonoError from '@/assets/moono/moono_lost.svg?react';
 import Button from '@/components/common/Button';
 
 interface ErrorPageProps {
-  message: string;
+  message?: string;
   buttonColor?: string;
-  reset: () => void;
+  reset?: () => void;
 }
 
 export default function ErrorPage({
-  message,
+  message = "앗! 무너가 길을 잃었어요.\n잠시 후 다시 시도해 주시겠어요?",
   buttonColor,
   reset,
 }: ErrorPageProps) {
   const router = useRouter();
 
   const ClickReset = () => {
-    reset();
+    if (reset) {
+      reset();
+    }
     router.replace('/');
   };
 
