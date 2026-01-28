@@ -20,7 +20,7 @@ const ResultError = ({ refetch }: resultErrorProps) => {
       {/* 에러 안내 텍스트 */}
       <div className="px-[50px] text-center">
         <p className="script-title whitespace-pre-wrap">
-          시나리오 생성에 문제가 생겼어요...
+          시나리오 생성에 문제가 생겼어요
         </p>
       </div>
 
@@ -34,11 +34,8 @@ const ResultError = ({ refetch }: resultErrorProps) => {
         >
           다시 시도
         </Button>
-        <Link
-          href="/"
-          className="script-body-14 w-fit cursor-pointer bg-[linear-gradient(to_top,var(--color-primary)_40%,transparent_40%)] px-0.5 leading-[1.2]"
-        >
-          홈으로 이동
+        <Link href="/" className="body3 w-fit cursor-pointer underline">
+          홈으로 돌아가기
         </Link>
       </div>
     </div>

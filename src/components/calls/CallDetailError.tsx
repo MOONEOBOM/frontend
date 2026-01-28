@@ -34,12 +34,8 @@ const CallDetailError = ({ refetch }: detailErrorProps) => {
         >
           다시 시도
         </Button>
-        <Link
-          href="/"
-          replace
-          className="script-body-14 w-fit cursor-pointer bg-[linear-gradient(to_top,var(--color-primary)_40%,transparent_40%)] px-0.5 leading-[1.2]"
-        >
-          홈으로 이동
+        <Link href="/" className="body3 w-fit cursor-pointer underline">
+          홈으로 돌아가기
         </Link>
       </div>
     </div>
