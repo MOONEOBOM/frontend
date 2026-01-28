@@ -1,6 +1,7 @@
 import { useOnboardingStore } from '@/store/useOnboarding';
 import { cn } from '@/utils/cn';
 import { motion } from 'framer-motion';
+
 interface BadgeProps {
   children: React.ReactNode;
   color: 'blue' | 'primary';
@@ -9,6 +10,7 @@ interface BadgeProps {
   outline?: boolean;
   size?: 'default' | 'large';
   isOnboarding?: boolean;
+  className?: string;  // 스타일 요소 관련
 }
 
 const Badge = ({
@@ -19,6 +21,7 @@ const Badge = ({
   outline = false,
   size = 'default',
   isOnboarding,
+  className,
 }: BadgeProps) => {
   return (
     <motion.div
@@ -58,6 +61,8 @@ const Badge = ({
         size === 'large' && 'h-[33px] px-[14px]',
 
         isSelected && 'bg-primary',
+
+        className
       )}
     >
       <span className="pt-[1px] leading-none">{children}</span>
