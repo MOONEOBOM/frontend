@@ -1,8 +1,9 @@
 'use client';
-import ToggleBox from '@/components/common/ToggleBox';
+import Box from '@/components/common/Box';
 import { useSummaryRecent } from '@/lib/tanstack/query/history.query';
-import ChevRight from '@/assets/icon/chevron_right.svg';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+
 const RecentHistory = () => {
   const { data: summary } = useSummaryRecent();
   const router = useRouter();
@@ -24,13 +25,9 @@ const RecentHistory = () => {
       <div className="mb-[82px] flex flex-col gap-[15px]">
         {summary && summary.length > 0 ? (
           summary.map((item) => (
-            <ToggleBox
-              isHome
-              href={`/history?selected=${item.id}`}
-              key={item.id}
-            >
-              {item.title}
-            </ToggleBox>
+            <Box key={item.id}>
+              <Link href={`/history?selected=${item.id}`}>{item.title}</Link>
+            </Box>
           ))
         ) : (
           <div className="shadow-box flex h-[115px] w-[315px] items-center justify-center rounded-xl text-center">

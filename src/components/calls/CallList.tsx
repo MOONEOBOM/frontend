@@ -2,7 +2,7 @@
 
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
-import Box from '@/components/calls/Box';
+import CallItem from '@/components/calls/CallItem';
 import Link from 'next/link';
 import { useCallList } from '@/lib/tanstack/query/calls.query';
 import CallListSkeleton from './CallListSkeleton';
@@ -33,7 +33,7 @@ const CallList = () => {
       {callList?.map((c) => {
         return (
           <Link key={c.id} href={`/calls/${c.id}`}>
-            <Box
+            <CallItem
               date={dayjs(c.startedAt).format('YYYY.MM.DD A h:mm')}
               text={c.previewText}
               isNew={c.id === 1}
