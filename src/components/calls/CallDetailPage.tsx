@@ -11,7 +11,7 @@ import { CallMessagesResponse } from '@/models/calls';
 import { useSummaryMutation } from '@/lib/tanstack/mutation/summary.mutation';
 import { useToastHook } from '@/hooks/useToastHook';
 import { useState } from 'react';
-import CallDetailLoading from './CallDetailLoading';
+import Loading from './loading';
 
 function toSummaryRequest(
   messages: CallMessagesResponse[] | undefined,
@@ -37,7 +37,7 @@ const CallDetailPage = () => {
   const [isloading, setIsloading] = useState(false);
 
   if (isloading) {
-    return <CallDetailLoading />;
+    return <Loading text="무너가 통화내역을 가져오고 있어요" />;
   }
 
   return (
