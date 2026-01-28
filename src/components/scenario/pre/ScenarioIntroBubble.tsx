@@ -1,5 +1,3 @@
-'use client';
-
 import MoonoProfile from '@/assets/moono/moono_profile.svg?react';
 
 const ScenarioIntroBubble = () => {
