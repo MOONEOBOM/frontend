@@ -10,6 +10,8 @@ import { SummaryRequest } from '@/models/summary';
 import { CallMessagesResponse } from '@/models/calls';
 import { useSummaryMutation } from '@/lib/tanstack/mutation/summary.mutation';
 import { useToastHook } from '@/hooks/useToastHook';
+import CallDetailPageSkeleton from './CallDetailPageSkeleton';
+import CallDetailError from './CallDetailError';
 
 function toSummaryRequest(
   messages: CallMessagesResponse[] | undefined,
@@ -28,10 +30,21 @@ function toSummaryRequest(
 const CallDetailPage = () => {
   const { id } = useParams();
   const router = useRouter();
-  const { data: call } = useCallMessages(Number(id));
+  const {
+    data: call,
+    isLoading,
+    isError,
+    refetch,
+  } = useCallMessages(Number(id));
   const { mutate: summary } = useSummaryMutation();
   const { toast } = useToastHook();
 
+  if (isLoading) {
+    return <CallDetailPageSkeleton />;
+  }
+  if (isError) {
+    return <CallDetailError refetch={refetch} />;
+  }
   return (
     <div className="flex flex-col items-center">
       <Header type="back" />

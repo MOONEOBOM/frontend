@@ -19,7 +19,7 @@ const CallList = () => {
 
   if (isError) {
     return (
-      <div className="flex flex-col items-center gap-3 rounded-[20px] border bg-white/90 p-4">
+      <div className="shadow-rest mt-10 flex flex-col items-center gap-3 rounded-[20px] border border-gray-300 bg-white p-4">
         <button onClick={() => refetch()}>
           <Restart className="text-primary h-6 w-6 cursor-pointer" />
         </button>
