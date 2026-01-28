@@ -23,7 +23,6 @@ const SummaryFeedback = () => {
       {showConfetti && (
         <Confetti
           width={390}
-          height={844}
           numberOfPieces={500}
           gravity={0.5}
           recycle={false}
