@@ -12,11 +12,12 @@
 ### 초기 화면
 | 로그인 | 홈 |
 | :---: | :---: |
-|<img width="310" alt="image" src="https://github.com/user-attachments/assets/523596b1-a1dc-4deb-87e7-479b20cd8fdf" /> | <img width="310" alt="image" src="https://github.com/user-attachments/assets/216969d5-d367-4768-a9c6-4820d2c1ba00" /> |
+|<img width="310" alt="image" src="https://github.com/user-attachments/assets/b068258d-1f2a-4a20-902c-4e1cc4997aee" />| <img width="310" alt="image" src="https://github.com/user-attachments/assets/bc23fba8-d7cf-4152-9ddc-90367dbff22c" /> |
 
-### 온보딩 (현재 구현 중)
-| <img width="310" alt="image" src="https://github.com/user-attachments/assets/d9a543bf-0852-4466-a2ac-3aa92ca4cbf5" /> | <img width="310" alt="image" src="https://github.com/user-attachments/assets/fbdab48c-57ee-45ca-bf7d-996ba9a5aadb" /> | <img width="310" alt="image" src="https://github.com/user-attachments/assets/b80f7be7-97d4-427c-b992-a6174e9cde2c" /> |
+### 온보딩
+| <img width="310" alt="image" src="https://github.com/user-attachments/assets/58690d7a-7fde-4427-910e-591ae8911b7f" /> | <img width="310" alt="image" src="https://github.com/user-attachments/assets/59dc1706-3465-4c09-b256-3c42a2b432e0" /> | <img width="310" alt="image" src="https://github.com/user-attachments/assets/d7c8ff1e-5815-4e8e-bf4f-88433ac218a5" /> |
 | :---: | :---: | :---:|
+| <img width="310" alt="image" src="https://github.com/user-attachments/assets/fa8599d9-cc61-4b89-b8d8-00fc87fe2066" /> | <img width="310" alt="image" src="https://github.com/user-attachments/assets/45e6f4a8-c5ae-4328-8401-8ac8d3fb560b" /> |
 
 ### 시나리오
 <table>
@@ -24,19 +25,35 @@
     <tr>
       <th>사전 정보 입력</th>
       <th>시나리오 생성 결과</th>
-      <th>시나리오 결과 평가</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td valign="top" align="center">
-        <img width="310" alt="image" src="https://github.com/user-attachments/assets/39fa515a-dc0b-4dce-a42a-7c073e2e31cb" />
+        <img width="310" alt="image" src="https://github.com/user-attachments/assets/af6e3923-fc64-4489-99de-a5fb0ddad106" />
       </td>
       <td valign="top" align="center">
-        <img width="310" alt="image" src="https://github.com/user-attachments/assets/8fb401b0-5d99-481e-9abd-73c7609cb244" />
+        <img width="310" alt="image" src="https://github.com/user-attachments/assets/4b94d68b-289c-4843-8f08-fa8194194525" />
       </td>
-      <td valign='top' align='center'>
-        <img width="310" alt="image" src="https://github.com/user-attachments/assets/3ccfa0bc-c600-4d31-9331-55fa68b26151" />
+    </tr>
+  </tbody>
+</table>
+
+### 통화 상담
+<table>
+  <thead>
+    <tr>
+      <th>통화 상담 내역</th>
+      <th>통화 상담 전문</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td valign="top" align="center">
+        <img width="310" alt="image" src="https://github.com/user-attachments/assets/a859c603-7a0f-4027-9697-505f066c75c8" />
+      </td>
+      <td valign="top" align="center">
+        <img width="310" alt="image" src="https://github.com/user-attachments/assets/d1888751-1670-462e-98db-42eec2ebfc15" />
       </td>
     </tr>
   </tbody>
@@ -45,23 +62,24 @@
 ### 챗봇 상담
 | 챗봇 상담 | 상담 종료 |
 | :---: | :---: |
-| <img width="310" height="1506" alt="image" src="https://github.com/user-attachments/assets/2ec1f5f9-49f4-4c02-94f6-29e529da5dff" /> | <img width="310" alt="image" src="https://github.com/user-attachments/assets/9c790ff6-5ff8-4676-8af6-1e54d103eeb7" /> |
+| <img width="310" alt="image" src="https://github.com/user-attachments/assets/255b4cb4-5c34-4eae-b8e1-b1ac131bc611" /> | <img width="310" alt="image" src="https://github.com/user-attachments/assets/6fc3d500-4b4f-4ad4-965e-364eadd76b2e" /> |
 
 
 ### 요약 페이지
 <table>
   <thead>
     <tr>
-      <th colspan="2">요약 결과</th>
+      <th>요약 결과</th>
+      <th>요약 내역</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td valign="top" align="center">
-        <img width="310" alt="image" src="https://github.com/user-attachments/assets/bc8c0e78-10ac-4aad-9a20-0f5e03919015" />
+        <img width="310" alt="image" src="https://github.com/user-attachments/assets/894e0a0d-5f8a-424e-9dc2-6e9c8dd77d8e" />
       </td>
       <td valign="top" align="center">
-        <img width="310" alt="summary gif" src="https://github.com/user-attachments/assets/46c5d5fa-5164-4fd3-aeff-1c3073452bd6" />
+        <img width="310" alt="summary gif" src="https://github.com/user-attachments/assets/6f94f969-192e-45fc-8342-4a39103798ec" />
       </td>
     </tr>
   </tbody>
