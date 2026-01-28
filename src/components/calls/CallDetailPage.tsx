@@ -37,7 +37,7 @@ const CallDetailPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   if (isLoading) {
-    return <Loading text="무너가 통화내역을 가져오고 있어요" />;
+    return <Loading text="무너가 통화내용을 요약하고 있어요" />;
   }
 
   return (

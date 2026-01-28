@@ -25,7 +25,7 @@ async function CallContent() {
 // 메인 페이지 컴포넌트
 export default function CallPage() {
   return (
-    <Suspense fallback={<CallLoading />}>
+    <Suspense fallback={<CallLoading text="무너가 통화내역을 가져오고 있어요" />}>
       <Header type="home" />
       <CallContent />
     </Suspense>
