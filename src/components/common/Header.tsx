@@ -7,6 +7,7 @@ import ChatModal from '@/components/chatbot/ChatModal';
 import ScenarioModal from '../scenario/result/ScenarioModal';
 import { ChatMessage } from '@/models/summary';
 import { useToastHook } from '@/hooks/useToastHook';
+import { useOnboardingStore } from '@/store/useOnboarding';
 
 const Header = ({
   type = 'back',
@@ -19,6 +20,7 @@ const Header = ({
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { toast } = useToastHook();
+  const stopOnboarding = useOnboardingStore((state) => state.stopOnboarding);
 
   /**
    * 요약 가능한지 판단하는 부분
@@ -58,7 +60,13 @@ const Header = ({
           </button>
         )}
         {type === 'onboarding' && (
-          <button className="body1" onClick={() => router.push('/')}>
+          <button
+            className="body1"
+            onClick={() => {
+              stopOnboarding();
+              router.push('/');
+            }}
+          >
             SKIP
           </button>
         )}

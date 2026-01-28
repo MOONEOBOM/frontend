@@ -11,7 +11,6 @@ const SummaryFeedback = () => {
   const hasAnimated = useRef(false);
   const handleRouter = () => {
     if (!hasAnimated.current) {
-      hasAnimated.current = true;
       setShowConfetti(true);
       setTimeout(() => {
         router.push('/');
