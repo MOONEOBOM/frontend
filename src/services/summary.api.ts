@@ -21,7 +21,7 @@ export const generateSummaryApi = async (
  * 요약 상세 조회 (GET /api/v1/summary/{summaryId})
  * @param summaryId : 백엔드에서 생성된 Long 타입 ID
  */
-export const getSummaryDetailApi = (summaryId: number) => {
+export const getSummaryDetailApi = (summaryId: number | undefined) => {
   return api.get(`/summary/${summaryId}`, {
     params: {
       bubble: true,

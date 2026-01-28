@@ -1,11 +1,10 @@
 // src/lib/tanstack/query/summary.query.ts
-import api from '@/lib/axios';
 import { SummaryResponse } from '@/models/summary';
 import { useQuery } from '@tanstack/react-query';
 import { getSummaryDetailApi } from '@/services/summary.api';
 
 export const useRecentSummary = (
-  summaryId: number,
+  summaryId: number | undefined,
   options?: { enabled?: boolean },
 ) => {
   return useQuery<SummaryResponse>({

@@ -6,13 +6,13 @@ import SummaryContent from './SummaryContent';
 export const dynamic = 'force-dynamic';
 
 type SummaryPageProps = {
-  searchParams: { id?: string } | Promise<{ id?: string }>;
+  searchParams?: { id?: string } | Promise<{ id?: string }>;
 };
 
 const SummaryPage = async ({ searchParams }: SummaryPageProps) => {
   const sp = await searchParams;
   const summaryId =
-    typeof sp.id === 'string' ? Number(sp.id) : Number(sp.id?.[0]);
+    typeof sp?.id === 'string' ? Number(sp.id) : Number(sp?.id?.[0]);
 
   return (
     <div className="flex flex-col items-center">

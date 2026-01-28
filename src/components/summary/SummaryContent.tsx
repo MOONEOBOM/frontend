@@ -5,7 +5,6 @@ import { TextBubbleUser } from '../TextBubble/TextBubbleUser';
 import { useRecentSummary } from '@/lib/tanstack/query/summary.query';
 import { SummaryLoading } from './SummaryLoading';
 import { SummaryError } from './SummaryError';
-import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { useOnboardingStore } from '@/store/useOnboarding';
 
@@ -76,7 +75,9 @@ type SummaryContentProps = {
 
 const SummaryContent = ({ summaryId }: SummaryContentProps) => {
   const { isOnboarding } = useOnboardingStore();
-
+  const { data, isLoading, isError, refetch } = useRecentSummary(summaryId, {
+    enabled: !isOnboarding && !!summaryId,
+  });
   if (isOnboarding) {
     return <SummaryOnboarding />;
   }
@@ -89,10 +90,6 @@ const SummaryContent = ({ summaryId }: SummaryContentProps) => {
       </div>
     );
   }
-
-  const { data, isLoading, isError, refetch } = useRecentSummary(summaryId, {
-    enabled: !isOnboarding && !!summaryId,
-  });
 
   if (isLoading) {
     return <SummaryLoading />;
