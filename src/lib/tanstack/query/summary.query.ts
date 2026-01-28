@@ -5,8 +5,8 @@ import { useQuery } from '@tanstack/react-query';
 import { getSummaryDetailApi } from '@/services/summary.api';
 
 export const useRecentSummary = (
-  summaryId: number, 
-  options?: { enabled?: boolean }
+  summaryId: number,
+  options?: { enabled?: boolean },
 ) => {
   return useQuery<SummaryResponse>({
     queryKey: ['summary', 'detail', summaryId],
@@ -24,6 +24,5 @@ export const useRecentSummary = (
       };
     },
     enabled: options?.enabled ?? true,
-    throwOnError: true,
   });
 };
