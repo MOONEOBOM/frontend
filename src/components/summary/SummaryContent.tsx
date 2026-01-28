@@ -1,13 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { TextBubbleScenario } from '../TextBubble/TextBubbleScenario';
 import { TextBubbleUser } from '../TextBubble/TextBubbleUser';
 import { useRecentSummary } from '@/lib/tanstack/query/summary.query';
-import { QueryBoundary } from '@/utils/QueryBoundary';
 import { SummaryLoading } from './SummaryLoading';
 import { SummaryError } from './SummaryError';
-import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { useOnboardingStore } from '@/store/useOnboarding';
 
@@ -71,14 +68,36 @@ const SummaryOnboarding = () => {
     </div>
   );
 };
-const SummaryData = ({ summaryId }: { summaryId: number }) => {
+
+type SummaryContentProps = {
+  summaryId?: number;
+};
+
+const SummaryContent = ({ summaryId }: SummaryContentProps) => {
   const { isOnboarding } = useOnboardingStore();
-  const { data } = useRecentSummary(summaryId, {
+  const { data, isLoading, isError, refetch } = useRecentSummary(summaryId, {
     enabled: !isOnboarding && !!summaryId,
   });
+  if (isOnboarding) {
+    return <SummaryOnboarding />;
+  }
+  if (!summaryId) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <p className="script-body-16 text-gray-500">
+          요약 내역을 찾을 수 없어요...
+        </p>
+      </div>
+    );
+  }
 
+  if (isLoading) {
+    return <SummaryLoading />;
+  }
+  if (isError) {
+    return <SummaryError reset={refetch} />;
+  }
   if (!data) return null;
-
   return (
     <div className="flex w-full flex-col items-center gap-[50px]">
       <p className="heading2 text-center">{data.title}</p>
@@ -101,36 +120,6 @@ const SummaryData = ({ summaryId }: { summaryId: number }) => {
         )}
       </div>
     </div>
-  );
-};
-
-const SummaryContent = () => {
-  const searchParams = useSearchParams();
-  const id = searchParams.get('id');
-  const summaryId = id ? Number(id) : null;
-  const { isOnboarding } = useOnboardingStore();
-
-  if (isOnboarding) {
-    return <SummaryOnboarding />;
-  }
-
-  if (!summaryId) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <p className="script-body-16 text-gray-500">
-          요약 내역을 찾을 수 없어요...
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <QueryBoundary
-      loadingFallback={<SummaryLoading />}
-      errorFallback={(reset) => <SummaryError reset={reset} />}
-    >
-      <SummaryData summaryId={summaryId} />
-    </QueryBoundary>
   );
 };
 

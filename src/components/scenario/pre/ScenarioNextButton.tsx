@@ -33,7 +33,7 @@ const ScenarioNextButton = ({
         className={cn('bg-primary', isDisabled && 'opacity-40')}
         onClick={handleClick}
       >
-        다음
+        시나리오 생성하기
       </Button>
     </div>
   );

@@ -60,7 +60,7 @@ const ScenarioQuestionBox = ({
         {activeType && ( //온보딩의 경우 첫번째 아이템으로 지정
           <>
             <div className="mt-[53px]">
-              <p className="heading3">변경하시는 이유가 무엇인가요?</p>
+              <p className="heading3">상담할 내용을 선택해 주세요.</p>
             </div>
             <div className="mt-[12px]">
               <Dropdown
@@ -81,7 +81,7 @@ const ScenarioQuestionBox = ({
           <>
             {/* 3. 이유 질문 */}
             <div className="mt-[53px]">
-              <p className="heading3">변경하시는 이유가 무엇인가요?</p>
+              <p className="heading3">상담할 내용을 선택해 주세요.</p>
             </div>
 
             {/* 4. 이유 선택 Dropdown */}

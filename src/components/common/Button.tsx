@@ -30,7 +30,7 @@ export default function Button({
   return (
     <button
       className={cn(
-        'flex cursor-pointer items-center justify-center rounded-xl transition-all active:scale-95',
+        'flex cursor-pointer items-center justify-center rounded-xl transition-all active:enabled:scale-95 disabled:cursor-not-allowed',
         icon ? 'gap-[15px]' : '',
         sizes[size],
         variants[variant],

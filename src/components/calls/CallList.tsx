@@ -5,11 +5,28 @@ import 'dayjs/locale/ko';
 import Box from '@/components/calls/Box';
 import Link from 'next/link';
 import { useCallList } from '@/lib/tanstack/query/calls.query';
+import CallListSkeleton from './CallListSkeleton';
+import Restart from '@/assets/icon/restart.svg';
 
 dayjs.locale('ko');
 
 const CallList = () => {
-  const { data: callList } = useCallList();
+  const { data: callList, isLoading, isError, refetch } = useCallList();
+
+  if (isLoading) {
+    return <CallListSkeleton />;
+  }
+
+  if (isError) {
+    return (
+      <div className="mt-10 flex flex-col items-center gap-3 rounded-[20px] bg-white p-4">
+        <button onClick={() => refetch()}>
+          <Restart className="text-primary h-6 w-6 cursor-pointer" />
+        </button>
+        <p className="body2">통화내역을 불러오지 못했어요</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col gap-[25px]">

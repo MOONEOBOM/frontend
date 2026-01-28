@@ -78,7 +78,7 @@ const Dropdown = ({
                 setOpen(false);
               }}
               className={cn(
-                'border-primary flex h-[40px] cursor-pointer items-center border-t bg-white p-[15px] hover:bg-gray-100',
+                'border-primary hover:bg-primary-100 flex h-[40px] cursor-pointer items-center border-t bg-white p-[15px]',
               )}
             >
               {option.label}

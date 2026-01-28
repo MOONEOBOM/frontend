@@ -41,7 +41,7 @@ export function useSummaryDetail(
   options?: { enabled?: boolean },
 ) {
   return useQuery({
-    queryKey: ['summary', 'detail', summaryId],
+    queryKey: ['summary', 'detail', 'history', summaryId],
     queryFn: () => getSummaryDetail(summaryId),
     enabled: !!summaryId && (options?.enabled ?? true),
     placeholderData: (previousData) => previousData,

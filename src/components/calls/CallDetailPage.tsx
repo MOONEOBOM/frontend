@@ -12,6 +12,8 @@ import { useSummaryMutation } from '@/lib/tanstack/mutation/summary.mutation';
 import { useToastHook } from '@/hooks/useToastHook';
 import { useState } from 'react';
 import Loading from './loading';
+import CallDetailPageSkeleton from './CallDetailPageSkeleton';
+import CallDetailError from './CallDetailError';
 
 function toSummaryRequest(
   messages: CallMessagesResponse[] | undefined,
@@ -29,17 +31,24 @@ function toSummaryRequest(
 
 const CallDetailPage = () => {
   const { id } = useParams();
+  const callId = typeof id === 'string' ? Number(id) : Number(id?.[0]);
   const router = useRouter();
-  const { data: call } = useCallMessages(Number(id));
+  const { data: call, isLoading, isError, refetch } = useCallMessages(callId);
   const { mutate: summary } = useSummaryMutation();
   const { toast } = useToastHook();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSummaryLoading, setIsSummaryLoading] = useState(false);
 
-  if (isLoading) {
+  if (isSummaryLoading) {
     return <Loading text="무너가 통화내용을 요약하고 있어요" />;
   }
 
+  if (isLoading) {
+    return <CallDetailPageSkeleton />;
+  }
+  if (isError) {
+    return <CallDetailError refetch={refetch} />;
+  }
   return (
     <div className="flex flex-col items-center">
       <Header type="back" />
@@ -60,14 +69,14 @@ const CallDetailPage = () => {
         size="full"
         variant="solid"
         onClick={() => {
-          setIsLoading(true);
+          setIsSummaryLoading(true);
           summary(toSummaryRequest(call), {
             onSuccess: (summaryId) => {
               router.replace(`/summary?id=${summaryId}`);
             },
             onError: () => {
               toast('negative', '요약 생성 중 오류가 발생했습니다');
-              setIsLoading(false);
+              setIsSummaryLoading(false);
             },
           });
         }}
