@@ -12,6 +12,7 @@ import Spinner from '../scenario/result/Spinner';
 import TextBubbleCalling from '../TextBubble/TextBubbleCalling';
 import { ChatMessage } from '@/models/summary';
 import { cn } from '@/utils/cn';
+import DotLoading from '../common/DotLoading';
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -61,9 +62,12 @@ const ChatbotPage = () => {
   //   ]);
   // };
   const handleAddCallButton = async () => {
-    setMessages(prev => [...prev, { role: 'user', text: '전화 상담 연결하기' }]);
-    await delay(500);  // 0.5초
-    setMessages(prev => [...prev, { role: 'call' }]);
+    setMessages((prev) => [
+      ...prev,
+      { role: 'user', text: '전화 상담 연결하기' },
+    ]);
+    await delay(500); // 0.5초
+    setMessages((prev) => [...prev, { role: 'call' }]);
   };
 
   // 요약 API용 conversation 생성 -> 챗봇 ~ 사용자 사이의 대화
@@ -101,20 +105,33 @@ const ChatbotPage = () => {
         })}
         {isPending && (
           <div className="ml-2 text-sm text-gray-800">
-            <Spinner />
+            <DotLoading />
           </div>
         )}
       </div>
 
       <div className="fixed bottom-0">
         <div className="mx-[12px] mb-[10px] flex gap-[5px]">
-          <Badge color="blue" onClick={handleAddCallButton} className="cursor-pointer" outline>
+          <Badge
+            color="blue"
+            onClick={handleAddCallButton}
+            className="cursor-pointer"
+            outline
+          >
             전화 상담 연결하기
           </Badge>
-          <Badge color="primary" onClick={() => sendMessage('요금제 추천')} className="cursor-pointer">
+          <Badge
+            color="primary"
+            onClick={() => sendMessage('요금제 추천')}
+            className="cursor-pointer"
+          >
             요금제 추천
           </Badge>
-          <Badge color="primary" onClick={() => sendMessage('해외 로밍 가입')} className="cursor-pointer">
+          <Badge
+            color="primary"
+            onClick={() => sendMessage('해외 로밍 가입')}
+            className="cursor-pointer"
+          >
             해외 로밍 가입
           </Badge>
         </div>
@@ -127,7 +144,8 @@ const ChatbotPage = () => {
             value={text}
             onChange={(e) => setText(e.target.value)}
             disabled={isPending} // 챗봇에게 입력한 값을 전송 중일 때, 입력 못하도록 추가함
-            onKeyDown={(e) => {  // 키보드 Enter 누르면 바로 전송
+            onKeyDown={(e) => {
+              // 키보드 Enter 누르면 바로 전송
               if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
                 handleSend();
               }
@@ -137,7 +155,10 @@ const ChatbotPage = () => {
             type="button"
             onClick={handleSend}
             disabled={isPending || !text.trim()}
-            className={cn('cursor-pointer', isPending ? 'opacity-50' : 'opacity-100')}
+            className={cn(
+              'cursor-pointer',
+              isPending ? 'opacity-50' : 'opacity-100',
+            )}
           >
             <SendIcon />
           </button>
