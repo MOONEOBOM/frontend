@@ -1,6 +1,10 @@
 import MoonoSummary from '@/assets/moono/moono_summary.svg?react';
 
-const CallLoading = () => {
+interface CallLoadingProps {
+  text?: string;
+}
+
+const CallLoading = ({ text }: CallLoadingProps) => {
   const dots = ['.', '.', '.'];
 
   return (
@@ -13,7 +17,7 @@ const CallLoading = () => {
       {/* 로딩 안내 텍스트 */}
       <div className="flex w-full justify-center px-[82px]">
         <p className="script-title flex items-center whitespace-nowrap">
-          무너가 통화내역을 가져오고 있어요
+          {text}
           {/* 점 세 개만 따로 파도타기 애니메이션 적용 */}
           <span className="ml-1 flex w-[24px]">
             {dots.map((dot, index) => (
