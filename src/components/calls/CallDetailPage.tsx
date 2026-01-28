@@ -29,13 +29,9 @@ function toSummaryRequest(
 
 const CallDetailPage = () => {
   const { id } = useParams();
+  const callId = typeof id === 'string' ? Number(id) : Number(id?.[0]);
   const router = useRouter();
-  const {
-    data: call,
-    isLoading,
-    isError,
-    refetch,
-  } = useCallMessages(Number(id));
+  const { data: call, isLoading, isError, refetch } = useCallMessages(callId);
   const { mutate: summary } = useSummaryMutation();
   const { toast } = useToastHook();
 

@@ -1,6 +1,7 @@
 'use client';
 import MoonoError from '@/assets/moono/moono_lost.svg?react';
 import Button from '@/components/common/Button';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 interface resultErrorProps {
@@ -33,12 +34,12 @@ const ResultError = ({ refetch }: resultErrorProps) => {
         >
           다시 시도
         </Button>
-        <span
-          onClick={() => router.replace('/')}
+        <Link
+          href="/"
           className="script-body-14 w-fit cursor-pointer bg-[linear-gradient(to_top,var(--color-primary)_40%,transparent_40%)] px-0.5 leading-[1.2]"
         >
           홈으로 이동
-        </span>
+        </Link>
       </div>
     </div>
   );

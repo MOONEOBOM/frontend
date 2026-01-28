@@ -1,5 +1,5 @@
 import { getCallList, getCallMessages } from '@/services/calls.api';
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 export function useCallList() {
   return useQuery({
@@ -12,5 +12,6 @@ export function useCallMessages(callId: number) {
   return useQuery({
     queryKey: ['call', 'messages', callId],
     queryFn: () => getCallMessages(callId),
+    enabled: Number.isFinite(callId),
   });
 }

@@ -85,7 +85,9 @@ const ScenarioResultContent = () => {
           <span className={cn('text-uplus')}>LG U+</span> 고객센터: 1544-0010
         </span>
       </div>
-      <div className={cn('w-full flex-col border-t border-b border-gray-300')}>
+      <div
+        className={cn('flex w-full flex-col border-t border-b border-gray-300')}
+      >
         {displayScenario?.map((bubble, idx) => {
           return bubble.role === 'agent' ? (
             <TextBubbleScenario key={idx} text={bubble.message} />
