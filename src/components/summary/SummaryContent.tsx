@@ -70,20 +70,16 @@ const SummaryOnboarding = () => {
   );
 };
 
-const SummaryContent = () => {
-  const searchParams = useSearchParams();
-  const id = searchParams.get('id');
-  const summaryId = typeof id === 'string' ? Number(id) : Number(id?.[0]);
-  const { isOnboarding } = useOnboardingStore();
+type SummaryContentProps = {
+  summaryId?: number;
+};
 
-  const { data, isLoading, isError, refetch } = useRecentSummary(summaryId, {
-    enabled: !isOnboarding && !!summaryId,
-  });
+const SummaryContent = ({ summaryId }: SummaryContentProps) => {
+  const { isOnboarding } = useOnboardingStore();
 
   if (isOnboarding) {
     return <SummaryOnboarding />;
   }
-
   if (!summaryId) {
     return (
       <div className="flex min-h-screen items-center justify-center">
@@ -93,6 +89,10 @@ const SummaryContent = () => {
       </div>
     );
   }
+
+  const { data, isLoading, isError, refetch } = useRecentSummary(summaryId, {
+    enabled: !isOnboarding && !!summaryId,
+  });
 
   if (isLoading) {
     return <SummaryLoading />;
