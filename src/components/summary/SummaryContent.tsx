@@ -39,47 +39,44 @@ const containerVariants = {
     },
   },
 };
-
+const SummaryOnboarding = () => {
+  return (
+    <div className="flex w-full flex-col items-center gap-[30px]">
+      <p className="heading3">{ONBOARD_SUMMARY.title}</p>
+      <p className="body2 px-[40px] text-center leading-relaxed break-words break-keep">
+        {ONBOARD_SUMMARY.content}
+      </p>
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="flex w-full flex-col"
+      >
+        {ONBOARD_SUMMARY.highlights.map((bubble, idx) => {
+          return bubble.speaker === 'agent' ? (
+            <TextBubbleScenario
+              key={idx}
+              text={bubble.text}
+              itemVariants={itemVariants}
+            />
+          ) : (
+            <TextBubbleUser
+              key={idx}
+              text={bubble.text}
+              itemVariants={itemVariants}
+            />
+          );
+        })}
+      </motion.div>
+    </div>
+  );
+};
 const SummaryData = ({ summaryId }: { summaryId: number }) => {
-
   const { isOnboarding } = useOnboardingStore();
   const { data } = useRecentSummary(summaryId, {
     enabled: !isOnboarding && !!summaryId,
   });
 
-  if (isOnboarding) {
-    return (
-      <div className="flex w-full flex-col items-center gap-[30px]">
-        <p className="heading3">{ONBOARD_SUMMARY.title}</p>
-        <p className="body2 px-[40px] text-center leading-relaxed break-words break-keep">
-          {ONBOARD_SUMMARY.content}
-        </p>
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="flex w-full flex-col"
-        >
-          {ONBOARD_SUMMARY.highlights.map((bubble, idx) => {
-            return bubble.speaker === 'agent' ? (
-              <TextBubbleScenario
-                key={idx}
-                text={bubble.text}
-                itemVariants={itemVariants}
-              />
-            ) : (
-              <TextBubbleUser
-                key={idx}
-                text={bubble.text}
-                itemVariants={itemVariants}
-              />
-            );
-          })}
-        </motion.div>
-      </div>
-    );
-  }
-  
   if (!data) return null;
 
   return (
@@ -98,7 +95,9 @@ const SummaryData = ({ summaryId }: { summaryId: number }) => {
             ),
           )
         ) : (
-          <p className="text-gray-400 text-center script-title">핵심 대화가 없어요...</p>
+          <p className="script-title text-center text-gray-400">
+            핵심 대화가 없어요...
+          </p>
         )}
       </div>
     </div>
@@ -106,15 +105,21 @@ const SummaryData = ({ summaryId }: { summaryId: number }) => {
 };
 
 const SummaryContent = () => {
-
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
   const summaryId = id ? Number(id) : null;
+  const { isOnboarding } = useOnboardingStore();
+
+  if (isOnboarding) {
+    return <SummaryOnboarding />;
+  }
 
   if (!summaryId) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <p className="text-gray-500 script-body-16">요약 내역을 찾을 수 없어요...</p>
+        <p className="script-body-16 text-gray-500">
+          요약 내역을 찾을 수 없어요...
+        </p>
       </div>
     );
   }
