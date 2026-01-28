@@ -4,15 +4,18 @@ import MoonoBad from '@/assets/moono/moono_bad.svg';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Confetti from 'react-confetti';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 const SummaryFeedback = () => {
   const router = useRouter();
   const [showConfetti, setShowConfetti] = useState(false);
+  const hasAnimated = useRef(false);
   const handleRouter = () => {
-    setShowConfetti(true);
-    setTimeout(() => {
-      router.push('/');
-    }, 2500);
+    if (!hasAnimated.current) {
+      setShowConfetti(true);
+      setTimeout(() => {
+        router.push('/');
+      }, 2500);
+    }
   };
 
   return (
@@ -23,6 +26,7 @@ const SummaryFeedback = () => {
           height={844}
           numberOfPieces={500}
           gravity={0.5}
+          recycle={false}
           style={{
             position: 'fixed',
             top: 0,
