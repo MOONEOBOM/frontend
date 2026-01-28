@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import Badge from '../common/Badge';
@@ -23,12 +22,23 @@ type Message =
   | { role: 'service'; normal: string; easy: string };
 
 const ChatbotPage = () => {
-  const router = useRouter();
   const [text, setText] = useState('');
   const { mutate, isPending } = useChat();
   const [messages, setMessages] = useState<Message[]>([]);
 
-  // 말풍선 애니메이션 설정
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+      });
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [messages, isPending]);
+
   const bubbleVariants = {
     initial: { opacity: 0, y: 15, scale: 0.95 },
     animate: { opacity: 1, y: 0, scale: 1 },
@@ -84,8 +94,7 @@ const ChatbotPage = () => {
     <div className="min-h-screen bg-gray-100">
       <Header type="chat" conversation={conversation} />
 
-      <div className="flex flex-col gap-4 px-[20px] pt-[20px] pb-[150px]">
-        {/* AnimatePresence는 리스트의 추가/제거를 감지합니다 */}
+      <div className="flex flex-col gap-4 px-[20px] pt-[20px] pb-[100px]">
         <AnimatePresence mode="popLayout">
           {messages.map((msg, index) => (
             <motion.div
@@ -93,7 +102,7 @@ const ChatbotPage = () => {
               initial="initial"
               animate="animate"
               variants={bubbleVariants}
-              layout // 메시지가 추가될 때 기존 메시지 위치 이동을 부드럽게 만듦
+              layout
             >
               {msg.role === 'user' && <TextBubbleUser text={msg.text} />}
               {msg.role === 'service' && (
@@ -113,9 +122,13 @@ const ChatbotPage = () => {
             <DotLoading />
           </motion.div>
         )}
+
+        {/* 4. 스크롤 위치를 잡기 위한 빈 div 생성 */}
+        <div ref={scrollRef} />
       </div>
 
-      <div className="fixed bottom-0 w-full max-w-[390px] bg-gray-100">
+      {/* 하단 입력바 영역 */}
+      <div className="fixed bottom-0 w-full max-w-[390px] bg-gray-100 pb-[env(safe-area-inset-bottom)]">
         <div className="no-scrollbar mx-[12px] mb-[10px] flex gap-[5px] overflow-x-auto">
           <Badge
             color="blue"
@@ -141,7 +154,7 @@ const ChatbotPage = () => {
           </Badge>
         </div>
 
-        <div className="flex h-[60px] w-full items-center justify-between bg-white px-[20px] pb-[env(safe-area-inset-bottom)]">
+        <div className="flex h-[60px] w-full items-center justify-between bg-white px-[20px]">
           <input
             type="text"
             className="body1 flex-1 outline-none placeholder:text-gray-300"
