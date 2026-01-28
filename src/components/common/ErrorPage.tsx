@@ -7,7 +7,7 @@ import Button from '@/components/common/Button';
 interface ErrorPageProps {
   message: string;
   buttonColor?: string;
-  reset: () => void;
+  reset?: () => void;
 }
 
 export default function ErrorPage({
@@ -18,7 +18,9 @@ export default function ErrorPage({
   const router = useRouter();
 
   const ClickReset = () => {
-    reset();
+    if (reset) {
+      reset();
+    }
     router.replace('/');
   };
 

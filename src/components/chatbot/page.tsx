@@ -11,6 +11,9 @@ import Header from '../common/Header';
 import Spinner from '../scenario/result/Spinner';
 import TextBubbleCalling from '../TextBubble/TextBubbleCalling';
 import { ChatMessage } from '@/models/summary';
+import { cn } from '@/utils/cn';
+
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 type Message =
   | { role: 'call' }
@@ -50,8 +53,17 @@ const ChatbotPage = () => {
 
   const handleSend = () => sendMessage(text);
 
-  const handleAddCallButton = () => {
-    setMessages((prev) => [...prev, { role: 'call' }]);
+  // const handleAddCallButton = () => {
+  //   setMessages((prev) => [
+  //     ...prev,
+  //     { role: 'user', text: '전화 상담 연결하기' },
+  //     { role: 'call' }
+  //   ]);
+  // };
+  const handleAddCallButton = async () => {
+    setMessages(prev => [...prev, { role: 'user', text: '전화 상담 연결하기' }]);
+    await delay(500);  // 0.5초
+    setMessages(prev => [...prev, { role: 'call' }]);
   };
 
   // 요약 API용 conversation 생성 -> 챗봇 ~ 사용자 사이의 대화
@@ -115,12 +127,17 @@ const ChatbotPage = () => {
             value={text}
             onChange={(e) => setText(e.target.value)}
             disabled={isPending} // 챗봇에게 입력한 값을 전송 중일 때, 입력 못하도록 추가함
+            onKeyDown={(e) => {  // 키보드 Enter 누르면 바로 전송
+              if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
+                handleSend();
+              }
+            }}
           />
           <button
             type="button"
             onClick={handleSend}
             disabled={isPending || !text.trim()}
-            className={isPending ? 'opacity-50' : 'opacity-100'}
+            className={cn('cursor-pointer', isPending ? 'opacity-50' : 'opacity-100')}
           >
             <SendIcon />
           </button>
