@@ -10,6 +10,8 @@ import { SummaryRequest } from '@/models/summary';
 import { CallMessagesResponse } from '@/models/calls';
 import { useSummaryMutation } from '@/lib/tanstack/mutation/summary.mutation';
 import { useToastHook } from '@/hooks/useToastHook';
+import { useState } from 'react';
+import Loading from './loading';
 
 function toSummaryRequest(
   messages: CallMessagesResponse[] | undefined,
@@ -32,6 +34,12 @@ const CallDetailPage = () => {
   const { mutate: summary } = useSummaryMutation();
   const { toast } = useToastHook();
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  if (isLoading) {
+    return <Loading text="무너가 통화내용을 요약하고 있어요" />;
+  }
+
   return (
     <div className="flex flex-col items-center">
       <Header type="back" />
@@ -52,12 +60,14 @@ const CallDetailPage = () => {
         size="full"
         variant="solid"
         onClick={() => {
+          setIsLoading(true);
           summary(toSummaryRequest(call), {
             onSuccess: (summaryId) => {
               router.replace(`/summary?id=${summaryId}`);
             },
             onError: () => {
               toast('negative', '요약 생성 중 오류가 발생했습니다');
+              setIsLoading(false);
             },
           });
         }}
