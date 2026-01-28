@@ -3,21 +3,34 @@ import MoonoGood from '@/assets/moono/moono_good.svg';
 import MoonoBad from '@/assets/moono/moono_bad.svg';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-
+import Confetti from 'react-confetti';
+import { useState } from 'react';
 const SummaryFeedback = () => {
   const router = useRouter();
+  const { width, height } = window.screen;
+  const [showConfetti, setShowConfetti] = useState(false);
   const handleRouter = () => {
-    router.push('/');
+    setShowConfetti(true);
+    setTimeout(() => {
+      router.push('/');
+    }, 2000);
   };
 
   return (
     <div className="flex flex-col items-center gap-[30px]">
+      {showConfetti && (
+        <Confetti
+          width={width}
+          height={height}
+          numberOfPieces={500}
+          gravity={0.5}
+        />
+      )}
       <p className="heading2">무너의 요약은 어떠셨나요?</p>
       <div className="flex gap-[25px]">
         <motion.button
           initial={{}}
           whileHover={{ scale: 1.2 }}
-          whileTap={{ backgroundColor: 'rgba(255, 255, 255, 1)' }}
           className="cursor-pointer"
           onClick={handleRouter}
         >
@@ -26,7 +39,6 @@ const SummaryFeedback = () => {
         <motion.button
           initial={{}}
           whileHover={{ scale: 1.2 }}
-          whileTap={{ backgroundColor: 'rgba(255, 255, 255, 1)' }}
           className="cursor-pointer"
           onClick={handleRouter}
         >
