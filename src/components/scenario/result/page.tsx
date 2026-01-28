@@ -75,7 +75,7 @@ const ScenarioResultContent = () => {
       </div>
       <div className={cn('flex gap-2')}>
         {displayKeywords?.map((keyword, idx) => (
-          <Badge key={idx} color="blue">
+          <Badge key={idx} color="blue" isPointerCursor={false}>
             {keyword}
           </Badge>
         ))}

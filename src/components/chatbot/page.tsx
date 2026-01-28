@@ -128,28 +128,15 @@ const ChatbotPage = () => {
       </div>
 
       {/* 하단 입력바 영역 */}
-      <div className="fixed bottom-0 w-full max-w-[390px] bg-gray-100 pb-[env(safe-area-inset-bottom)]">
+      <div className="fixed bottom-0 w-full max-w-[390px]">
         <div className="no-scrollbar mx-[12px] mb-[10px] flex gap-[5px] overflow-x-auto">
-          <Badge
-            color="blue"
-            onClick={handleAddCallButton}
-            className="cursor-pointer whitespace-nowrap"
-            outline
-          >
+          <Badge color="blue" onClick={handleAddCallButton} outline>
             전화 상담 연결하기
           </Badge>
-          <Badge
-            color="primary"
-            onClick={() => sendMessage('요금제 추천')}
-            className="cursor-pointer whitespace-nowrap"
-          >
+          <Badge color="primary" onClick={() => sendMessage('요금제 추천')}>
             요금제 추천
           </Badge>
-          <Badge
-            color="primary"
-            onClick={() => sendMessage('해외 로밍 가입')}
-            className="cursor-pointer whitespace-nowrap"
-          >
+          <Badge color="primary" onClick={() => sendMessage('해외 로밍 가입')}>
             해외 로밍 가입
           </Badge>
         </div>
