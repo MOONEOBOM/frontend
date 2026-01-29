@@ -40,7 +40,7 @@ const CallButton = () => {
 
       <button
         onClick={() => setIsModalOpen(true)}
-        className="focus:bg-primary-100 body2 shadow-bubble mr-[5px] max-w-[105px] cursor-pointer rounded-[20px] bg-white px-[14px] py-[8px] break-words whitespace-pre-wrap"
+        className="focus:bg-primary-100 body2 shadow-bubble h-[35px] max-w-[105px] cursor-pointer rounded-[20px] bg-white px-[14px] py-[8px] break-words whitespace-pre-wrap"
       >
         전화 상담
       </button>
