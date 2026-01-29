@@ -1,4 +1,3 @@
-import { useOnboardingStore } from '@/store/useOnboarding';
 import { cn } from '@/utils/cn';
 import { motion } from 'framer-motion';
 
@@ -10,7 +9,7 @@ interface BadgeProps {
   outline?: boolean;
   size?: 'default' | 'large';
   isOnboarding?: boolean;
-  className?: string;  // 스타일 요소 관련
+  isPointerCursor?: boolean;
 }
 
 const Badge = ({
@@ -21,7 +20,7 @@ const Badge = ({
   outline = false,
   size = 'default',
   isOnboarding,
-  className,
+  isPointerCursor = true,
 }: BadgeProps) => {
   return (
     <motion.div
@@ -62,7 +61,7 @@ const Badge = ({
 
         isSelected && 'bg-primary',
 
-        className
+        isPointerCursor && 'cursor-pointer',
       )}
     >
       <span className="pt-[1px] leading-none">{children}</span>

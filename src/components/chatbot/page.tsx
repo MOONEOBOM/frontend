@@ -1,17 +1,18 @@
 'use client';
 
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
 import Badge from '../common/Badge';
 import { TextBubbleService } from '../TextBubble/TextBubbleService';
 import { TextBubbleUser } from '../TextBubble/TextBubbleUser';
 import SendIcon from '@/assets/icon/send.svg';
 import { useChat } from '@/lib/tanstack/mutation/chat.mutation';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Header from '../common/Header';
-import Spinner from '../scenario/result/Spinner';
 import TextBubbleCalling from '../TextBubble/TextBubbleCalling';
 import { ChatMessage } from '@/models/summary';
 import { cn } from '@/utils/cn';
+import DotLoading from '../common/DotLoading';
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -21,10 +22,28 @@ type Message =
   | { role: 'service'; normal: string; easy: string };
 
 const ChatbotPage = () => {
-  const router = useRouter();
   const [text, setText] = useState('');
   const { mutate, isPending } = useChat();
   const [messages, setMessages] = useState<Message[]>([]);
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+      });
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [messages, isPending]);
+
+  const bubbleVariants = {
+    initial: { opacity: 0, y: 15, scale: 0.95 },
+    animate: { opacity: 1, y: 0, scale: 1 },
+    transition: { duration: 0.3, ease: 'easeOut' },
+  };
 
   const sendMessage = (sendMessage: string) => {
     if (!sendMessage.trim() || isPending) return;
@@ -53,20 +72,15 @@ const ChatbotPage = () => {
 
   const handleSend = () => sendMessage(text);
 
-  // const handleAddCallButton = () => {
-  //   setMessages((prev) => [
-  //     ...prev,
-  //     { role: 'user', text: '전화 상담 연결하기' },
-  //     { role: 'call' }
-  //   ]);
-  // };
   const handleAddCallButton = async () => {
-    setMessages(prev => [...prev, { role: 'user', text: '전화 상담 연결하기' }]);
-    await delay(500);  // 0.5초
-    setMessages(prev => [...prev, { role: 'call' }]);
+    setMessages((prev) => [
+      ...prev,
+      { role: 'user', text: '전화 상담 연결하기' },
+    ]);
+    await delay(500);
+    setMessages((prev) => [...prev, { role: 'call' }]);
   };
 
-  // 요약 API용 conversation 생성 -> 챗봇 ~ 사용자 사이의 대화
   const conversation: ChatMessage[] = messages
     .filter((msg) => msg.role === 'user' || msg.role === 'service')
     .map((msg) => {
@@ -78,56 +92,64 @@ const ChatbotPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* 헤더(Header.tsx)에 conversation 전달하는거 type 뒤에 추가함 */}
       <Header type="chat" conversation={conversation} />
-      <div className="px-[20px] pb-[120px]">
-        {messages.map((msg, index) => {
-          if (msg.role === 'user') {
-            return <TextBubbleUser key={index} text={msg.text} />;
-          }
-          if (msg.role === 'service') {
-            return (
-              <TextBubbleService
-                key={index}
-                normal={msg.normal}
-                easy={msg.easy}
-              />
-            );
-          }
-          if (msg.role === 'call') {
-            return <TextBubbleCalling key={index} />;
-          }
-          return null;
-        })}
+
+      <div className="flex flex-col gap-4 px-[20px] pt-[20px] pb-[100px]">
+        <AnimatePresence mode="popLayout">
+          {messages.map((msg, index) => (
+            <motion.div
+              key={`${msg.role}-${index}`}
+              initial="initial"
+              animate="animate"
+              variants={bubbleVariants}
+              layout
+            >
+              {msg.role === 'user' && <TextBubbleUser text={msg.text} />}
+              {msg.role === 'service' && (
+                <TextBubbleService normal={msg.normal} easy={msg.easy} />
+              )}
+              {msg.role === 'call' && <TextBubbleCalling />}
+            </motion.div>
+          ))}
+        </AnimatePresence>
+
         {isPending && (
-          <div className="ml-2 text-sm text-gray-800">
-            <Spinner />
-          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="ml-2 text-sm text-gray-800"
+          >
+            <DotLoading />
+          </motion.div>
         )}
+
+        {/* 4. 스크롤 위치를 잡기 위한 빈 div 생성 */}
+        <div ref={scrollRef} />
       </div>
 
-      <div className="fixed bottom-0">
-        <div className="mx-[12px] mb-[10px] flex gap-[5px]">
-          <Badge color="blue" onClick={handleAddCallButton} className="cursor-pointer" outline>
+      {/* 하단 입력바 영역 */}
+      <div className="fixed bottom-0 w-full max-w-[390px]">
+        <div className="no-scrollbar mx-[12px] mb-[10px] flex gap-[5px] overflow-x-auto">
+          <Badge color="blue" onClick={handleAddCallButton} outline>
             전화 상담 연결하기
           </Badge>
-          <Badge color="primary" onClick={() => sendMessage('요금제 추천')} className="cursor-pointer">
+          <Badge color="primary" onClick={() => sendMessage('요금제 추천')}>
             요금제 추천
           </Badge>
-          <Badge color="primary" onClick={() => sendMessage('해외 로밍 가입')} className="cursor-pointer">
+          <Badge color="primary" onClick={() => sendMessage('해외 로밍 가입')}>
             해외 로밍 가입
           </Badge>
         </div>
 
-        <div className="flex h-[45px] w-[390px] items-center justify-between bg-white p-[12px]">
+        <div className="flex h-[60px] w-full items-center justify-between bg-white px-[20px]">
           <input
             type="text"
             className="body1 flex-1 outline-none placeholder:text-gray-300"
             placeholder="상담 내용을 입력하세요."
             value={text}
             onChange={(e) => setText(e.target.value)}
-            disabled={isPending} // 챗봇에게 입력한 값을 전송 중일 때, 입력 못하도록 추가함
-            onKeyDown={(e) => {  // 키보드 Enter 누르면 바로 전송
+            disabled={isPending}
+            onKeyDown={(e) => {
               if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
                 handleSend();
               }
@@ -137,7 +159,10 @@ const ChatbotPage = () => {
             type="button"
             onClick={handleSend}
             disabled={isPending || !text.trim()}
-            className={cn('cursor-pointer', isPending ? 'opacity-50' : 'opacity-100')}
+            className={cn(
+              'ml-2 transition-opacity',
+              isPending || !text.trim() ? 'opacity-30' : 'opacity-100',
+            )}
           >
             <SendIcon />
           </button>

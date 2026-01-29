@@ -1,19 +1,14 @@
 'use client';
 
-import { useState, ReactNode } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import Header from '@/components/common/Header';
 import ScenarioQuestionBox from './ScenarioQuestionBox';
 import ScenarioNextButton from './ScenarioNextButton';
 import { ConsultTypeKey } from './scenariotype';
 import { useOnboardingStore } from '@/store/useOnboarding';
+import ScenarioIntroBubble from './ScenarioIntroBubble';
 
-export default function ScenarioContainer({
-  children,
-}: {
-  children: ReactNode;
-}) {
-  const router = useRouter();
+const ScenarioPrePage = () => {
   const [consultType, setConsultType] = useState<ConsultTypeKey | null>(null);
   const [reason, setReason] = useState<string | null>(null);
   const { isOnboarding } = useOnboardingStore();
@@ -21,7 +16,7 @@ export default function ScenarioContainer({
     <div className={isOnboarding ? 'mt-[50px]' : ''}>
       {!isOnboarding && <Header type="home" />}
 
-      {children}
+      <ScenarioIntroBubble />
 
       <ScenarioQuestionBox
         consultType={consultType}
@@ -33,4 +28,6 @@ export default function ScenarioContainer({
       <ScenarioNextButton consultType={consultType} reason={reason} />
     </div>
   );
-}
+};
+
+export default ScenarioPrePage;

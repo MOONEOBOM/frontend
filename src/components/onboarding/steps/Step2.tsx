@@ -1,8 +1,7 @@
 'use client';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
-import ScenarioContainer from '@/components/scenario/pre/ScenarioClientContainer';
-import ScenarioIntroBubble from '@/components/scenario/pre/ScenarioIntroBubble';
+import ScenarioPrePage from '@/components/scenario/pre/ScenarioPrePage';
 
 const Step2 = () => {
   const [showScenario, setShowScenario] = useState(false);
@@ -64,9 +63,7 @@ const Step2 = () => {
               pointerEvents: 'none',
             }}
           >
-            <ScenarioContainer>
-              <ScenarioIntroBubble />
-            </ScenarioContainer>
+            <ScenarioPrePage />
           </div>
         </div>
       )}

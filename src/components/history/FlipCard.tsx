@@ -81,7 +81,7 @@ export default function FlipCard() {
           <MainCard>
             <Moono className="w-[140px]" />
             <div className="flex flex-col items-center gap-[20px]">
-              <p className="heading3 px-[30px]">{cardData?.title}</p>
+              <p className="heading3 px-[30px] break-keep">{cardData?.title}</p>
               <p className="body3 text-gray-800">
                 {dayjs(cardData?.createdDate).format('YYYY.MM.DD')}
               </p>
@@ -94,7 +94,7 @@ export default function FlipCard() {
           <MainCard>
             <Logo className="h-[34px]" />
             <div className="flex h-[200px] w-[210px] flex-col items-center gap-[15px]">
-              <p className="heading3">{cardData?.title}</p>
+              <p className="heading3 break-keep">{cardData?.title}</p>
               <div className="w-[200px] border-t-1 border-gray-300" />
               <p className="body2 text-center">{cardData?.content}</p>
             </div>
